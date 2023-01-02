@@ -3,7 +3,7 @@
 [![Nuget](https://img.shields.io/nuget/v/SymphonyAi.Summit.Api)](https://www.nuget.org/packages/SymphonyAi.Summit.Api/)
 [![Nuget](https://img.shields.io/nuget/dt/SymphonyAi.Summit.Api)](https://www.nuget.org/packages/SymphonyAi.Summit.Api/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d52eda04578e471e90b8495c40bdcb9d)](https://www.codacy.com/gh/panoramicdata/SymphonyAi.Summit.Api/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=panoramicdata/SymphonyAi.Summit.Api&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/962e948e6c054870ad95ebc6191cd144)](https://www.codacy.com/gh/panoramicdata/SymphonyAi.Summit.Api/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=panoramicdata/SymphonyAi.Summit.Api&amp;utm_campaign=Badge_Grade)
 
 This project implements access to the Symphony AI Summit API.
 
