@@ -1,6 +1,8 @@
 ackages
 App
 checkin
+dd
+deserializing
 healthcheck
 Installshield
 Ionide
@@ -10,3 +12,4 @@ plugin
 Silverlight
 workflows
 wwwroot
+yyyy

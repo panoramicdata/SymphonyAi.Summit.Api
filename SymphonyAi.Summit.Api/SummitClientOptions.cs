@@ -1,8 +1,7 @@
-﻿namespace SymphonyAi.Summit.Api
+﻿namespace SymphonyAi.Summit.Api;
+
+public class SummitClientOptions
 {
-	public class SummitClientOptions
-	{
-		public required Uri BaseUri { get; set; }
-		public required string ApiKey { get; set; }
-	}
+	public required Uri BaseUri { get; set; }
+	public required string ApiKey { get; set; }
 }

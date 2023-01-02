@@ -12,9 +12,9 @@ See the [contribution guide](CONTRIBUTING.md) for more information regarding con
 To use the Symphony AI Summit API nuget package:
 
 ## Visual Studio
-1. Open your project in Visual Studio
-1. Right-click on the project and click "Manage Nuget packages"
-1. Find the package "SymphonyAi.Summit.Api" - install the latest version
+ 1. Open your project in Visual Studio
+ 1. Right-click on the project and click "Manage Nuget packages"
+ 1. Find the package "SymphonyAi.Summit.Api" - install the latest version
 
 ## Example code (C# 11)
 
@@ -50,4 +50,4 @@ namespace My.Project
 ## API Documentation
 
 The Symphony AI Summit API documentation can be found here:
-- [Symphony AI Summit API Documentation v1](https://docs.symphonysummitai.com/display/DS/SummitAI+API+Docs)
+  - [Symphony AI Summit API Documentation v1](https://docs.symphonysummitai.com/display/DS/SummitAI+API+Docs)
