@@ -1,5 +1,5 @@
 ﻿namespace SymphonyAi.Summit.Api.Interfaces;
 
-internal interface ICmdb
+public interface ICmdb
 {
 }

@@ -1,5 +1,5 @@
 ﻿namespace SymphonyAi.Summit.Api.Interfaces;
 
-public interface IAttachments
+public interface IProblems
 {
 }
