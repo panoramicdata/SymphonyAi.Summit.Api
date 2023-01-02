@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SymphonyAi.Summit.Api", "SymphonyAi.Summit.Api.csproj", "{AD97BB11-7F41-4279-97D2-8D3621ECAE79}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SymphonyAi.Summit.Api.Test", "..\SymphonyAi.Summit.Api.Test\SymphonyAi.Summit.Api.Test.csproj", "{18086D87-68E2-4709-8ED6-300D872E2032}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{120270A2-C4E8-4403-AEA5-7A804BDE325C}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+		CONTRIBUTING.md = CONTRIBUTING.md
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
+		SymphonyAi.Summit.Api.sln.vsspell = SymphonyAi.Summit.Api.sln.vsspell
+		SymphonyAi.Summit.Api.sln.vsspell.dic = SymphonyAi.Summit.Api.sln.vsspell.dic
+		..\version.json = ..\version.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD97BB11-7F41-4279-97D2-8D3621ECAE79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD97BB11-7F41-4279-97D2-8D3621ECAE79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD97BB11-7F41-4279-97D2-8D3621ECAE79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD97BB11-7F41-4279-97D2-8D3621ECAE79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18086D87-68E2-4709-8ED6-300D872E2032}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18086D87-68E2-4709-8ED6-300D872E2032}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18086D87-68E2-4709-8ED6-300D872E2032}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18086D87-68E2-4709-8ED6-300D872E2032}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9728BFAE-44FD-451A-B4C0-5E0A8282B243}
+	EndGlobalSection
+EndGlobal

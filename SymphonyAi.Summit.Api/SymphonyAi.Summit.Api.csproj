@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<ApplicationIcon>Logo.ico</ApplicationIcon>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>Symphony AI Summit API</Title>
+		<Description>Symphony AI Summit API nuget package</Description>
+		<Copyright>Panoramic Data Limited 2023</Copyright>
+		<PackageProjectUrl>https://github.com/panoramicdata/SymphonyAi.Summit.Api</PackageProjectUrl>
+		<PackageIcon>Logo.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/panoramicdata/SymphonyAi.Summit.Api</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>Symphony;AI;Summit;API;nuget;package</PackageTags>
+		<PackageReleaseNotes>Initial release</PackageReleaseNotes>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<IncludeSymbols>True</IncludeSymbols>
+		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Include="Logo.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\Logo.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Nerdbank.GitVersioning" Version="3.5.119">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	</ItemGroup>
+
+</Project>
