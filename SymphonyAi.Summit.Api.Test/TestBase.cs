@@ -10,6 +10,7 @@ public abstract class TestBase
 	public ICacheLogger Logger { get; }
 	public SummitClient SummitClient { get; }
 	public string Instance { get; }
+	public int TicketNumber { get; }
 
 	protected TestBase(ITestOutputHelper testOutputHelper)
 	{
@@ -20,12 +21,27 @@ public abstract class TestBase
 
 		SummitClient = new SummitClient(new SummitClientOptions
 		{
-			BaseUri = new Uri(GetConfig(configuration, "BaseUri")),
-			ApiKey = GetConfig(configuration, "ApiKey")
+			BaseUri = new Uri(GetConfig<string>(configuration, "BaseUri")),
+			ApiKey = GetConfig<string>(configuration, "ApiKey")
 		});
-		Instance = GetConfig(configuration, "Instance");
+		Instance = GetConfig<string>(configuration, "Instance");
+		TicketNumber = GetConfig<int>(configuration, "TicketNumber");
 	}
 
-	private static string GetConfig(IConfigurationRoot configuration, string key)
-		=> configuration[key] ?? throw new ConfigurationErrorsException("ApiKey not found");
+	private static T GetConfig<T>(IConfigurationRoot configuration, string key)
+	{
+		var stringValue = configuration[key] ?? throw new ConfigurationErrorsException($"{key} not found in user secrets.");
+		var type = typeof(T);
+
+		object? result = Type.GetTypeCode(typeof(T)) switch
+		{
+			TypeCode.String => stringValue
+				?? throw new ConfigurationErrorsException($"{key} not found in user secrets."),
+			TypeCode.Int32 => (int.TryParse(stringValue, out var intValue) ? (int?)intValue : null)
+				?? throw new ConfigurationErrorsException($"{key} not found in user secrets."),
+			_ => throw new NotSupportedException($"Type {type} not supported."),
+		};
+
+		return (T)result;
+	}
 }

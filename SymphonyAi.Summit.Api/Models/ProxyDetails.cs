@@ -1,25 +1,24 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace SymphonyAi.Summit.Api.Models;
 
-[DataContract]
 public class ProxyDetails
 {
-	[DataMember(Name = "AuthType")]
+	[JsonPropertyName("AuthType")]
 	public string AuthType { get; set; } = "APIKey";
 
-	[DataMember(Name = "APIKey")]
+	[JsonPropertyName("APIKey")]
 	public string APIKey { get; set; } = string.Empty;
 
-	[DataMember(Name = "ProxyID")]
+	[JsonPropertyName("ProxyID")]
 	public int ProxyID { get; set; }
 
-	[DataMember(Name = "ReturnType")]
+	[JsonPropertyName("ReturnType")]
 	public string ReturnType { get; set; } = "json";
 
-	[DataMember(Name = "OrgID")]
+	[JsonPropertyName("OrgID")]
 	public int OrgId { get; set; } = 1;
 
-	[DataMember(Name = "TokenID")]
+	[JsonPropertyName("TokenID")]
 	public string TokenId { get; set; } = string.Empty;
 }

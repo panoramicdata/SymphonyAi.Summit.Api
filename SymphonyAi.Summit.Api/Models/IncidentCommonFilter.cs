@@ -1,34 +1,42 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace SymphonyAi.Summit.Api.Models;
 
-[DataContract]
 public class IncidentCommonFilter
 {
-	[DataMember(Name = "WorkgroupName")]
+	[JsonPropertyName("Executive")]
+	public int? Executive { get; set; }
+
+	[JsonPropertyName("WorkgroupName")]
 	public string WorkgroupName { get; set; } = string.Empty;
 
-	[DataMember(Name = "CurrentPageIndex")]
+	[JsonPropertyName("CurrentPageIndex")]
 	public int CurrentPageIndex { get; set; } = 1;
 
-	[DataMember(Name = "PageSize")]
+	[JsonPropertyName("PageSize")]
 	public int PageSize { get; set; } = 100;
 
-	[DataMember(Name = "OrgID")]
+	[JsonPropertyName("OrgID")]
 	public string OrgID { get; set; } = "1";
 
-	[DataMember(Name = "Instance")]
+	[JsonPropertyName("Instance")]
 	public string Instance { get; set; } = string.Empty;
 
-	[DataMember(Name = "Status")]
-	public string Status { get; set; } = string.Empty;
+	[JsonPropertyName("Status")]
+	public string Status { get; set; } = "New,In-Progress";
 
-	[DataMember(Name = "strUpdatedFromDate")]
+	[JsonPropertyName("strUpdatedFromDate")]
 	public string UpdatedFromDate { get; set; } = DateTimeOffset.UtcNow.AddDays(-1).ToString("yyyy-MM-dd");
 
-	[DataMember(Name = "strUpdatedToDate")]
+	[JsonPropertyName("strUpdatedToDate")]
 	public string UpdatedToDate { get; set; } = DateTimeOffset.UtcNow.ToString("yyyy-MM-dd");
 
-	[DataMember(Name = "IsWebServiceRequest")]
-	public bool IsWebServiceRequest { get; set; } = true;
+	[JsonPropertyName("IsWebServiceRequest")]
+	public bool IsWebServiceRequest { get; } = true;
+
+	[JsonPropertyName("CategoryName")]
+	public string? CategoryName { get; set; }
+
+	[JsonPropertyName("Categories")]
+	public string? Categories { get; set; }
 }

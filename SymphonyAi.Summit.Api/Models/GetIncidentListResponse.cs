@@ -1,5 +1,9 @@
-﻿namespace SymphonyAi.Summit.Api.Models;
+﻿using System.Text.Json.Serialization;
 
-public class GetIncidentListResponse
+namespace SymphonyAi.Summit.Api.Models;
+
+public class GetIncidentListResponse : Response
 {
+	[JsonPropertyName("OutputObject")]
+	public required IncidentListOutputObject OutputObject { get; set; }
 }

@@ -1,13 +1,18 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace SymphonyAi.Summit.Api.Models;
 
-[DataContract]
-public class CommonParameters
+public class IncidentCommonParameters
 {
-	[DataMember(Name = "_ProxyDetails")]
+	[JsonPropertyName("_ProxyDetails")]
 	public ProxyDetails ProxyDetails { get; set; } = new();
 
-	[DataMember(Name = "objIncidentCommonFilter")]
-	public IncidentCommonFilter IncidentCommonFilter { get; set; } = new();
+	[JsonPropertyName("objIncidentCommonFilter")]
+	public IncidentCommonFilter? IncidentCommonFilter { get; set; }
+
+	[JsonPropertyName("TicketNo")]
+	public int? TicketNumber { get; set; }
+
+	[JsonPropertyName("RequestType")]
+	public string? RequestType { get; set; }
 }
