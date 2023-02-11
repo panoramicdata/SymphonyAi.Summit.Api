@@ -34,10 +34,37 @@ internal class IncidentManager : Manager, IIncidents
 			request,
 			cancellationToken);
 
+	public Task<CreateOrUpdateIncidentResponse> CreateOrUpdateIncidentAsync(
+		CreateOrUpdateIncidentRequest request,
+		CancellationToken cancellationToken)
+		=> PostAsync<CreateOrUpdateIncidentRequest, CreateOrUpdateIncidentResponse>(request,
+			cancellationToken);
+
 	private async Task<TResponse> GetAsync<TRequest, TResponse>(
 		TRequest request,
 		CancellationToken cancellationToken
 	) where TRequest : IncidentRequest
+	{
+		request.CommonParameters.ProxyDetails.APIKey = ApiKey;
+		//var requestJson = JsonSerializer
+		//	.Serialize(request);
+		var response = await HttpClient
+			.PostAsJsonAsync(string.Empty, request, new JsonSerializerOptions { DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull }, cancellationToken);
+		//var responseString = await response
+		//	.Content
+		//	.ReadAsStringAsync(cancellationToken);
+		var returnValue = await response
+			.Content
+			.ReadFromJsonAsync<TResponse>(cancellationToken: cancellationToken)
+			?? throw new SummitApiException($"Error deserializing {typeof(TResponse).Name}");
+		return returnValue;
+	}
+
+
+	private async Task<TResponse> PostAsync<TRequest, TResponse>(
+		TRequest request,
+		CancellationToken cancellationToken
+	) where TRequest : CreateOrUpdateIncidentRequest
 	{
 		request.CommonParameters.ProxyDetails.APIKey = ApiKey;
 		//var requestJson = JsonSerializer
