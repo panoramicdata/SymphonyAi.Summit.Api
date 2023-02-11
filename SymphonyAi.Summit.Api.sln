@@ -3,19 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SymphonyAi.Summit.Api", "SymphonyAi.Summit.Api.csproj", "{AD97BB11-7F41-4279-97D2-8D3621ECAE79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SymphonyAi.Summit.Api", "SymphonyAi.Summit.Api\SymphonyAi.Summit.Api.csproj", "{AD97BB11-7F41-4279-97D2-8D3621ECAE79}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SymphonyAi.Summit.Api.Test", "..\SymphonyAi.Summit.Api.Test\SymphonyAi.Summit.Api.Test.csproj", "{18086D87-68E2-4709-8ED6-300D872E2032}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SymphonyAi.Summit.Api.Test", "SymphonyAi.Summit.Api.Test\SymphonyAi.Summit.Api.Test.csproj", "{18086D87-68E2-4709-8ED6-300D872E2032}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{120270A2-C4E8-4403-AEA5-7A804BDE325C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0DC30C91-441A-42FC-A23A-62003F6107C9}"
 	ProjectSection(SolutionItems) = preProject
-		..\.gitignore = ..\.gitignore
+		.gitignore = .gitignore
 		CONTRIBUTING.md = CONTRIBUTING.md
-		..\LICENSE = ..\LICENSE
-		..\README.md = ..\README.md
-		SymphonyAi.Summit.Api.sln.vsspell = SymphonyAi.Summit.Api.sln.vsspell
+		LICENSE = LICENSE
+		Logo.ico = Logo.ico
+		Logo.png = Logo.png
+		README.md = README.md
 		SymphonyAi.Summit.Api.sln.vsspell.dic = SymphonyAi.Summit.Api.sln.vsspell.dic
-		..\version.json = ..\version.json
+		version.json = version.json
 	EndProjectSection
 EndProject
 Global
