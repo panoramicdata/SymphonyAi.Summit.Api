@@ -5,16 +5,16 @@ namespace SymphonyAi.Summit.Api.Models;
 public abstract class Response
 {
 	[JsonPropertyName("Errors")]
-	public required string Errors { get; set; }
+	public /*required*/ string Errors { get; set; }
 
 	[JsonPropertyName("Message")]
-	public required string Message { get; set; }
+	public /*required*/ string Message { get; set; }
 
 	[JsonPropertyName("Output")]
-	public required string Output { get; set; }
+	public /*required*/ string Output { get; set; }
 
 	[JsonPropertyName("TokenID")]
-	public required string TokenId { get; set; }
+	public /*required*/ string TokenId { get; set; }
 
 	[JsonPropertyName("OrgID")]
 	public int OrgId { get; set; }
@@ -23,5 +23,5 @@ public abstract class Response
 	public int OutputId { get; set; }
 
 	[JsonPropertyName("Input")]
-	public required object Input { get; set; }
+	public /*required*/ object Input { get; set; }
 }

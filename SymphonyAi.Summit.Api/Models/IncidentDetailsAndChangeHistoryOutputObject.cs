@@ -5,5 +5,5 @@ namespace SymphonyAi.Summit.Api.Models;
 public class IncidentDetailsAndChangeHistoryOutputObject
 {
 	[JsonPropertyName("IncidentDetails")]
-	public required IncidentDetails IncidentDetails { get; set; }
+	public /*required*/ IncidentDetails IncidentDetails { get; set; }
 }
