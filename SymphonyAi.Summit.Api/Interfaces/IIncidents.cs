@@ -35,5 +35,15 @@ public interface IIncidents
 	/// <returns></returns>
 	Task<GetIncidentDetailsAndChangeHistoryResponse> GetIncidentDetailsAndChangeHistoryAsync(
 		GetIncidentDetailsAndChangeHistoryRequest request,
-		CancellationToken none);
+		CancellationToken cancellationToken);
+
+	/// <summary>
+	/// Create or update an incident
+	/// </summary>
+	/// <param name="request"></param>
+	/// <param name="none"></param>
+	/// <returns></returns>
+	Task<CreateOrUpdateIncidentResponse> CreateOrUpdateIncidentAsync(
+		CreateOrUpdateIncidentRequest request,
+		CancellationToken cancellationToken);
 }
