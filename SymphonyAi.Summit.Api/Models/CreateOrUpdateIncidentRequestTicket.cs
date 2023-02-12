@@ -11,46 +11,46 @@ public class CreateOrUpdateIncidentRequestTicket
 	public string? TicketNumber { get; set; }
 
 	[JsonPropertyName("Priority_Name")]
-	public /*required*/ string PriorityName { get; set; }
+	public string PriorityName { get; set; } = string.Empty;
 
 	[JsonPropertyName("Classification_Name")]
-	public /*required*/ string ClassificationName { get; set; }
+	public string ClassificationName { get; set; } = string.Empty;
 
 	[JsonPropertyName("Sup_Function")]
-	public /*required*/ string SupFunction { get; set; }
+	public string SupFunction { get; set; } = string.Empty;
 
 	[JsonPropertyName("Caller_EmailID")]
-	public /*required*/ string CallerEmailId { get; set; }
+	public string CallerEmailId { get; set; } = string.Empty;
 
 	[JsonPropertyName("Status")]
-	public /*required*/ string Status { get; set; }
+	public string Status { get; set; } = "New";
 
 	[JsonPropertyName("Urgency_Name")]
-	public /*required*/ string UrgencyName { get; set; }
+	public string UrgencyName { get; set; } = string.Empty;
 
 	[JsonPropertyName("Assigned_WorkGroup_Name")]
-	public /*required*/ string AssignedWorkGroupName { get; set; }
+	public string AssignedWorkGroupName { get; set; } = string.Empty;
 
 	[JsonPropertyName("Medium")]
-	public /*required*/ string Medium { get; set; }
+	public string Medium { get; set; } = string.Empty;
 
 	[JsonPropertyName("Impact_Name")]
-	public /*required*/ string ImpactName { get; set; }
+	public string ImpactName { get; set; } = string.Empty;
 
 	[JsonPropertyName("Category_Name")]
-	public /*required*/ string CategoryName { get; set; }
+	public string CategoryName { get; set; } = string.Empty;
 
 	[JsonPropertyName("SLA_Name")]
-	public /*required*/ string SlaName { get; set; }
+	public string SlaName { get; set; } = string.Empty;
 
 	[JsonPropertyName("OpenCategory_Name")]
-	public /*required*/ string OpenCategoryName { get; set; }
+	public string OpenCategoryName { get; set; } = string.Empty;
 
 	[JsonPropertyName("Source")]
 	public string Source { get; set; } = string.Empty;
 
 	[JsonPropertyName("Assigned_Engineer_Email")]
-	public /*required*/ string AssignedEngineerEmail { get; set; }
+	public string AssignedEngineerEmail { get; set; } = string.Empty;
 
 	[JsonPropertyName("Description")]
 	public string Description { get; set; } = string.Empty;
@@ -59,5 +59,5 @@ public class CreateOrUpdateIncidentRequestTicket
 	public string PageName { get; set; } = "TicketDetail";
 
 	[JsonPropertyName("Mail_CC_EmailID")]
-	public string? MailCcEmailId { get; set; } = null;
+	public string MailCcEmailId { get; set; } = string.Empty;
 }
