@@ -17,11 +17,11 @@ public class CreateOrUpdateIncidentRequestIncidentContainerJsonObject
 	public string CiValue { get; set; }
 
 	[JsonPropertyName("Ticket")]
-	public CreateOrUpdateIncidentRequestTicket Ticket { get; set; }
+	public CreateOrUpdateIncidentRequestTicket Ticket { get; set; } = new();
 
 	[JsonPropertyName("TicketInformation")]
-	public CreateOrUpdateIncidentRequestTicketInformation TicketInformation { get; set; }
+	public CreateOrUpdateIncidentRequestTicketInformation TicketInformation { get; set; } = new();
 
 	[JsonPropertyName("CustomFields")]
-	public object[] CustomFields { get; set; }
+	public List<object> CustomFields { get; set; } = new();
 }

@@ -5,5 +5,5 @@ namespace SymphonyAi.Summit.Api.Models;
 public class CreateOrUpdateIncidentRequestIncidentParams
 {
 	[JsonPropertyName("IncidentContainerJsonObj")]
-	public CreateOrUpdateIncidentRequestIncidentContainerJsonObject IncidentContainerJsonObj { get; set; }
+	public CreateOrUpdateIncidentRequestIncidentContainerJsonObject IncidentContainerJsonObj { get; } = new();
 }

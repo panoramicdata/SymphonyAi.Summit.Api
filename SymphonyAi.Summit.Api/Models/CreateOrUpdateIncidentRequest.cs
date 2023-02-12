@@ -9,5 +9,5 @@ public class CreateOrUpdateIncidentRequest : Request
 	}
 
 	[JsonPropertyName("objCommonParameters")]
-	public CreateOrUpdateIncidentRequestCommonParameters CommonParameters { get; set; }
+	public CreateOrUpdateIncidentRequestCommonParameters CommonParameters { get; } = new();
 }
