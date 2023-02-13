@@ -1,29 +1,39 @@
 ﻿using System.Text.Json.Serialization;
 
 namespace SymphonyAi.Summit.Api.Models;
-public class CreateOrUpdateIncidentResponse
+
+public class CreateOrUpdateIncidentResponse : Response
 {
-	[JsonPropertyName("ServiceName")]
-	public /*required*/ string ServiceName { get; set; }
+	[JsonPropertyName("OrgID")]
+	public int OrgId { get; set; }
 
-	[JsonPropertyName("objCommonParameters")]
-	public /*required*/ CreateOrUpdateIncidentResponseCommonParameters CommonParameters { get; set; }
-}
+	[JsonPropertyName("OutputID")]
+	public int OutputId { get; set; }
 
-public class CreateOrUpdateIncidentResponseCommonParameters
-{
-	[JsonPropertyName("_ProxyDetails")]
-	public /*required*/ ProxyDetails ProxyDetails { get; set; }
+	[JsonPropertyName("OutputObject")]
+	public object OutputObject { get; set; }
 
-	[JsonPropertyName("incidentParamsJSON")]
-	public /*required*/ IncidentParamsJson IncidentParamsJson { get; set; }
+	[JsonPropertyName("TokenID")]
+	public object TokenId { get; set; }
 
-	[JsonPropertyName("RequestType")]
-	public /*required*/ string RequestType { get; set; }
-}
+	[JsonPropertyName("Priority")]
+	public object Priority { get; set; }
 
-public class IncidentParamsJson
-{
-	[JsonPropertyName("IncidentContainerJson")]
-	public string IncidentContainerJson { get; set; }
+	[JsonPropertyName("ResolutionDeadLine")]
+	public object ResolutionDeadline { get; set; }
+
+	[JsonPropertyName("Resolution_DeadLine")]
+	public string Resolution_Deadline { get; set; }
+
+	[JsonPropertyName("SLA")]
+	public object Sla { get; set; }
+
+	[JsonPropertyName("TicketID_Encrypted")]
+	public string EncryptedTicketId { get; set; }
+
+	[JsonPropertyName("TicketID_Internal")]
+	public int InternalTicketId { get; set; }
+
+	[JsonPropertyName("TicketNo")]
+	public int TicketNumber { get; set; }
 }

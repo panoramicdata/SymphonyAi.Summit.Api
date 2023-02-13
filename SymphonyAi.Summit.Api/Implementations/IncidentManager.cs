@@ -1,4 +1,5 @@
-﻿using SymphonyAi.Summit.Api.Exceptions;
+﻿using Microsoft.Extensions.Logging;
+using SymphonyAi.Summit.Api.Exceptions;
 using SymphonyAi.Summit.Api.Interfaces;
 using SymphonyAi.Summit.Api.Models;
 using System.Net.Http.Json;
@@ -8,9 +9,12 @@ namespace SymphonyAi.Summit.Api.Implementations;
 
 internal class IncidentManager : Manager, IIncidents
 {
-	public IncidentManager(HttpClient httpClient, string apiKey)
+	private readonly ILogger _logger;
+
+	public IncidentManager(HttpClient httpClient, string apiKey, ILogger logger)
 		: base(httpClient, apiKey)
 	{
+		_logger = logger;
 	}
 
 	public Task<GetIncidentListResponse> GetIncidentListAsync(
@@ -71,9 +75,11 @@ internal class IncidentManager : Manager, IIncidents
 		//	.Serialize(request);
 		var response = await HttpClient
 			.PostAsJsonAsync(string.Empty, request, new JsonSerializerOptions { DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull }, cancellationToken);
-		//var responseString = await response
-		//	.Content
-		//	.ReadAsStringAsync(cancellationToken);
+		var responseString = await response
+			.Content
+			.ReadAsStringAsync(cancellationToken);
+		_logger.LogDebug(responseString);
+
 		var returnValue = await response
 			.Content
 			.ReadFromJsonAsync<TResponse>(cancellationToken: cancellationToken)
