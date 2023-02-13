@@ -1,0 +1,49 @@
+﻿{
+	"ServiceName": "IM_LogOrUpdateIncident",
+	"objCommonParameters": {
+		"_ProxyDetails": {
+			"AuthType": "APIKEY",
+			"APIKey": "XXXXXXXXXXXXXXXXXXXXX",
+			"ProxyID": 0,
+			"ReturnType": "JSON",
+			"OrgID": 1
+		},
+		"incidentParamsJSON": {
+			"IncidentContainerJsonObj": {
+				"Updater": "Executive",
+				"CI_ID": "",
+				"CI_Key": "hostname",
+				"CI_Value": "",
+				"Ticket": {
+					"Ticket_No": null,
+					"IsFromWebService": true,
+					"Priority_Name": "P3",
+					"Classification_Name": "Alert",
+					"Sup_Function": "Info",
+					"Caller_EmailID": "logicmonitor@logicmonitor.com",
+					"Status": "New",
+					"Assigned_Engineer_Email": "",
+					"Urgency_Name": "Low",
+					"Closure_Code_Name": "Successful",
+					"Assigned_WorkGroup_Name": "NOC",
+					"Medium": "API",
+					"Impact_Name": "Low",
+					"Category_Name": "alert",
+					"SLA_Name": "Standard",
+					"OpenCategory_Name": "alert",
+					"Source": "LogicMonitor",
+					"Description": "Host - Datasource Instance\nLMD0 LogicMonitor testing alert for Host Datasource Instance Datapoint (ok)\nThis is a testing alert for Host Datasource Instance Datapoint (ok)\n\nLink: https://xxx.logicmonitor.com/santaba/uiv4/alert/index.jsp#detail~id=LMD0&type=alert",
+					"PageName": "TicketDetail",
+					"Mail_CC_EmailID": ""
+				},
+				"TicketInformation": {
+					"Information": "Host",
+					"InternalLog": "InternalLog",
+					"UserLog": ""
+				},
+				"CustomFields": []
+			}
+		},
+		"RequestType": "RemoteCall"
+	}
+}

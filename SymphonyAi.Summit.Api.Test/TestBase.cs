@@ -1,5 +1,6 @@
 ﻿using Divergic.Logging.Xunit;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System.Configuration;
 using Xunit.Abstractions;
 
@@ -43,5 +44,16 @@ public abstract class TestBase
 		};
 
 		return (T)result;
+	}
+
+	protected static async Task<T> LoadObjectFromJsonFile<T>(
+		string fileNameWithoutExtension,
+		CancellationToken cancellationToken
+	)
+	{
+		var fileInfo = new FileInfo($"../../../TestObjects/{fileNameWithoutExtension}.json");
+		var json = await File.ReadAllTextAsync(fileInfo.FullName, cancellationToken);
+		return JsonConvert.DeserializeObject<T>(json)
+			?? throw new FormatException($"File does not contain valid json of type {typeof(T)}");
 	}
 }

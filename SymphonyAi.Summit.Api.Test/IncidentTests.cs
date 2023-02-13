@@ -52,4 +52,12 @@ public class IncidentTests : TestBase
 
 		response.Should().NotBeNull();
 	}
+
+	[Fact]
+	public async Task CreateIncident_GoodRequest_Succeeds()
+	{
+		// Load CreateOrUpdateIncidentRequest from file CreateIncidentRequest.json
+		var request = await LoadObjectFromJsonFile<CreateOrUpdateIncidentRequest>("CreateIncidentRequest", default);
+
+	}
 }
