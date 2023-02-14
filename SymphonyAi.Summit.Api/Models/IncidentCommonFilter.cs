@@ -11,7 +11,7 @@ public class IncidentCommonFilter
 	public string WorkgroupName { get; set; } = string.Empty;
 
 	[JsonPropertyName("CurrentPageIndex")]
-	public int CurrentPageIndex { get; set; } = 1;
+	public int CurrentPageIndex { get; set; } = 0;
 
 	[JsonPropertyName("PageSize")]
 	public int PageSize { get; set; } = 100;
