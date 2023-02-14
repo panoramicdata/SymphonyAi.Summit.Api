@@ -60,9 +60,9 @@ internal class CmdbManager : Manager, ICmdb
 	) where TRequest : CmdbQueryRequest
 	{
 		request.CommonParameters.ApiKey = ApiKey;
-		var requestJson = JsonSerializer
-			.Serialize(request, JsonSerializerOptions);
-		Logger.LogDebug("REQUEST: " + requestJson);
+
+		LogRequest(request);
+
 		var response = await HttpClient
 			.PostAsJsonAsync(string.Empty, request, JsonSerializerOptions, cancellationToken);
 
