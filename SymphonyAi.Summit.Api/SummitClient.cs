@@ -16,11 +16,11 @@ public class SummitClient : IDisposable
 			BaseAddress = new Uri(summitClientOptions.BaseUri + "/REST/Summit_RESTWCF.svc/RESTService/CommonWS_JsonObjCall")
 		};
 
-		Attachments = new AttachmentManager(_httpClient, summitClientOptions.ApiKey);
-		Cmdb = new CmdbManager(_httpClient, summitClientOptions.ApiKey);
+		Attachments = new AttachmentManager(_httpClient, summitClientOptions.ApiKey, logger);
+		Cmdb = new CmdbManager(_httpClient, summitClientOptions.ApiKey, logger);
 		Incidents = new IncidentManager(_httpClient, summitClientOptions.ApiKey, logger);
 		Problems = new ProblemManager(_httpClient, summitClientOptions.ApiKey);
-		ServiceRequests = new ServiceRequestManager(_httpClient, summitClientOptions.ApiKey);
+		ServiceRequests = new ServiceRequestManager(_httpClient, summitClientOptions.ApiKey, logger);
 	}
 
 	public IAttachments Attachments { get; }

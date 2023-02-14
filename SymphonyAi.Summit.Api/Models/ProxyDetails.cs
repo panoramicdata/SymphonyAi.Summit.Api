@@ -17,8 +17,8 @@ public class ProxyDetails
 	public string ReturnType { get; set; } = "json";
 
 	[JsonPropertyName("OrgID")]
-	public int OrgId { get; set; } = 1;
+	public int? OrgId { get; set; } = 1;
 
 	[JsonPropertyName("TokenID")]
-	public string TokenId { get; set; } = string.Empty;
+	public string? TokenId { get; set; }
 }

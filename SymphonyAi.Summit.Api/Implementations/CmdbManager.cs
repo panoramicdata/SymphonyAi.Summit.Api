@@ -1,4 +1,5 @@
-﻿using SymphonyAi.Summit.Api.Exceptions;
+﻿using Microsoft.Extensions.Logging;
+using SymphonyAi.Summit.Api.Exceptions;
 using SymphonyAi.Summit.Api.Interfaces;
 using SymphonyAi.Summit.Api.Models.Cmdb;
 using System.Net.Http.Json;
@@ -16,26 +17,65 @@ internal class CmdbManager : Manager, ICmdb
 		_logger = logger;
 	}
 
+	public Task<CmdbCreateOrUpdateCiResponse> CreateOrUpdateCiAsync(
+		CmdbCreateOrUpdateCiRequest request,
+		CancellationToken cancellationToken)
+		=> GetAsync<CmdbCreateOrUpdateCiRequest, CmdbCreateOrUpdateCiResponse>(request, cancellationToken);
+
 	public Task<CmdbQueryResponse> GetCisAsync(
 		CmdbQueryRequest request,
 		CancellationToken cancellationToken)
-		=> GetAsync<CmdbQueryRequest, CmdbQueryResponse>(request, cancellationToken);
-
+		=> GetAsync2<CmdbQueryRequest, CmdbQueryResponse>(request, cancellationToken);
 
 	private async Task<TResponse> GetAsync<TRequest, TResponse>(
-	TRequest request,
-	CancellationToken cancellationToken
-) where TRequest : CmdbQueryRequest
+		TRequest request,
+		CancellationToken cancellationToken
+	) where TRequest : CmdbCreateOrUpdateCiRequest
 	{
-		request.CommonParameters.ApiKey = ApiKey;
-		//var requestJson = JsonSerializer
-		//	.Serialize(request);
+		request.CommonParameters.ProxyDetails.ApiKey = ApiKey;
+		var requestJson = JsonSerializer
+			.Serialize(request);
+		_logger.LogDebug("REQUEST: " + requestJson);
 		var response = await HttpClient
 			.PostAsJsonAsync(string.Empty, request, new JsonSerializerOptions { DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull }, cancellationToken);
+
 		var responseString = await response
 			.Content
 			.ReadAsStringAsync(cancellationToken);
-		_logger.LogDebug(responseString);
+
+		_logger.Log(
+			response.IsSuccessStatusCode ? LogLevel.Debug : LogLevel.Error,
+			"RESPONSE: " + responseString
+		);
+
+		var returnValue = await response
+			.Content
+			.ReadFromJsonAsync<TResponse>(cancellationToken: cancellationToken)
+			?? throw new SummitApiException($"Error deserializing {typeof(TResponse).Name}");
+		return returnValue;
+	}
+
+	private async Task<TResponse> GetAsync2<TRequest, TResponse>(
+	TRequest request,
+	CancellationToken cancellationToken
+	) where TRequest : CmdbQueryRequest
+	{
+		request.CommonParameters.ApiKey = ApiKey;
+		var requestJson = JsonSerializer
+			.Serialize(request);
+		_logger.LogDebug("REQUEST: " + requestJson);
+		var response = await HttpClient
+			.PostAsJsonAsync(string.Empty, request, new JsonSerializerOptions { DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull }, cancellationToken);
+
+		var responseString = await response
+			.Content
+			.ReadAsStringAsync(cancellationToken);
+
+		_logger.Log(
+			response.IsSuccessStatusCode ? LogLevel.Debug : LogLevel.Error,
+			"RESPONSE: " + responseString
+		);
+
 		var returnValue = await response
 			.Content
 			.ReadFromJsonAsync<TResponse>(cancellationToken: cancellationToken)

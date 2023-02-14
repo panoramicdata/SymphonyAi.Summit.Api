@@ -14,6 +14,8 @@ public abstract class TestBase
 	public int TicketNumber { get; }
 	public string WorkgroupName { get; }
 
+	public string OwnerName { get; }
+
 	public string CallerEmailId { get; }
 
 	protected TestBase(ITestOutputHelper testOutputHelper)
@@ -32,6 +34,7 @@ public abstract class TestBase
 		TicketNumber = GetConfig<int>(configuration, "TicketNumber");
 		WorkgroupName = GetConfig<string>(configuration, "WorkgroupName");
 		CallerEmailId = GetConfig<string>(configuration, "CallerEmailId");
+		OwnerName = GetConfig<string>(configuration, "OwnerName");
 	}
 
 	private static T GetConfig<T>(IConfigurationRoot configuration, string key)
