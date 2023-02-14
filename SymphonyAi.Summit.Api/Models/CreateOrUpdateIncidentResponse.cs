@@ -4,17 +4,8 @@ namespace SymphonyAi.Summit.Api.Models;
 
 public class CreateOrUpdateIncidentResponse : Response
 {
-	[JsonPropertyName("OrgID")]
-	public int OrgId { get; set; }
-
-	[JsonPropertyName("OutputID")]
-	public int OutputId { get; set; }
-
 	[JsonPropertyName("OutputObject")]
 	public object OutputObject { get; set; }
-
-	[JsonPropertyName("TokenID")]
-	public object TokenId { get; set; }
 
 	[JsonPropertyName("Priority")]
 	public object Priority { get; set; }

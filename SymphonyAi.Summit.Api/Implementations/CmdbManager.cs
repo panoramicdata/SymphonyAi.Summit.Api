@@ -9,18 +9,13 @@ namespace SymphonyAi.Summit.Api.Implementations;
 
 internal class CmdbManager : Manager, ICmdb
 {
-	private readonly JsonSerializerOptions _jsonSerializerOptions;
-	private readonly ILogger _logger;
-
 	public CmdbManager(
 		HttpClient httpClient,
 		string apiKey,
 		JsonSerializerOptions jsonSerializerOptions,
 		ILogger logger)
-		: base(httpClient, apiKey)
+		: base(httpClient, apiKey, jsonSerializerOptions, logger)
 	{
-		_jsonSerializerOptions = jsonSerializerOptions;
-		_logger = logger;
 	}
 
 	public Task<CmdbCreateOrUpdateCiResponse> CreateOrUpdateCiAsync(
@@ -44,20 +39,13 @@ internal class CmdbManager : Manager, ICmdb
 	) where TRequest : CmdbCreateOrUpdateCiRequest
 	{
 		request.CommonParameters.ProxyDetails.ApiKey = ApiKey;
-		var requestJson = JsonSerializer
-			.Serialize(request, _jsonSerializerOptions);
-		_logger.LogDebug("REQUEST: " + requestJson);
+
+		LogRequest(request);
+
 		var response = await HttpClient
-			.PostAsJsonAsync(string.Empty, request, _jsonSerializerOptions, cancellationToken);
+			.PostAsJsonAsync(string.Empty, request, JsonSerializerOptions, cancellationToken);
 
-		var responseString = await response
-			.Content
-			.ReadAsStringAsync(cancellationToken);
-
-		_logger.Log(
-			response.IsSuccessStatusCode ? LogLevel.Debug : LogLevel.Error,
-			"RESPONSE: " + responseString
-		);
+		await LogResponseAsync(response, cancellationToken);
 
 		var returnValue = await response
 			.Content
@@ -72,20 +60,13 @@ internal class CmdbManager : Manager, ICmdb
 	) where TRequest : CmdbQueryRequest
 	{
 		request.CommonParameters.ApiKey = ApiKey;
-		var requestJson = JsonSerializer
-			.Serialize(request, _jsonSerializerOptions);
-		_logger.LogDebug("REQUEST: " + requestJson);
+
+		LogRequest(request);
+
 		var response = await HttpClient
-			.PostAsJsonAsync(string.Empty, request, _jsonSerializerOptions, cancellationToken);
+			.PostAsJsonAsync(string.Empty, request, JsonSerializerOptions, cancellationToken);
 
-		var responseString = await response
-			.Content
-			.ReadAsStringAsync(cancellationToken);
-
-		_logger.Log(
-			response.IsSuccessStatusCode ? LogLevel.Debug : LogLevel.Error,
-			"RESPONSE: " + responseString
-		);
+		await LogResponseAsync(response, cancellationToken);
 
 		var returnValue = await response
 			.Content
