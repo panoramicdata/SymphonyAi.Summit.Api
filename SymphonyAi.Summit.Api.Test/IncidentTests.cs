@@ -61,7 +61,7 @@ public class IncidentTests : TestBase
 		request.CommonParameters.IncidentParamsJson.IncidentContainerJsonObj.Ticket.AssignedWorkGroupName = WorkgroupName;
 		request.CommonParameters.IncidentParamsJson.IncidentContainerJsonObj.Ticket.CallerEmailId = CallerEmailId;
 
-		//request.CommonParameters.IncidentParamsJson.IncidentContainerJsonObj.Ticket.Symptom = Guid.NewGuid().ToString();
+		request.CommonParameters.IncidentParamsJson.IncidentContainerJsonObj.Ticket.Symptom = Guid.NewGuid().ToString();
 
 		request.ServiceName.Should().Be("IM_LogOrUpdateIncident");
 		request.CommonParameters.RequestType.Should().Be("RemoteCall");
