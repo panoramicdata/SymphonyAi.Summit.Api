@@ -6,17 +6,12 @@ namespace SymphonyAi.Summit.Api.Implementations;
 
 internal class ServiceRequestManager : Manager, IServiceRequests
 {
-	private readonly JsonSerializerOptions _jsonSerializerOptions;
-	private readonly ILogger _logger;
-
 	public ServiceRequestManager(
 		HttpClient httpClient,
 		string apiKey,
 		JsonSerializerOptions jsonSerializerOptions,
 		ILogger logger)
-		: base(httpClient, apiKey)
+		: base(httpClient, apiKey, jsonSerializerOptions, logger)
 	{
-		_jsonSerializerOptions = jsonSerializerOptions;
-		_logger = logger;
 	}
 }

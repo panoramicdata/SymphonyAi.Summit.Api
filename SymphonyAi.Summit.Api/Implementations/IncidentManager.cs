@@ -9,26 +9,21 @@ namespace SymphonyAi.Summit.Api.Implementations;
 
 internal class IncidentManager : Manager, IIncidents
 {
-	private readonly JsonSerializerOptions _jsonSerializerOptions;
-	private readonly ILogger _logger;
-
 	public IncidentManager(
 		HttpClient httpClient,
 		string apiKey,
 		JsonSerializerOptions jsonSerializerOptions,
-		ILogger logger)
-		: base(httpClient, apiKey)
+		ILogger logger
+	)
+		: base(httpClient, apiKey, jsonSerializerOptions, logger)
 	{
-		_jsonSerializerOptions = jsonSerializerOptions;
-		_logger = logger;
 	}
-
 	public Task<GetIncidentListResponse> GetIncidentListAsync(
-		GetIncidentListRequest request,
-		CancellationToken cancellationToken)
-		=> GetAsync<GetIncidentListRequest, GetIncidentListResponse>(
-			request,
-			cancellationToken);
+			GetIncidentListRequest request,
+			CancellationToken cancellationToken)
+			=> GetAsync<GetIncidentListRequest, GetIncidentListResponse>(
+				request,
+				cancellationToken);
 
 	public Task<GetIncidentListResponse> GetIncidentListDetailsAsync(
 		GetIncidentListDetailsRequest request,
@@ -56,13 +51,14 @@ internal class IncidentManager : Manager, IIncidents
 	) where TRequest : IncidentRequest
 	{
 		request.CommonParameters.ProxyDetails.ApiKey = ApiKey;
-		//var requestJson = JsonSerializer
-		//	.Serialize(request, _jsonSerializerOptions);
+
+		LogRequest(request);
+
 		var response = await HttpClient
-			.PostAsJsonAsync(string.Empty, request, _jsonSerializerOptions, cancellationToken);
-		//var responseString = await response
-		//	.Content
-		//	.ReadAsStringAsync(cancellationToken);
+			.PostAsJsonAsync(string.Empty, request, JsonSerializerOptions, cancellationToken);
+
+		await LogResponseAsync(response, cancellationToken);
+
 		var returnValue = await response
 			.Content
 			.ReadFromJsonAsync<TResponse>(cancellationToken: cancellationToken)
@@ -76,19 +72,19 @@ internal class IncidentManager : Manager, IIncidents
 	) where TRequest : CreateOrUpdateIncidentRequest
 	{
 		request.CommonParameters.ProxyDetails.ApiKey = ApiKey;
-		//var requestJson = JsonSerializer
-		//	.Serialize(request, _jsonSerializerOptions);
+
+		LogRequest(request);
+
 		var response = await HttpClient
-			.PostAsJsonAsync(string.Empty, request, _jsonSerializerOptions, cancellationToken);
-		var responseString = await response
-			.Content
-			.ReadAsStringAsync(cancellationToken);
-		_logger.LogDebug(responseString);
+			.PostAsJsonAsync(string.Empty, request, JsonSerializerOptions, cancellationToken);
+
+		await LogResponseAsync(response, cancellationToken);
 
 		var returnValue = await response
 			.Content
 			.ReadFromJsonAsync<TResponse>(cancellationToken: cancellationToken)
 			?? throw new SummitApiException($"Error deserializing {typeof(TResponse).Name}");
+
 		return returnValue;
 	}
 }
