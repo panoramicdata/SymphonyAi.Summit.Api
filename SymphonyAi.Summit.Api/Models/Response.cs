@@ -11,10 +11,10 @@ public abstract class Response
 	public /*required*/ string Message { get; set; }
 
 	[JsonPropertyName("Output")]
-	public /*required*/ string Output { get; set; }
+	public string? Output { get; set; }
 
 	[JsonPropertyName("TokenID")]
-	public /*required*/ string TokenId { get; set; }
+	public string? TokenId { get; set; }
 
 	[JsonPropertyName("OrgID")]
 	public int OrgId { get; set; }
