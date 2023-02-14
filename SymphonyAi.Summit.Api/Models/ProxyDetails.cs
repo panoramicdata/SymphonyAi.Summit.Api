@@ -8,7 +8,7 @@ public class ProxyDetails
 	public string AuthType { get; set; } = "APIKey";
 
 	[JsonPropertyName("APIKey")]
-	public string APIKey { get; set; } = string.Empty;
+	public string ApiKey { get; set; } = string.Empty;
 
 	[JsonPropertyName("ProxyID")]
 	public int ProxyID { get; set; }

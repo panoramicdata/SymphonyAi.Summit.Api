@@ -45,7 +45,7 @@ internal class IncidentManager : Manager, IIncidents
 		CancellationToken cancellationToken
 	) where TRequest : IncidentRequest
 	{
-		request.CommonParameters.ProxyDetails.APIKey = ApiKey;
+		request.CommonParameters.ProxyDetails.ApiKey = ApiKey;
 		//var requestJson = JsonSerializer
 		//	.Serialize(request);
 		var response = await HttpClient
@@ -60,13 +60,12 @@ internal class IncidentManager : Manager, IIncidents
 		return returnValue;
 	}
 
-
 	private async Task<TResponse> PostAsync<TRequest, TResponse>(
 		TRequest request,
 		CancellationToken cancellationToken
 	) where TRequest : CreateOrUpdateIncidentRequest
 	{
-		request.CommonParameters.ProxyDetails.APIKey = ApiKey;
+		request.CommonParameters.ProxyDetails.ApiKey = ApiKey;
 		//var requestJson = JsonSerializer
 		//	.Serialize(request);
 		var response = await HttpClient
