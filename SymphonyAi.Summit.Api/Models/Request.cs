@@ -10,5 +10,5 @@ public abstract class Request
 	}
 
 	[JsonPropertyName("ServiceName")]
-	public string ServiceName { get; }
+	public string ServiceName { get; set; }
 }

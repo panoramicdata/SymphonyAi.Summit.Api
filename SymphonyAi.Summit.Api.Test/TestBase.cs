@@ -1,7 +1,7 @@
 ﻿using Divergic.Logging.Xunit;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 using System.Configuration;
+using System.Text.Json;
 using Xunit.Abstractions;
 
 namespace SymphonyAi.Summit.Api.Test;
@@ -12,6 +12,9 @@ public abstract class TestBase
 	public SummitClient SummitClient { get; }
 	public string Instance { get; }
 	public int TicketNumber { get; }
+	public string WorkgroupName { get; }
+
+	public string CallerEmailId { get; }
 
 	protected TestBase(ITestOutputHelper testOutputHelper)
 	{
@@ -24,9 +27,11 @@ public abstract class TestBase
 		{
 			BaseUri = new Uri(GetConfig<string>(configuration, "BaseUri")),
 			ApiKey = GetConfig<string>(configuration, "ApiKey")
-		});
+		}, Logger);
 		Instance = GetConfig<string>(configuration, "Instance");
 		TicketNumber = GetConfig<int>(configuration, "TicketNumber");
+		WorkgroupName = GetConfig<string>(configuration, "WorkgroupName");
+		CallerEmailId = GetConfig<string>(configuration, "CallerEmailId");
 	}
 
 	private static T GetConfig<T>(IConfigurationRoot configuration, string key)
@@ -53,7 +58,7 @@ public abstract class TestBase
 	{
 		var fileInfo = new FileInfo($"../../../TestObjects/{fileNameWithoutExtension}.json");
 		var json = await File.ReadAllTextAsync(fileInfo.FullName, cancellationToken);
-		return JsonConvert.DeserializeObject<T>(json)
+		return JsonSerializer.Deserialize<T>(json)
 			?? throw new FormatException($"File does not contain valid json of type {typeof(T)}");
 	}
 }

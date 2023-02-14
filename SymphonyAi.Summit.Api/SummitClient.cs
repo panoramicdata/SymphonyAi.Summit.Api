@@ -1,4 +1,5 @@
-﻿using SymphonyAi.Summit.Api.Implementations;
+﻿using Microsoft.Extensions.Logging;
+using SymphonyAi.Summit.Api.Implementations;
 using SymphonyAi.Summit.Api.Interfaces;
 
 namespace SymphonyAi.Summit.Api;
@@ -8,7 +9,7 @@ public class SummitClient : IDisposable
 	private bool _disposedValue;
 	private readonly HttpClient _httpClient;
 
-	public SummitClient(SummitClientOptions summitClientOptions)
+	public SummitClient(SummitClientOptions summitClientOptions, ILogger logger)
 	{
 		_httpClient = new HttpClient
 		{
@@ -17,7 +18,7 @@ public class SummitClient : IDisposable
 
 		Attachments = new AttachmentManager(_httpClient, summitClientOptions.ApiKey);
 		Cmdb = new CmdbManager(_httpClient, summitClientOptions.ApiKey);
-		Incidents = new IncidentManager(_httpClient, summitClientOptions.ApiKey);
+		Incidents = new IncidentManager(_httpClient, summitClientOptions.ApiKey, logger);
 		Problems = new ProblemManager(_httpClient, summitClientOptions.ApiKey);
 		ServiceRequests = new ServiceRequestManager(_httpClient, summitClientOptions.ApiKey);
 	}

@@ -58,6 +58,15 @@ public class IncidentTests : TestBase
 	{
 		// Load CreateOrUpdateIncidentRequest from file CreateIncidentRequest.json
 		var request = await LoadObjectFromJsonFile<CreateOrUpdateIncidentRequest>("CreateIncidentRequest", default);
+		request.CommonParameters.IncidentParamsJson.IncidentContainerJsonObj.Ticket.AssignedWorkGroupName = WorkgroupName;
+		request.CommonParameters.IncidentParamsJson.IncidentContainerJsonObj.Ticket.CallerEmailId = CallerEmailId;
 
+		request.ServiceName.Should().Be("IM_LogOrUpdateIncident");
+		request.CommonParameters.RequestType.Should().Be("RemoteCall");
+
+		var response = await SummitClient.Incidents.CreateOrUpdateIncidentAsync(request, CancellationToken.None);
+		response.Should().NotBeNull();
+		response.Errors.Should().BeEmpty();
+		response.TicketNumber.Should().BeGreaterThan(0);
 	}
 }
