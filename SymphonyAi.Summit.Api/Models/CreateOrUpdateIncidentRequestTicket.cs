@@ -60,4 +60,8 @@ public class CreateOrUpdateIncidentRequestTicket
 
 	[JsonPropertyName("Mail_CC_EmailID")]
 	public string MailCcEmailId { get; set; } = string.Empty;
+
+	[JsonPropertyName("Symptom")]
+	public string Symptom { get; set; } = string.Empty;
+
 }
