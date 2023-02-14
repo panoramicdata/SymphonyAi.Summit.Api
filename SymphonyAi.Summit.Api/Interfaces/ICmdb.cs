@@ -11,6 +11,10 @@ public interface ICmdb
 		CmdbQueryRequest request,
 		CancellationToken cancellationToken);
 
+	Task<CmdbQueryResponse> GetCis2Async(
+		CmdbQueryRequest request,
+		CancellationToken cancellationToken);
+
 	Task<CmdbCreateOrUpdateCiResponse> CreateOrUpdateCiAsync(
 		CmdbCreateOrUpdateCiRequest request,
 		CancellationToken cancellationToken);

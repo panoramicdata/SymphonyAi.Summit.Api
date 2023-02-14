@@ -9,11 +9,17 @@ namespace SymphonyAi.Summit.Api.Implementations;
 
 internal class IncidentManager : Manager, IIncidents
 {
+	private readonly JsonSerializerOptions _jsonSerializerOptions;
 	private readonly ILogger _logger;
 
-	public IncidentManager(HttpClient httpClient, string apiKey, ILogger logger)
+	public IncidentManager(
+		HttpClient httpClient,
+		string apiKey,
+		JsonSerializerOptions jsonSerializerOptions,
+		ILogger logger)
 		: base(httpClient, apiKey)
 	{
+		_jsonSerializerOptions = jsonSerializerOptions;
 		_logger = logger;
 	}
 
@@ -51,9 +57,9 @@ internal class IncidentManager : Manager, IIncidents
 	{
 		request.CommonParameters.ProxyDetails.ApiKey = ApiKey;
 		//var requestJson = JsonSerializer
-		//	.Serialize(request);
+		//	.Serialize(request, _jsonSerializerOptions);
 		var response = await HttpClient
-			.PostAsJsonAsync(string.Empty, request, new JsonSerializerOptions { DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull }, cancellationToken);
+			.PostAsJsonAsync(string.Empty, request, _jsonSerializerOptions, cancellationToken);
 		//var responseString = await response
 		//	.Content
 		//	.ReadAsStringAsync(cancellationToken);
@@ -71,9 +77,9 @@ internal class IncidentManager : Manager, IIncidents
 	{
 		request.CommonParameters.ProxyDetails.ApiKey = ApiKey;
 		//var requestJson = JsonSerializer
-		//	.Serialize(request);
+		//	.Serialize(request, _jsonSerializerOptions);
 		var response = await HttpClient
-			.PostAsJsonAsync(string.Empty, request, new JsonSerializerOptions { DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull }, cancellationToken);
+			.PostAsJsonAsync(string.Empty, request, _jsonSerializerOptions, cancellationToken);
 		var responseString = await response
 			.Content
 			.ReadAsStringAsync(cancellationToken);

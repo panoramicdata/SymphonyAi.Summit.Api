@@ -9,11 +9,17 @@ namespace SymphonyAi.Summit.Api.Implementations;
 
 internal class CmdbManager : Manager, ICmdb
 {
+	private readonly JsonSerializerOptions _jsonSerializerOptions;
 	private readonly ILogger _logger;
 
-	public CmdbManager(HttpClient httpClient, string apiKey, ILogger logger)
+	public CmdbManager(
+		HttpClient httpClient,
+		string apiKey,
+		JsonSerializerOptions jsonSerializerOptions,
+		ILogger logger)
 		: base(httpClient, apiKey)
 	{
+		_jsonSerializerOptions = jsonSerializerOptions;
 		_logger = logger;
 	}
 
@@ -27,6 +33,11 @@ internal class CmdbManager : Manager, ICmdb
 		CancellationToken cancellationToken)
 		=> GetAsync2<CmdbQueryRequest, CmdbQueryResponse>(request, cancellationToken);
 
+	public Task<CmdbQueryResponse> GetCis2Async(
+		CmdbQueryRequest request,
+		CancellationToken cancellationToken)
+		=> GetAsync2<CmdbQueryRequest, CmdbQueryResponse>(request, cancellationToken);
+
 	private async Task<TResponse> GetAsync<TRequest, TResponse>(
 		TRequest request,
 		CancellationToken cancellationToken
@@ -34,10 +45,10 @@ internal class CmdbManager : Manager, ICmdb
 	{
 		request.CommonParameters.ProxyDetails.ApiKey = ApiKey;
 		var requestJson = JsonSerializer
-			.Serialize(request);
+			.Serialize(request, _jsonSerializerOptions);
 		_logger.LogDebug("REQUEST: " + requestJson);
 		var response = await HttpClient
-			.PostAsJsonAsync(string.Empty, request, new JsonSerializerOptions { DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull }, cancellationToken);
+			.PostAsJsonAsync(string.Empty, request, _jsonSerializerOptions, cancellationToken);
 
 		var responseString = await response
 			.Content
@@ -62,10 +73,10 @@ internal class CmdbManager : Manager, ICmdb
 	{
 		request.CommonParameters.ApiKey = ApiKey;
 		var requestJson = JsonSerializer
-			.Serialize(request);
+			.Serialize(request, _jsonSerializerOptions);
 		_logger.LogDebug("REQUEST: " + requestJson);
 		var response = await HttpClient
-			.PostAsJsonAsync(string.Empty, request, new JsonSerializerOptions { DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull }, cancellationToken);
+			.PostAsJsonAsync(string.Empty, request, _jsonSerializerOptions, cancellationToken);
 
 		var responseString = await response
 			.Content

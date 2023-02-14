@@ -13,6 +13,7 @@ public abstract class TestBase
 	public string Instance { get; }
 	public int TicketNumber { get; }
 	public string WorkgroupName { get; }
+	public string CustomerName { get; }
 
 	public string OwnerName { get; }
 
@@ -35,6 +36,7 @@ public abstract class TestBase
 		WorkgroupName = GetConfig<string>(configuration, "WorkgroupName");
 		CallerEmailId = GetConfig<string>(configuration, "CallerEmailId");
 		OwnerName = GetConfig<string>(configuration, "OwnerName");
+		CustomerName = GetConfig<string>(configuration, "CustomerName");
 	}
 
 	private static T GetConfig<T>(IConfigurationRoot configuration, string key)

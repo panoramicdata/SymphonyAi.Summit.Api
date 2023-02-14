@@ -11,13 +11,13 @@ public class CmdbTests : TestBase
 	}
 
 	[Fact]
-	public async Task CreateCi_GoodRequest_Succeeds()
+	public async Task CreateServerCi_GoodRequest_Succeeds()
 	{
 		var request = new CmdbCreateOrUpdateCiRequest();
 		request.CommonParameters.CmdbDetails = new()
 		{
 			InstanceName = Instance,
-			Hostname = Guid.NewGuid().ToString(),
+			Hostname = Guid.NewGuid().ToString()[..8],
 			SerialNumber = Guid.NewGuid().ToString(),
 			OwnerWorkgroupName = WorkgroupName,
 			OwnerName = OwnerName,
@@ -26,13 +26,14 @@ public class CmdbTests : TestBase
 			Status = "Production",
 			LifecycleStatus = "Design",
 			CriticalityName = "Critical",
+			Customer = CustomerName,
 			VendorName = "IBM",
 			LocationName = "",
 			Make = "Cisco",
-			MacAddress = "00:00:00:00:00:00",
+			MacAddress = "3E:45:DT:G6",
 			IpAddress = "",
-			ModelNumber = "1234",
-			Rack = "Rack 1",
+			ModelNumber = "VMware",
+			Rack = "Rack1",
 			Warranty = "2023-12-31",
 			AnnualMaintainsContract = "Contract",
 			Version = "1.0",
@@ -62,19 +63,93 @@ public class CmdbTests : TestBase
 
 		response.Should().NotBeNull();
 		response.Errors.Should().BeNullOrEmpty();
-		response.OutputObjects.Should().NotBeEmpty();
-		response.OutputObjects[0].Should().NotBeNull();
-		response.OutputObjects[0].ConfigurationId.Should().MatchRegex(@"^\d+$");
+		response.OutputId.Should().BeGreaterThan(0);
+		response.Output.Should().NotBeNullOrEmpty();
 	}
 
 	[Fact]
-	public async Task GetCiList_GoodRequest_Succeeds()
+	public async Task CreateNetworkCi_GoodRequest_Succeeds()
+	{
+		var request = new CmdbCreateOrUpdateCiRequest();
+		request.CommonParameters.CmdbDetails = new()
+		{
+			InstanceName = Instance,
+			Hostname = Guid.NewGuid().ToString()[..8],
+			SerialNumber = Guid.NewGuid().ToString(),
+			OwnerWorkgroupName = WorkgroupName,
+			OwnerName = OwnerName,
+			ManagedBy = WorkgroupName,
+			Classification = "Network Device",
+			Status = "Production",
+			LifecycleStatus = "Design",
+			CriticalityName = "Critical",
+			Customer = CustomerName,
+			VendorName = "IBM",
+			LocationName = "",
+			Make = "Cisco",
+			MacAddress = "3E:45:DT:G6",
+			IpAddress = "",
+			ModelNumber = "VMware",
+			Rack = "Rack1",
+			Warranty = "2023-12-31",
+			AnnualMaintainsContract = "Contract",
+			Version = "1.0",
+			Description = "Description",
+			Remarks = "Remarks",
+			IsTestPlanMandatory = true,
+			PurchaseOrderNumber = "1234",
+			NetworkIpAddress = "20.10.1.2",
+			NetworkSubnetMask = "255.255.255.0",
+			NetworkGateway = "20.10.8.154",
+			NetworkSlotCount = "2",
+			NetworkSlotNumbers = "2",
+			NetworkPorts = "20",
+			NetworkCardType = "NIC",
+			NetworkVlan = "10",
+			NetworkFlashMemory = "2",
+			NetworkDramMemory = "2",
+			NetworkIosSoftware = "Crisco",
+			NetworkAccessList = "ACL",
+			NetworkRoutes = "20",
+			NetworkAEndDescription = "NETWROK A DESCRIPTION",
+			NetworkAEndIpAddress = "Network A IP Address",
+			NetworkBEndDescription = "NETWROK B DESCRIPTION",
+			NetworkBEndIpAddress = "Network B IP Address",
+			NetworkCircuitId = "CircuitID",
+		};
+
+		var response = await SummitClient
+			.Cmdb
+			.CreateOrUpdateCiAsync(request, CancellationToken.None);
+
+		response.Should().NotBeNull();
+		response.Errors.Should().BeNullOrEmpty();
+		response.OutputId.Should().BeGreaterThan(0);
+		response.Output.Should().NotBeNullOrEmpty();
+	}
+
+	[Fact]
+	public async Task GetCis_GoodRequest_Succeeds()
 	{
 		var request = new CmdbQueryRequest();
+		request.Details.InstanceName = Instance;
 
 		var response = await SummitClient
 			.Cmdb
 			.GetCisAsync(request, CancellationToken.None);
+
+		response.Should().NotBeNull();
+	}
+
+	[Fact]
+	public async Task GetCis2_GoodRequest_Succeeds()
+	{
+		var request = new CmdbQueryRequest();
+		request.Details.InstanceName = Instance;
+
+		var response = await SummitClient
+			.Cmdb
+			.GetCis2Async(request, CancellationToken.None);
 
 		response.Should().NotBeNull();
 	}

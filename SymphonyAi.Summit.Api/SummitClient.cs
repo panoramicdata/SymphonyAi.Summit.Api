@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using SymphonyAi.Summit.Api.Implementations;
 using SymphonyAi.Summit.Api.Interfaces;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace SymphonyAi.Summit.Api;
 
@@ -16,11 +18,21 @@ public class SummitClient : IDisposable
 			BaseAddress = new Uri(summitClientOptions.BaseUri + "/REST/Summit_RESTWCF.svc/RESTService/CommonWS_JsonObjCall")
 		};
 
-		Attachments = new AttachmentManager(_httpClient, summitClientOptions.ApiKey, logger);
-		Cmdb = new CmdbManager(_httpClient, summitClientOptions.ApiKey, logger);
-		Incidents = new IncidentManager(_httpClient, summitClientOptions.ApiKey, logger);
-		Problems = new ProblemManager(_httpClient, summitClientOptions.ApiKey);
-		ServiceRequests = new ServiceRequestManager(_httpClient, summitClientOptions.ApiKey, logger);
+		var jsonSerializerOptions = new JsonSerializerOptions
+		{
+			DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+#if DEBUG
+			WriteIndented = true
+#else
+			WriteIndented = false
+#endif
+		};
+
+		Attachments = new AttachmentManager(_httpClient, summitClientOptions.ApiKey, jsonSerializerOptions, logger);
+		Cmdb = new CmdbManager(_httpClient, summitClientOptions.ApiKey, jsonSerializerOptions, logger);
+		Incidents = new IncidentManager(_httpClient, summitClientOptions.ApiKey, jsonSerializerOptions, logger);
+		Problems = new ProblemManager(_httpClient, summitClientOptions.ApiKey, jsonSerializerOptions, logger);
+		ServiceRequests = new ServiceRequestManager(_httpClient, summitClientOptions.ApiKey, jsonSerializerOptions, logger);
 	}
 
 	public IAttachments Attachments { get; }

@@ -1,16 +1,8 @@
-﻿using System.Text.Json.Serialization;
+﻿namespace SymphonyAi.Summit.Api.Models.Cmdb;
 
-namespace SymphonyAi.Summit.Api.Models.Cmdb;
-
-public class CmdbQueryRequest : CmdbRequest
+public class CmdbQueryRequest : CmdbRequestBase
 {
-	public CmdbQueryRequest() : base("Query")
+	public CmdbQueryRequest() : base("LoadCIRecords")
 	{
 	}
-
-	[JsonPropertyName("objCommonParameters")]
-	public CmdbQueryRequestCommonParameters CommonParameters { get; set; } = new();
-
-	[JsonPropertyName("_CMDBDetails")]
-	public CmdbQueryRequestDetails Details { get; set; } = new();
 }
