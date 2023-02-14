@@ -61,6 +61,8 @@ public class IncidentTests : TestBase
 		request.CommonParameters.IncidentParamsJson.IncidentContainerJsonObj.Ticket.AssignedWorkGroupName = WorkgroupName;
 		request.CommonParameters.IncidentParamsJson.IncidentContainerJsonObj.Ticket.CallerEmailId = CallerEmailId;
 
+		request.CommonParameters.IncidentParamsJson.IncidentContainerJsonObj.Ticket.Symptom = Guid.NewGuid().ToString();
+
 		request.ServiceName.Should().Be("IM_LogOrUpdateIncident");
 		request.CommonParameters.RequestType.Should().Be("RemoteCall");
 
@@ -77,6 +79,8 @@ public class IncidentTests : TestBase
 		var request = await LoadObjectFromJsonFile<CreateOrUpdateIncidentRequest>("CreateIncidentRequest", default);
 		request.CommonParameters.IncidentParamsJson.IncidentContainerJsonObj.Ticket.AssignedWorkGroupName = WorkgroupName;
 		request.CommonParameters.IncidentParamsJson.IncidentContainerJsonObj.Ticket.CallerEmailId = CallerEmailId;
+
+		request.CommonParameters.IncidentParamsJson.IncidentContainerJsonObj.Ticket.Symptom = Guid.NewGuid().ToString();
 
 		var customField = new
 		{
