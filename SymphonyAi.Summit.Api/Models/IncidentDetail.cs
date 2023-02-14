@@ -9,7 +9,7 @@ public class IncidentDetail
 	public int RowId { get; set; }
 
 	[JsonPropertyName("Ticket_ID")]
-	public /*required*/ int TicketId { get; set; }
+	public /*required*/ string TicketId { get; set; }
 
 	[JsonPropertyName("TotalRows")]
 	public int TotalRowCount { get; set; }

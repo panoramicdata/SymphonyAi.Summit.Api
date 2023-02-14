@@ -6,7 +6,6 @@ public class GetIncidentListDetailsRequest : IncidentQueryRequest
 	{
 		CommonParameters.IncidentCommonFilter = new()
 		{
-			Executive = 1,
 			CategoryName = string.Empty,
 			Categories = string.Empty
 		};
