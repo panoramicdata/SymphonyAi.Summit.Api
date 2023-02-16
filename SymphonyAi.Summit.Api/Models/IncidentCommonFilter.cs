@@ -32,7 +32,7 @@ public class IncidentCommonFilter
 	public string UpdatedToDate { get; set; } = string.Empty;
 
 	[JsonPropertyName("IsWebServiceRequest")]
-	public bool IsWebServiceRequest { get; } = true;
+	public bool IsWebServiceRequest { get; set; } = true;
 
 	[JsonPropertyName("CategoryName")]
 	public string? CategoryName { get; set; }
