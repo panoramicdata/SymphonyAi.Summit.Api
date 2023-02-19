@@ -11,7 +11,7 @@ public class CmdbCreationDetail
 	public string InstanceName { get; set; } = string.Empty;
 
 	[JsonPropertyName("Device_Host_Name")]
-	public string Hostname { get; set; } = string.Empty;
+	public string DeviceHostName { get; set; } = string.Empty;
 
 	[JsonPropertyName("Serial_No")]
 	public string SerialNumber { get; set; } = string.Empty;

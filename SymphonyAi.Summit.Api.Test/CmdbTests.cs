@@ -17,7 +17,7 @@ public class CmdbTests : TestBase
 		request.CommonParameters.CmdbDetails = new()
 		{
 			InstanceName = Instance,
-			Hostname = Guid.NewGuid().ToString()[..8],
+			DeviceHostName = Guid.NewGuid().ToString()[..8],
 			SerialNumber = Guid.NewGuid().ToString(),
 			OwnerWorkgroupName = WorkgroupName,
 			OwnerName = OwnerName,
@@ -74,7 +74,7 @@ public class CmdbTests : TestBase
 		request.CommonParameters.CmdbDetails = new()
 		{
 			InstanceName = Instance,
-			Hostname = Guid.NewGuid().ToString()[..8],
+			DeviceHostName = Guid.NewGuid().ToString()[..8],
 			SerialNumber = Guid.NewGuid().ToString(),
 			OwnerWorkgroupName = WorkgroupName,
 			OwnerName = OwnerName,
