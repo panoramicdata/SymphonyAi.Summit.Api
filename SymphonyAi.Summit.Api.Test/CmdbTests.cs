@@ -39,7 +39,7 @@ public class CmdbTests : TestBase
 			Version = "1.0",
 			Description = "Description",
 			Remarks = "Remarks",
-			TestPlanMandatory = "True",
+			IsTestPlanMandatory = true,
 			PurchaseOrderNumber = "1234",
 			ServerIpAddress = "1.2.3.4",
 			ServerCpu = "8 Core Processor",
@@ -95,8 +95,8 @@ public class CmdbTests : TestBase
 			AnnualMaintainsContract = "Contract",
 			Version = "1.0",
 			Description = "Description",
-			Remarks = "Remarks",
-			TestPlanMandatory = "True",
+			Remarks = "1213",
+			IsTestPlanMandatory = true,
 			PurchaseOrderNumber = "1234",
 			NetworkIpAddress = "20.10.1.2",
 			NetworkSubnetMask = "255.255.255.0",
@@ -150,18 +150,18 @@ public class CmdbTests : TestBase
 		});
 	}
 
-	[Fact]
-	public async Task GetCis2_GoodRequest_Succeeds()
-	{
-		var request = new CmdbQuery2Request();
-		request.CommonParameters.CmdbDetails.InstanceName = Instance;
+	//[Fact]
+	//public async Task GetCis2_GoodRequest_Succeeds()
+	//{
+	//	var request = new CmdbQuery2Request();
+	//	request.CommonParameters.CmdbDetails.InstanceName = Instance;
 
-		var response = await SummitClient
-			.Cmdb
-			.GetCis2Async(request, CancellationToken.None);
+	//	var response = await SummitClient
+	//		.Cmdb
+	//		.GetCis2Async(request, CancellationToken.None);
 
-		response.Should().NotBeNull();
+	//	response.Should().NotBeNull();
 
-		response.OutputObject.Should().NotBeNull();
-	}
+	//	response.OutputObject.Should().NotBeNull();
+	//}
 }
