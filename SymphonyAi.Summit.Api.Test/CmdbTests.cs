@@ -150,6 +150,22 @@ public class CmdbTests : TestBase
 		});
 	}
 
+	[Fact]
+	public async Task GetCi_GoodRequest_Succeeds()
+	{
+		var request = new CmdbCiRequest();
+		request.CommonParameters.CmdbDetails.InstanceName = Instance;
+		request.CommonParameters.CmdbDetails.Id = 1;
+
+		var response = await SummitClient
+			.Cmdb
+			.GetCiAsync(request, CancellationToken.None);
+
+		response.Should().NotBeNull();
+		response.OutputObject.Should().NotBeNull();
+		response.OutputObject.Root.Should().NotBeNull();
+	}
+
 	//[Fact]
 	//public async Task GetCis2_GoodRequest_Succeeds()
 	//{

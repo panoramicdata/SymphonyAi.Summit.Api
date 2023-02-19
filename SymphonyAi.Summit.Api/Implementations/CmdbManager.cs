@@ -23,6 +23,11 @@ internal class CmdbManager : Manager, ICmdb
 		CancellationToken cancellationToken)
 		=> CreateOrUpdateAsync<CmdbCreateOrUpdateCiRequest, CmdbCreateOrUpdateCiResponse>(request, cancellationToken);
 
+	public Task<CmdbCiResponse> GetCiAsync(
+		CmdbCiRequest request,
+		CancellationToken cancellationToken)
+		=> GetCisAsync<CmdbCiRequest, CmdbCiResponse>(request, cancellationToken);
+
 	public Task<CmdbQueryResponse> GetCisAsync(
 		CmdbQueryRequest request,
 		CancellationToken cancellationToken)
@@ -57,7 +62,7 @@ internal class CmdbManager : Manager, ICmdb
 	private async Task<TResponse> GetCisAsync<TRequest, TResponse>(
 	TRequest request,
 	CancellationToken cancellationToken
-	) where TRequest : CmdbQueryRequest
+	) where TRequest : CmdbRequestBase
 	{
 		request.CommonParameters.ProxyDetails.ApiKey = ApiKey;
 
@@ -74,6 +79,7 @@ internal class CmdbManager : Manager, ICmdb
 			?? throw new SummitApiException($"Error deserializing {typeof(TResponse).Name}");
 		return returnValue;
 	}
+
 	private async Task<TResponse> GetCis2Async<TRequest, TResponse>(
 	TRequest request,
 	CancellationToken cancellationToken

@@ -7,6 +7,10 @@ namespace SymphonyAi.Summit.Api.Interfaces;
 /// </summary>
 public interface ICmdb
 {
+	Task<CmdbCiResponse> GetCiAsync(
+		CmdbCiRequest request,
+		CancellationToken cancellationToken);
+
 	Task<CmdbQueryResponse> GetCisAsync(
 		CmdbQueryRequest request,
 		CancellationToken cancellationToken);

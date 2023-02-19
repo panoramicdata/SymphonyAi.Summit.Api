@@ -11,5 +11,8 @@ public class CmdbRequestDetail
 	public bool? IsActive { get; set; }
 
 	[JsonPropertyName("CIStatus")]
-	public string? CIStatus { get; set; }
+	public string? CiStatus { get; set; }
+
+	[JsonPropertyName("CIID")]
+	public int? Id { get; set; }
 }

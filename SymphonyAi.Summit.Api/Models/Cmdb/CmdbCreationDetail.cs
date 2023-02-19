@@ -2,7 +2,7 @@
 
 namespace SymphonyAi.Summit.Api.Models.Cmdb;
 
-public class CmdbDetail
+public class CmdbCreationDetail
 {
 	[JsonPropertyName("Configuration_Item_Id")]
 	public string? ConfigurationId { get; set; }
@@ -74,10 +74,10 @@ public class CmdbDetail
 	public string Description { get; set; } = string.Empty;
 
 	[JsonPropertyName("Remarks")]
-	public string? Remarks { get; set; }
+	public string Remarks { get; set; } = string.Empty;
 
 	[JsonPropertyName("Test_Plan_Mandatory")]
-	public string IsTestPlanMandatory { get; set; } = string.Empty;
+	public bool IsTestPlanMandatory { get; set; }
 
 	[JsonPropertyName("Purchase_Order_No")]
 	public string PurchaseOrderNumber { get; set; } = string.Empty;
