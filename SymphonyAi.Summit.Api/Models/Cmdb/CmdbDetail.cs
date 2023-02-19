@@ -5,7 +5,7 @@ namespace SymphonyAi.Summit.Api.Models.Cmdb;
 public class CmdbDetail
 {
 	[JsonPropertyName("Configuration_Item_Id")]
-	public string? ConfigurationId { get; set; }
+	public string? ConfigurationItemId { get; set; }
 
 	[JsonPropertyName("InstanceName")]
 	public string InstanceName { get; set; } = string.Empty;

@@ -145,8 +145,8 @@ public class CmdbTests : TestBase
 		response.OutputObject.Details[0].Should().NotBeNull();
 		response.OutputObject.Details[0].Details.Should().AllSatisfy(x =>
 		{
-			x.ConfigurationId.Should().NotBeEmpty();
-			int.TryParse(x.ConfigurationId, out int _).Should().Be(true);
+			x.ConfigurationItemId.Should().NotBeEmpty();
+			int.TryParse(x.ConfigurationItemId, out int _).Should().Be(true);
 		});
 	}
 
