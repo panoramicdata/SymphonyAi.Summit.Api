@@ -5,7 +5,7 @@ namespace SymphonyAi.Summit.Api.Models;
 public class CreateOrUpdateIncidentRequestTicket
 {
 	[JsonPropertyName("IsFromWebService")]
-	public bool IsFromWebService { get; set; }
+	public bool IsFromWebService { get; set; } = true;
 
 	[JsonPropertyName("Ticket_No")]
 	public string? TicketNumber { get; set; }

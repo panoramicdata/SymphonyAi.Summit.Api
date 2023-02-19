@@ -31,12 +31,43 @@ public class IncidentTests : TestBase
 	{
 		var request = new GetIncidentListDetailsRequest();
 		request.CommonParameters.IncidentCommonFilter!.Instance = Instance;
+		request.CommonParameters.IncidentCommonFilter!.CurrentPageIndex = 2;
 
 		var response = await SummitClient
 			.Incidents
 			.GetIncidentListDetailsAsync(request, CancellationToken.None);
 
+		var results = response.OutputObject.MyTickets;
+		var ids = string.Concat(results.Select(i => i.IncidentDetail[0].IncidentId + ","));
+
 		response.Should().NotBeNull();
+	}
+
+	[Fact]
+	public async Task GetIncidentListDetails_MultiplePageRequests_Succeeds()
+	{
+		var request = new GetIncidentListDetailsRequest();
+		request.CommonParameters.IncidentCommonFilter!.Instance = Instance;
+		request.CommonParameters.IncidentCommonFilter!.Status = "Open,Reopened,New,Assigned,In-Progress,Pending";
+		request.CommonParameters.IncidentCommonFilter!.UpdatedFromDate = "2023-02-01";
+
+		var pageIndex = 0;
+		var incidents = new List<Ticket>();
+		GetIncidentListResponse response;
+		do
+		{
+			request.CommonParameters.IncidentCommonFilter!.CurrentPageIndex = pageIndex;
+			response = await SummitClient
+				.Incidents
+				.GetIncidentListDetailsAsync(request, CancellationToken.None);
+
+			incidents.AddRange(response.OutputObject.MyTickets);
+			pageIndex++;
+		} while (response.OutputObject.MyTickets.Count > 0);
+
+		var ids = string.Concat(incidents.Select(i => i.IncidentDetail[0].IncidentId + ","));
+
+		ids.Should().NotBeNull();
 	}
 
 	[Fact]

@@ -26,13 +26,13 @@ public class IncidentCommonFilter
 	public string Status { get; set; } = "New,In-Progress";
 
 	[JsonPropertyName("strUpdatedFromDate")]
-	public string UpdatedFromDate { get; set; } = DateTimeOffset.UtcNow.AddDays(-1).ToString("yyyy-MM-dd");
+	public string UpdatedFromDate { get; set; } = string.Empty;
 
 	[JsonPropertyName("strUpdatedToDate")]
-	public string UpdatedToDate { get; set; } = DateTimeOffset.UtcNow.ToString("yyyy-MM-dd");
+	public string UpdatedToDate { get; set; } = string.Empty;
 
 	[JsonPropertyName("IsWebServiceRequest")]
-	public bool IsWebServiceRequest { get; } = true;
+	public bool IsWebServiceRequest { get; set; } = true;
 
 	[JsonPropertyName("CategoryName")]
 	public string? CategoryName { get; set; }
