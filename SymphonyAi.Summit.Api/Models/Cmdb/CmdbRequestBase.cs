@@ -10,8 +10,4 @@ public abstract class CmdbRequestBase : CmdbRequest
 
 	[JsonPropertyName("objCommonParameters")]
 	public CmdbQueryRequestCommonParameters CommonParameters { get; set; } = new();
-
-	[JsonPropertyName("_CMDBDetails")]
-	public CmdbQueryRequestDetails Details { get; set; } = new();
-
 }

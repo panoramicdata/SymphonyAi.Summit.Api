@@ -21,19 +21,19 @@ internal class CmdbManager : Manager, ICmdb
 	public Task<CmdbCreateOrUpdateCiResponse> CreateOrUpdateCiAsync(
 		CmdbCreateOrUpdateCiRequest request,
 		CancellationToken cancellationToken)
-		=> GetAsync<CmdbCreateOrUpdateCiRequest, CmdbCreateOrUpdateCiResponse>(request, cancellationToken);
+		=> CreateOrUpdateAsync<CmdbCreateOrUpdateCiRequest, CmdbCreateOrUpdateCiResponse>(request, cancellationToken);
 
 	public Task<CmdbQueryResponse> GetCisAsync(
 		CmdbQueryRequest request,
 		CancellationToken cancellationToken)
-		=> GetAsync2<CmdbQueryRequest, CmdbQueryResponse>(request, cancellationToken);
+		=> GetCisAsync<CmdbQueryRequest, CmdbQueryResponse>(request, cancellationToken);
 
 	public Task<CmdbQueryResponse> GetCis2Async(
-		CmdbQueryRequest request,
+		CmdbQuery2Request request,
 		CancellationToken cancellationToken)
-		=> GetAsync2<CmdbQueryRequest, CmdbQueryResponse>(request, cancellationToken);
+		=> GetCis2Async<CmdbQuery2Request, CmdbQueryResponse>(request, cancellationToken);
 
-	private async Task<TResponse> GetAsync<TRequest, TResponse>(
+	private async Task<TResponse> CreateOrUpdateAsync<TRequest, TResponse>(
 		TRequest request,
 		CancellationToken cancellationToken
 	) where TRequest : CmdbCreateOrUpdateCiRequest
@@ -54,12 +54,32 @@ internal class CmdbManager : Manager, ICmdb
 		return returnValue;
 	}
 
-	private async Task<TResponse> GetAsync2<TRequest, TResponse>(
+	private async Task<TResponse> GetCisAsync<TRequest, TResponse>(
 	TRequest request,
 	CancellationToken cancellationToken
 	) where TRequest : CmdbQueryRequest
 	{
-		request.CommonParameters.ApiKey = ApiKey;
+		request.CommonParameters.ProxyDetails.ApiKey = ApiKey;
+
+		LogRequest(request);
+
+		var response = await HttpClient
+			.PostAsJsonAsync(string.Empty, request, JsonSerializerOptions, cancellationToken);
+
+		await LogResponseAsync(response, cancellationToken);
+
+		var returnValue = await response
+			.Content
+			.ReadFromJsonAsync<TResponse>(cancellationToken: cancellationToken)
+			?? throw new SummitApiException($"Error deserializing {typeof(TResponse).Name}");
+		return returnValue;
+	}
+	private async Task<TResponse> GetCis2Async<TRequest, TResponse>(
+	TRequest request,
+	CancellationToken cancellationToken
+	) where TRequest : CmdbQuery2Request
+	{
+		request.CommonParameters.ProxyDetails.ApiKey = ApiKey;
 
 		LogRequest(request);
 

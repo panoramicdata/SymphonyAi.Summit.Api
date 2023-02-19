@@ -63,7 +63,7 @@ public class CmdbTests : TestBase
 
 		response.Should().NotBeNull();
 		response.Errors.Should().BeNullOrEmpty();
-		response.OutputId.Should().BeGreaterThan(0);
+		response.OutputId.Should().BePositive();
 		response.Output.Should().NotBeNullOrEmpty();
 	}
 
@@ -124,7 +124,7 @@ public class CmdbTests : TestBase
 
 		response.Should().NotBeNull();
 		response.Errors.Should().BeNullOrEmpty();
-		response.OutputId.Should().BeGreaterThan(0);
+		response.OutputId.Should().BePositive();
 		response.Output.Should().NotBeNullOrEmpty();
 	}
 
@@ -132,25 +132,35 @@ public class CmdbTests : TestBase
 	public async Task GetCis_GoodRequest_Succeeds()
 	{
 		var request = new CmdbQueryRequest();
-		request.Details.InstanceName = Instance;
+		request.CommonParameters.CmdbDetails.InstanceName = Instance;
 
 		var response = await SummitClient
 			.Cmdb
 			.GetCisAsync(request, CancellationToken.None);
 
 		response.Should().NotBeNull();
+		response.OutputObject.Should().NotBeNull();
+		response.OutputObject.Details.Should().NotBeNull();
+		response.OutputObject.Details.Count.Should().NotBe(0);
+		response.OutputObject.Details.Should().AllSatisfy(x =>
+		{
+			x.ConfigurationId.Should().NotBeEmpty();
+			int.TryParse(x.ConfigurationId, out int _).Should().Be(true);
+		});
 	}
 
 	[Fact]
 	public async Task GetCis2_GoodRequest_Succeeds()
 	{
-		var request = new CmdbQueryRequest();
-		request.Details.InstanceName = Instance;
+		var request = new CmdbQuery2Request();
+		request.CommonParameters.CmdbDetails.InstanceName = Instance;
 
 		var response = await SummitClient
 			.Cmdb
 			.GetCis2Async(request, CancellationToken.None);
 
 		response.Should().NotBeNull();
+
+		response.OutputObject.Should().NotBeNull();
 	}
 }

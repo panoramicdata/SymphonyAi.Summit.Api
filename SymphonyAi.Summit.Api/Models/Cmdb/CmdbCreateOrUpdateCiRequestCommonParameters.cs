@@ -8,5 +8,5 @@ public class CmdbCreateOrUpdateCiRequestCommonParameters
 	public ProxyDetails ProxyDetails { get; set; } = new();
 
 	[JsonPropertyName("_CMDBDetails")]
-	public CmdbDetails CmdbDetails { get; set; } = new();
+	public CmdbDetail CmdbDetails { get; set; } = new();
 }

@@ -2,7 +2,7 @@
 
 namespace SymphonyAi.Summit.Api.Models;
 
-public abstract class QueryResponse<T>
+public abstract class QueryResponse<T> where T : new()
 {
 	[JsonPropertyName("Errors")]
 	public string Errors { get; set; } = string.Empty;
@@ -14,7 +14,7 @@ public abstract class QueryResponse<T>
 	public string Output { get; set; } = string.Empty;
 
 	[JsonPropertyName("TokenID")]
-	public object? TokenId { get; set; }
+	public string? TokenId { get; set; }
 
 	[JsonPropertyName("OrgID")]
 	public int? OrgId { get; set; }
@@ -26,5 +26,5 @@ public abstract class QueryResponse<T>
 	public object? Input { get; set; }
 
 	[JsonPropertyName("OutputObject")]
-	public List<T> OutputObjects { get; set; } = new();
+	public T OutputObject { get; set; } = new();
 }
