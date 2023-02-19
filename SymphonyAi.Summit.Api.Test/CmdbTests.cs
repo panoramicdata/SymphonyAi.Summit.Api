@@ -39,7 +39,7 @@ public class CmdbTests : TestBase
 			Version = "1.0",
 			Description = "Description",
 			Remarks = "Remarks",
-			IsTestPlanMandatory = true,
+			TestPlanMandatory = "True",
 			PurchaseOrderNumber = "1234",
 			ServerIpAddress = "1.2.3.4",
 			ServerCpu = "8 Core Processor",
@@ -96,7 +96,7 @@ public class CmdbTests : TestBase
 			Version = "1.0",
 			Description = "Description",
 			Remarks = "Remarks",
-			IsTestPlanMandatory = true,
+			TestPlanMandatory = "True",
 			PurchaseOrderNumber = "1234",
 			NetworkIpAddress = "20.10.1.2",
 			NetworkSubnetMask = "255.255.255.0",
@@ -141,8 +141,9 @@ public class CmdbTests : TestBase
 		response.Should().NotBeNull();
 		response.OutputObject.Should().NotBeNull();
 		response.OutputObject.Details.Should().NotBeNull();
-		response.OutputObject.Details.Count.Should().NotBe(0);
-		response.OutputObject.Details.Should().AllSatisfy(x =>
+		response.OutputObject.Details.Count.Should().Be(1);
+		response.OutputObject.Details[0].Should().NotBeNull();
+		response.OutputObject.Details[0].Details.Should().AllSatisfy(x =>
 		{
 			x.ConfigurationId.Should().NotBeEmpty();
 			int.TryParse(x.ConfigurationId, out int _).Should().Be(true);

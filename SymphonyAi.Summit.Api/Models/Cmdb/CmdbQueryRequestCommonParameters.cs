@@ -8,5 +8,5 @@ public class CmdbQueryRequestCommonParameters
 	public ProxyDetails ProxyDetails { get; set; } = new();
 
 	[JsonPropertyName("_CMDBDetails")]
-	public CmdbDetail CmdbDetails { get; set; } = new();
+	public CmdbRequestDetail CmdbDetails { get; set; } = new();
 }

@@ -122,7 +122,7 @@ public class CmdbQueryResponseOutputObject
 	public bool IsActive { get; set; }
 
 	[JsonPropertyName("Test_Plan_Mandatory")]
-	public bool IsTestPlanMandatory { get; set; }
+	public string TestPlanMandatory { get; set; } = string.Empty;
 
 	[JsonPropertyName("IsMonitor")]
 	public bool IsMonitor { get; set; }
