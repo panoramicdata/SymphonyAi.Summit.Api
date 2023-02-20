@@ -57,16 +57,16 @@ public class CmdbDetail
 	public int WorkgroupId { get; set; }
 
 	[JsonPropertyName("Workgroup")]
-	public string Workgroup { get; set; }
+	public string WorkgroupName { get; set; }
 
 	[JsonPropertyName("Owner_Id")]
 	public int OwnerId { get; set; }
 
 	[JsonPropertyName("Owner")]
-	public string Owner { get; set; }
+	public string OwnerName { get; set; }
 
 	[JsonPropertyName("Mananged_By")]
-	public string ManagedBy { get; set; }
+	public string ManagedByName { get; set; }
 
 	[JsonPropertyName("Vendor_Id")]
 	public string VendorId { get; set; }
@@ -84,16 +84,16 @@ public class CmdbDetail
 	public object InstallationDate { get; set; }
 
 	[JsonPropertyName("Customer")]
-	public string Customer { get; set; }
+	public string CustomerName { get; set; }
 
 	[JsonPropertyName("Criticality_Id")]
 	public int CriticalityId { get; set; }
 
 	[JsonPropertyName("criticality")]
-	public string Criticality { get; set; }
+	public string CriticalityName { get; set; }
 
 	[JsonPropertyName("Location")]
-	public string? Location { get; set; }
+	public string? LocationName { get; set; }
 
 	[JsonPropertyName("Rack")]
 	public string Rack { get; set; }
