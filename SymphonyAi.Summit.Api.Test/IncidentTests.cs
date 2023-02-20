@@ -113,13 +113,13 @@ public class IncidentTests : TestBase
 
 		request.CommonParameters.IncidentParamsJson.IncidentContainerJsonObj.Ticket.Symptom = Guid.NewGuid().ToString();
 
-		var customField = new
-		{
-			GroupName = "Integration",
-			Name = "External Issue ID",
-			Value = "13579"
-		};
-		request.CommonParameters.IncidentParamsJson.IncidentContainerJsonObj.CustomFields.Add(customField);
+		//var customField = new
+		//{
+		//	GroupName = "Integration",
+		//	Name = "External Issue ID",
+		//	Value = "13579"
+		//};
+		//request.CommonParameters.IncidentParamsJson.IncidentContainerJsonObj.CustomFields.Add(customField);
 
 		request.ServiceName.Should().Be("IM_LogOrUpdateIncident");
 		request.CommonParameters.RequestType.Should().Be("RemoteCall");
