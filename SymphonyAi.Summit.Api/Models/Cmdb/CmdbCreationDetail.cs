@@ -17,7 +17,7 @@ public class CmdbCreationDetail
 	public string SerialNumber { get; set; } = string.Empty;
 
 	[JsonPropertyName("Owner_Workgroup_Name")]
-	public string OwnerWorkgroupName { get; set; } = string.Empty;
+	public string Workgroup { get; set; } = string.Empty;
 
 	[JsonPropertyName("Owner_Name")]
 	public string OwnerName { get; set; } = string.Empty;
