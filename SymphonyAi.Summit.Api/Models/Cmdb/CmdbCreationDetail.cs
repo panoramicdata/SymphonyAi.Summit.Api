@@ -20,7 +20,7 @@ public class CmdbCreationDetail
 	public string Workgroup { get; set; } = string.Empty;
 
 	[JsonPropertyName("Owner_Name")]
-	public string OwnerName { get; set; } = string.Empty;
+	public string Owner { get; set; } = string.Empty;
 
 	[JsonPropertyName("Managed_By")]
 	public string ManagedBy { get; set; } = string.Empty;
