@@ -138,7 +138,7 @@ public class CmdbDetail
 	public string CiStatus { get; set; }
 
 	[JsonPropertyName("LifeCycleStatus")]
-	public string LifeCycleStatus { get; set; }
+	public string LifecycleStatus { get; set; }
 
 	[JsonPropertyName("SLAID")]
 	public int? SlaId { get; set; }
