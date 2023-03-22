@@ -169,7 +169,7 @@ public class CmdbCreationDetail
 	[JsonPropertyName("Network_A_END_IP_ADDRESS")]
 	public string? NetworkAEndIpAddress { get; set; }
 
-	[JsonPropertyName("Network_B_END_DESCTIPTION")]
+	[JsonPropertyName("Network_B_END_DESCRIPTION")]
 	public string? NetworkBEndDescription { get; set; }
 
 	[JsonPropertyName("Network_B_END_IP_ADDRESS")]
