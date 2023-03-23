@@ -2,11 +2,8 @@
 
 namespace SymphonyAi.Summit.Api.Models.Cmdb;
 
-public class CmdbCreationDetail
+public abstract class CreateOrUpdateDetail
 {
-	[JsonPropertyName("Configuration_Item_Id")]
-	public string? ConfigurationItemId { get; set; }
-
 	[JsonPropertyName("InstanceName")]
 	public string InstanceName { get; set; } = string.Empty;
 
