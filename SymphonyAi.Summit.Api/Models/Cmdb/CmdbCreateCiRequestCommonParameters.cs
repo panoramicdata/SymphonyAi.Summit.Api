@@ -2,11 +2,11 @@
 
 namespace SymphonyAi.Summit.Api.Models.Cmdb;
 
-public class CmdbCreateOrUpdateCiRequestCommonParameters
+public class CmdbCreateCiRequestCommonParameters
 {
 	[JsonPropertyName("_ProxyDetails")]
 	public ProxyDetails ProxyDetails { get; set; } = new();
 
 	[JsonPropertyName("_CMDBDetails")]
-	public CmdbCreationDetail CmdbDetails { get; set; } = new();
+	public CmdbCreateDetail CmdbDetails { get; set; } = new();
 }

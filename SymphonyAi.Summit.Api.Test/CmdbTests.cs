@@ -13,7 +13,7 @@ public class CmdbTests : TestBase
 	[Fact]
 	public async Task CreateServerCi_GoodRequest_Succeeds()
 	{
-		var request = new CmdbCreateOrUpdateCiRequest();
+		var request = new CmdbCreateCiRequest();
 		request.CommonParameters.CmdbDetails = new()
 		{
 			InstanceName = Instance,
@@ -59,7 +59,7 @@ public class CmdbTests : TestBase
 
 		var response = await SummitClient
 			.Cmdb
-			.CreateOrUpdateCiAsync(request, CancellationToken.None);
+			.CreateCiAsync(request, CancellationToken.None);
 
 		response.Should().NotBeNull();
 		response.Errors.Should().BeNullOrEmpty();
@@ -70,7 +70,7 @@ public class CmdbTests : TestBase
 	[Fact]
 	public async Task CreateNetworkCi_GoodRequest_Succeeds()
 	{
-		var request = new CmdbCreateOrUpdateCiRequest();
+		var request = new CmdbCreateCiRequest();
 		request.CommonParameters.CmdbDetails = new()
 		{
 			InstanceName = Instance,
@@ -120,7 +120,7 @@ public class CmdbTests : TestBase
 
 		var response = await SummitClient
 			.Cmdb
-			.CreateOrUpdateCiAsync(request, CancellationToken.None);
+			.CreateCiAsync(request, CancellationToken.None);
 
 		response.Should().NotBeNull();
 		response.Errors.Should().BeNullOrEmpty();

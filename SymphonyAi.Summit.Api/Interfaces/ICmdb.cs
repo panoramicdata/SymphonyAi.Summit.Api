@@ -23,7 +23,11 @@ public interface ICmdb
 		CmdbQuery2Request request,
 		CancellationToken cancellationToken);
 
-	Task<CmdbCreateOrUpdateCiResponse> CreateOrUpdateCiAsync(
-		CmdbCreateOrUpdateCiRequest request,
+	Task<CmdbCreateOrUpdateCiResponse> CreateCiAsync(
+		CmdbCreateCiRequest request,
+		CancellationToken cancellationToken);
+
+	Task<CmdbCreateOrUpdateCiResponse> UpdateCiAsync(
+		CmdbUpdateCiRequest request,
 		CancellationToken cancellationToken);
 }

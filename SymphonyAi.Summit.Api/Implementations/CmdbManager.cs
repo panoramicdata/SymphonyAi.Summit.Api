@@ -18,11 +18,47 @@ internal class CmdbManager : Manager, ICmdb
 	{
 	}
 
-	public Task<CmdbCreateOrUpdateCiResponse> CreateOrUpdateCiAsync(
-		CmdbCreateOrUpdateCiRequest request,
+	public async Task<CmdbCreateOrUpdateCiResponse> CreateCiAsync(
+		CmdbCreateCiRequest request,
 		CancellationToken cancellationToken)
-		=> CreateOrUpdateAsync<CmdbCreateOrUpdateCiRequest, CmdbCreateOrUpdateCiResponse>(request, cancellationToken);
+	{
+		request.CommonParameters.ProxyDetails.ApiKey = ApiKey;
 
+		LogRequest(request);
+
+		var response = await HttpClient
+			.PostAsJsonAsync(ApiIntegrationSubUrl, request, JsonSerializerOptions, cancellationToken);
+
+		await LogResponseAsync(response, cancellationToken);
+
+		var returnValue = await response
+		.Content
+			.ReadFromJsonAsync<CmdbCreateOrUpdateCiResponse>(cancellationToken: cancellationToken)
+			?? throw new SummitApiException($"Error deserializing {nameof(CmdbCreateOrUpdateCiResponse)}");
+		return returnValue;
+	}
+
+	public async Task<CmdbCreateOrUpdateCiResponse> UpdateCiAsync(
+		CmdbUpdateCiRequest request,
+		CancellationToken cancellationToken)
+	{
+		{
+			request.CommonParameters.ProxyDetails.ApiKey = ApiKey;
+
+			LogRequest(request);
+
+			var response = await HttpClient
+				.PostAsJsonAsync(ApiIntegrationSubUrl, request, JsonSerializerOptions, cancellationToken);
+
+			await LogResponseAsync(response, cancellationToken);
+
+			var returnValue = await response
+			.Content
+				.ReadFromJsonAsync<CmdbCreateOrUpdateCiResponse>(cancellationToken: cancellationToken)
+				?? throw new SummitApiException($"Error deserializing {nameof(CmdbCreateOrUpdateCiResponse)}");
+			return returnValue;
+		}
+	}
 	public Task<CmdbCiResponse> GetCiAsync(
 		CmdbCiRequest request,
 		CancellationToken cancellationToken)
@@ -42,27 +78,6 @@ internal class CmdbManager : Manager, ICmdb
 		CmdbCustomersRequest request,
 		CancellationToken cancellationToken)
 		=> throw new NotSupportedException();
-
-	private async Task<TResponse> CreateOrUpdateAsync<TRequest, TResponse>(
-		TRequest request,
-		CancellationToken cancellationToken
-	) where TRequest : CmdbCreateOrUpdateCiRequest
-	{
-		request.CommonParameters.ProxyDetails.ApiKey = ApiKey;
-
-		LogRequest(request);
-
-		var response = await HttpClient
-			.PostAsJsonAsync(ApiIntegrationSubUrl, request, JsonSerializerOptions, cancellationToken);
-
-		await LogResponseAsync(response, cancellationToken);
-
-		var returnValue = await response
-			.Content
-			.ReadFromJsonAsync<TResponse>(cancellationToken: cancellationToken)
-			?? throw new SummitApiException($"Error deserializing {typeof(TResponse).Name}");
-		return returnValue;
-	}
 
 	private async Task<TResponse> GetCisAsync<TRequest, TResponse>(
 	TRequest request,
