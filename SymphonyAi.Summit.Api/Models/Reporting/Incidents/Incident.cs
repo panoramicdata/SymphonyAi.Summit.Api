@@ -1,365 +1,364 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace SymphonyAi.Summit.Api.Models.Reporting.Incidents;
 
-[DataContract]
 public class Incident
 {
-	[DataMember(Name = "Ticket ID")]
+	[JsonPropertyName("Ticket ID")]
 	public float TicketId { get; set; }
 
-	[DataMember(Name = "Encripted Ticket ID")]
+	[JsonPropertyName("Encripted Ticket ID")]
 	public string EncryptedTicketId { get; set; } = string.Empty;
 
-	[DataMember(Name = "Incident ID")]
+	[JsonPropertyName("Incident ID")]
 	public float IncidentId { get; set; }
 
-	[DataMember(Name = "Log Time")]
+	[JsonPropertyName("Log Time")]
 	public DateTime LogTime { get; set; }
 
-	[DataMember(Name = "Status")]
+	[JsonPropertyName("Status")]
 	public string Status { get; set; } = string.Empty;
 
-	[DataMember(Name = "Medium")]
+	[JsonPropertyName("Medium")]
 	public string Medium { get; set; } = string.Empty;
 
-	[DataMember(Name = "Symptom")]
+	[JsonPropertyName("Symptom")]
 	public string Symptom { get; set; } = string.Empty;
 
-	[DataMember(Name = "Response SLA - Deadline")]
+	[JsonPropertyName("Response SLA - Deadline")]
 	public DateTime ResponseSLADeadline { get; set; }
 
-	[DataMember(Name = "Response SLA - Actual")]
+	[JsonPropertyName("Response SLA - Actual")]
 	public DateTime? ResponseSLAActual { get; set; }
 
-	[DataMember(Name = "Response SLA - Violation")]
+	[JsonPropertyName("Response SLA - Violation")]
 	public bool? ResponseSLAViolation { get; set; }
 
-	[DataMember(Name = "Response SLA Violation Reason")]
+	[JsonPropertyName("Response SLA Violation Reason")]
 	public string? ResponseSLAViolationReason { get; set; }
 
-	[DataMember(Name = "Resolution SLA - Deadline")]
+	[JsonPropertyName("Resolution SLA - Deadline")]
 	public DateTime ResolutionSLADeadline { get; set; }
 
-	[DataMember(Name = "Resolution SLA - Actual")]
+	[JsonPropertyName("Resolution SLA - Actual")]
 	public string? ResolutionSLAActual { get; set; }
 
-	[DataMember(Name = "Resolution SLA - Violation")]
+	[JsonPropertyName("Resolution SLA - Violation")]
 	public bool? ResolutionSLAViolation { get; set; }
 
-	[DataMember(Name = "Resolution SLA Violation Reason")]
+	[JsonPropertyName("Resolution SLA Violation Reason")]
 	public string? ResolutionSLAViolationReason { get; set; }
 
-	[DataMember(Name = "Reopen Incident")]
+	[JsonPropertyName("Reopen Incident")]
 	public bool ReopenIncident { get; set; }
 
-	[DataMember(Name = "Escalation Responsed")]
+	[JsonPropertyName("Escalation Responsed")]
 	public DateTime EscalationResponded { get; set; }
 
-	[DataMember(Name = "Updated Time")]
+	[JsonPropertyName("Updated Time")]
 	public DateTime UpdatedTime { get; set; }
 
-	[DataMember(Name = "Reviewed")]
+	[JsonPropertyName("Reviewed")]
 	public object Reviewed { get; set; } = new();
 
-	[DataMember(Name = "Schedule Date")]
+	[JsonPropertyName("Schedule Date")]
 	public DateTime? ScheduleDate { get; set; }
 
-	[DataMember(Name = "Target Completion")]
+	[JsonPropertyName("Target Completion")]
 	public DateTime? TargetCompletion { get; set; }
 
-	[DataMember(Name = "Escalation Level")]
+	[JsonPropertyName("Escalation Level")]
 	public object EscalationLevel { get; set; } = new();
 
-	[DataMember(Name = "Escalation Remarks")]
+	[JsonPropertyName("Escalation Remarks")]
 	public string? EscalationRemarks { get; set; }
 
-	[DataMember(Name = "Notification Method")]
+	[JsonPropertyName("Notification Method")]
 	public float? NotificationMethodId { get; set; }
 
-	[DataMember(Name = "Response Elapsetime")]
+	[JsonPropertyName("Response Elapsetime")]
 	public float ResponseElapseTime { get; set; }
 
-	[DataMember(Name = "Resolution Elapsetime")]
+	[JsonPropertyName("Resolution Elapsetime")]
 	public float ResolutionElapseTime { get; set; }
 
-	[DataMember(Name = "Closure Date")]
+	[JsonPropertyName("Closure Date")]
 	public DateTime? ClosureDate { get; set; }
 
-	[DataMember(Name = "FCR Incident")]
+	[JsonPropertyName("FCR Incident")]
 	public bool? FCRIncident { get; set; }
 
-	[DataMember(Name = "FCR Comments")]
+	[JsonPropertyName("FCR Comments")]
 	public string? FCRComments { get; set; }
 
-	[DataMember(Name = "Response Deadlineminutes")]
+	[JsonPropertyName("Response Deadlineminutes")]
 	public string? ResponseDeadlineMinutes { get; set; }
 
-	[DataMember(Name = "Caller Update")]
+	[JsonPropertyName("Caller Update")]
 	public bool CallerUpdate { get; set; }
 
-	[DataMember(Name = "FCR Met")]
+	[JsonPropertyName("FCR Met")]
 	public bool? FCRMet { get; set; }
 
-	[DataMember(Name = "Source")]
+	[JsonPropertyName("Source")]
 	public string Source { get; set; } = string.Empty;
 
-	[DataMember(Name = "Converted To Request")]
+	[JsonPropertyName("Converted To Request")]
 	public bool? ConvertedToRequest { get; set; }
 
-	[DataMember(Name = "Converted Type")]
+	[JsonPropertyName("Converted Type")]
 	public string? ConvertedType { get; set; }
 
-	[DataMember(Name = "Child Incident Count")]
+	[JsonPropertyName("Child Incident Count")]
 	public float? ChildIncidentCount { get; set; }
 
-	[DataMember(Name = "Department Code")]
+	[JsonPropertyName("Department Code")]
 	public string DepartmentCode { get; set; } = string.Empty;
 
-	[DataMember(Name = "Department Display name")]
+	[JsonPropertyName("Department Display name")]
 	public string DepartmentDisplayName { get; set; } = string.Empty;
 
-	[DataMember(Name = "Customer")]
+	[JsonPropertyName("Customer")]
 	public string? CustomerName { get; set; }
 
-	[DataMember(Name = "Location")]
+	[JsonPropertyName("Location")]
 	public string? LocationName { get; set; }
 
-	[DataMember(Name = "Logged By User ID")]
+	[JsonPropertyName("Logged By User ID")]
 	public float LoggedByUserId { get; set; }
 
-	[DataMember(Name = "Logged By User Name")]
+	[JsonPropertyName("Logged By User Name")]
 	public string LoggedByUserName { get; set; } = string.Empty;
 
-	[DataMember(Name = "Logged By Empid")]
+	[JsonPropertyName("Logged By Empid")]
 	public object LoggedByEmpId { get; set; } = string.Empty;
 
-	[DataMember(Name = "Logged By Email")]
+	[JsonPropertyName("Logged By Email")]
 	public string LoggedByEmail { get; set; } = string.Empty;
 
-	[DataMember(Name = "Logged By Mobile")]
+	[JsonPropertyName("Logged By Mobile")]
 	public string? LoggedByMobile { get; set; }
 
-	[DataMember(Name = "Logged By Contact")]
+	[JsonPropertyName("Logged By Contact")]
 	public string? LoggedByContact { get; set; }
 
-	[DataMember(Name = "User ID")]
+	[JsonPropertyName("User ID")]
 	public float UserId { get; set; }
 
-	[DataMember(Name = "Employee ID")]
+	[JsonPropertyName("Employee ID")]
 	public string? EmployeeId { get; set; }
 
-	[DataMember(Name = "Caller")]
+	[JsonPropertyName("Caller")]
 	public string Caller { get; set; } = string.Empty;
 
-	[DataMember(Name = "Email ID")]
+	[JsonPropertyName("Email ID")]
 	public string EmailId { get; set; } = string.Empty;
 
-	[DataMember(Name = "Mobile Number")]
+	[JsonPropertyName("Mobile Number")]
 	public string? MobileNumber { get; set; }
 
-	[DataMember(Name = "Contact Number")]
+	[JsonPropertyName("Contact Number")]
 	public string? ContactNumber { get; set; }
 
-	[DataMember(Name = "Classification")]
+	[JsonPropertyName("Classification")]
 	public string Classification { get; set; } = string.Empty;
 
-	[DataMember(Name = "Category")]
+	[JsonPropertyName("Category")]
 	public string Category { get; set; } = string.Empty;
 
-	[DataMember(Name = "Pending Reason")]
+	[JsonPropertyName("Pending Reason")]
 	public string? PendingReason { get; set; }
 
-	[DataMember(Name = "Priority")]
+	[JsonPropertyName("Priority")]
 	public string Priority { get; set; } = string.Empty;
 
-	[DataMember(Name = "Priority Display Name")]
+	[JsonPropertyName("Priority Display Name")]
 	public string PriorityDisplayName { get; set; } = string.Empty;
 
-	[DataMember(Name = "Impact")]
+	[JsonPropertyName("Impact")]
 	public string Impact { get; set; } = string.Empty;
 
-	[DataMember(Name = "Service Window")]
+	[JsonPropertyName("Service Window")]
 	public string ServiceWindow { get; set; } = string.Empty;
 
-	[DataMember(Name = "Workgroup")]
-	public string Workgroup { get; set; } = string.Empty;
+	[JsonPropertyName("Workgroup")]
+	public string WorkgroupName { get; set; } = string.Empty;
 
-	[DataMember(Name = "Assigned Engineer Userid")]
+	[JsonPropertyName("Assigned Engineer Userid")]
 	public float? AssignedEngineerUserId { get; set; }
 
-	[DataMember(Name = "Assigned To")]
+	[JsonPropertyName("Assigned To")]
 	public string? AssignedToName { get; set; }
 
-	[DataMember(Name = "Assigned Engineer Empid")]
+	[JsonPropertyName("Assigned Engineer Empid")]
 	public string? AssignedEngineerEmpId { get; set; }
 
-	[DataMember(Name = "Assigned Engineer Email")]
+	[JsonPropertyName("Assigned Engineer Email")]
 	public string? AssignedEngineerEmail { get; set; }
 
-	[DataMember(Name = "Closure Code")]
+	[JsonPropertyName("Closure Code")]
 	public string? ClosureCode { get; set; }
 
-	[DataMember(Name = "Resolution Code")]
+	[JsonPropertyName("Resolution Code")]
 	public string? ResolutionCode { get; set; }
 
-	[DataMember(Name = "Customer Matrix Masterid")]
+	[JsonPropertyName("Customer Matrix Masterid")]
 	public int? CustomerMatrixMasterId { get; set; }
 
-	[DataMember(Name = "Response SLA Mins")]
+	[JsonPropertyName("Response SLA Mins")]
 	public float? ResponseSLAMinutes { get; set; }
 
-	[DataMember(Name = "Resolution SLA Mins")]
+	[JsonPropertyName("Resolution SLA Mins")]
 	public float? ResolutionSLAMinutes { get; set; }
 
-	[DataMember(Name = "Response WG ID")]
+	[JsonPropertyName("Response WG ID")]
 	public string? ResponseWGId { get; set; }
 
-	[DataMember(Name = "Response EX ID Userid")]
+	[JsonPropertyName("Response EX ID Userid")]
 	public float? ResponseExIdUserId { get; set; }
 
-	[DataMember(Name = "Response EX ID Uname")]
+	[JsonPropertyName("Response EX ID Uname")]
 	public string? ResponseExIdUserName { get; set; }
 
-	[DataMember(Name = "Response EX ID Empid")]
+	[JsonPropertyName("Response EX ID Empid")]
 	public string? ResponseExIdEmpId { get; set; }
 
-	[DataMember(Name = "Response EX ID Email")]
+	[JsonPropertyName("Response EX ID Email")]
 	public string? ResponseExIdEmail { get; set; }
 
-	[DataMember(Name = "First Workgroup Name")]
+	[JsonPropertyName("First Workgroup Name")]
 	public string FirstWorkgroupName { get; set; } = string.Empty;
 
-	[DataMember(Name = "Response Priority Name")]
+	[JsonPropertyName("Response Priority Name")]
 	public string? ResponsePriorityName { get; set; }
 
-	[DataMember(Name = "Response Priority Sla")]
+	[JsonPropertyName("Response Priority Sla")]
 	public float? ResponsePrioritySla { get; set; }
 
-	[DataMember(Name = "Response Priority Resolution SLA")]
+	[JsonPropertyName("Response Priority Resolution SLA")]
 	public float? ResponsePriorityResolutionSla { get; set; }
 
-	[DataMember(Name = "Rule Name")]
+	[JsonPropertyName("Rule Name")]
 	public string? RuleName { get; set; }
 
-	[DataMember(Name = "Rule Symptom")]
+	[JsonPropertyName("Rule Symptom")]
 	public string? RuleSymptom { get; set; }
 
-	[DataMember(Name = "Open Category")]
+	[JsonPropertyName("Open Category")]
 	public string OpenCategory { get; set; } = string.Empty;
 
-	[DataMember(Name = "Service Request ID")]
+	[JsonPropertyName("Service Request ID")]
 	public string? ServiceRequestId { get; set; }
 
-	[DataMember(Name = "Vendor ID")]
+	[JsonPropertyName("Vendor ID")]
 	public float? VendorId { get; set; }
 
-	[DataMember(Name = "Vendor contact No")]
+	[JsonPropertyName("Vendor contact No")]
 	public string? VendorContactNumber { get; set; }
 
-	[DataMember(Name = "Vendor Incident ID")]
+	[JsonPropertyName("Vendor Incident ID")]
 	public string? VendorIncidentId { get; set; }
 
-	[DataMember(Name = "Vendor Incident Priority")]
+	[JsonPropertyName("Vendor Incident Priority")]
 	public string? VendorIncidentPriority { get; set; }
 
-	[DataMember(Name = "Vendor Incident Solution")]
+	[JsonPropertyName("Vendor Incident Solution")]
 	public string? VendorIncidentSolution { get; set; }
 
-	[DataMember(Name = "Vendor Incident Status")]
+	[JsonPropertyName("Vendor Incident Status")]
 	public string? VendorIncidentStatus { get; set; }
 
-	[DataMember(Name = "Description")]
+	[JsonPropertyName("Description")]
 	public string Description { get; set; } = string.Empty;
 
-	[DataMember(Name = "Solution")]
+	[JsonPropertyName("Solution")]
 	public string? Solution { get; set; } = string.Empty;
 
-	[DataMember(Name = "Urgency")]
+	[JsonPropertyName("Urgency")]
 	public string Urgency { get; set; } = string.Empty;
 
-	[DataMember(Name = "Total pending Duration SLA Minutes")]
+	[JsonPropertyName("Total pending Duration SLA Minutes")]
 	public float? TotalPendingDurationSLAMinutes { get; set; }
 
-	[DataMember(Name = "Total Pending Duration")]
+	[JsonPropertyName("Total Pending Duration")]
 	public float? TotalPendingDuration { get; set; }
 
-	[DataMember(Name = "Last User Communication")]
+	[JsonPropertyName("Last User Communication")]
 	public string? LastUserCommunication { get; set; }
 
-	[DataMember(Name = "private Log")]
+	[JsonPropertyName("private Log")]
 	public string PrivateLog { get; set; } = string.Empty;
 
-	[DataMember(Name = "Resolution SLA Met With Pending")]
+	[JsonPropertyName("Resolution SLA Met With Pending")]
 	public bool ResolutionSLAMetWithPending { get; set; }
 
-	[DataMember(Name = "Link KB On Ticket Resolve")]
+	[JsonPropertyName("Link KB On Ticket Resolve")]
 	public bool? LinkKbOnTicketResolve { get; set; }
 
-	[DataMember(Name = "Ticket_Age")]
+	[JsonPropertyName("Ticket_Age")]
 	public string TicketAge { get; set; } = string.Empty;
 
-	[DataMember(Name = "Response SLA In Minutes")]
+	[JsonPropertyName("Response SLA In Minutes")]
 	public float? ResponseSLAInMinutes { get; set; }
 
-	[DataMember(Name = "Resolution SLA In Minutes")]
+	[JsonPropertyName("Resolution SLA In Minutes")]
 	public float? ResolutionSLAInMinutes { get; set; }
 
-	[DataMember(Name = "Response SLA Violated")]
+	[JsonPropertyName("Response SLA Violated")]
 	public int ResponseSLAViolated { get; set; }
 
-	[DataMember(Name = "Resolution SLA Violated")]
+	[JsonPropertyName("Resolution SLA Violated")]
 	public int ResolutionSLAViolated { get; set; }
 
-	[DataMember(Name = "Highlight Color")]
+	[JsonPropertyName("Highlight Color")]
 	public string? HighlightColor { get; set; }
 
-	[DataMember(Name = "Device Host Name")]
+	[JsonPropertyName("Device Host Name")]
 	public string? DeviceHostName { get; set; }
 
-	[DataMember(Name = "IP Address")]
+	[JsonPropertyName("IP Address")]
 	public string? IPAddress { get; set; }
 
-	[DataMember(Name = "MAC Address")]
+	[JsonPropertyName("MAC Address")]
 	public string? MACAddress { get; set; }
 
-	[DataMember(Name = "Model No")]
+	[JsonPropertyName("Model No")]
 	public string? ModelNo { get; set; }
 
-	[DataMember(Name = "Purchase Order No")]
+	[JsonPropertyName("Purchase Order No")]
 	public string? PurchaseOrderNo { get; set; }
 
-	[DataMember(Name = "Serial No")]
+	[JsonPropertyName("Serial No")]
 	public string? SerialNo { get; set; }
 
-	[DataMember(Name = "Warranty")]
+	[JsonPropertyName("Warranty")]
 	public string? Warranty { get; set; }
 
-	[DataMember(Name = "Workorder Name")]
+	[JsonPropertyName("Workorder Name")]
 	public string? WorkorderName { get; set; }
 
-	[DataMember(Name = "Customer ID")]
+	[JsonPropertyName("Customer ID")]
 	public float CustomerId { get; set; }
 
-	[DataMember(Name = "Tenant ID")]
+	[JsonPropertyName("Tenant ID")]
 	public string TenantId { get; set; } = string.Empty;
 
-	[DataMember(Name = "Location ID")]
+	[JsonPropertyName("Location ID")]
 	public float LocationId { get; set; }
 
-	[DataMember(Name = "Assigned Workgroup ID")]
+	[JsonPropertyName("Assigned Workgroup ID")]
 	public float AssignedWorkgroupId { get; set; }
 
-	[DataMember(Name = "Last User Communication Updated On")]
+	[JsonPropertyName("Last User Communication Updated On")]
 	public DateTime? LastUserCommunicationUpdatedOn { get; set; }
 
-	[DataMember(Name = "Private Log Updated On")]
+	[JsonPropertyName("Private Log Updated On")]
 	public DateTime PrivateLogUpdatedOn { get; set; }
 
-	[DataMember(Name = "Last Approval Reopen Remark")]
+	[JsonPropertyName("Last Approval Reopen Remark")]
 	public string? LastApprovalReopenRemark { get; set; }
 
-	[DataMember(Name = "Last Approval Reopen Remark Date")]
+	[JsonPropertyName("Last Approval Reopen Remark Date")]
 	public DateTime? LastApprovalReopenRemarkDate { get; set; }
 }
 
