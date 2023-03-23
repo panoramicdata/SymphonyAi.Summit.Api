@@ -1,18 +1,10 @@
 ﻿namespace SymphonyAi.Summit.Api.Reporting;
 
-public class RawSqlDataQuery : AdvancedDataQuery
+public class RawSqlDataQuery : DataQuery
 {
-	private readonly string _sql;
-
 	public RawSqlDataQuery(string sql)
 	{
-		_sql = sql;
+		RawSql = sql;
+		SortOrder = string.Empty;
 	}
-
-	internal override DataQuery BuildDataQuery()
-		=> new()
-		{
-			RawSql = _sql,
-			SortOrder = string.Empty
-		};
 }

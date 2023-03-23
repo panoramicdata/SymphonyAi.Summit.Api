@@ -1,8 +1,10 @@
-﻿namespace SymphonyAi.Summit.Api.Reporting;
+﻿using SymphonyAi.Summit.Api.Models.Reporting.Helpers;
+
+namespace SymphonyAi.Summit.Api.Reporting;
 
 public class NumericFilter<T> : IFilter where T : struct
 {
-	public NumericFilter(string columnName, FilterOperators filterOperator, T value)
+	public NumericFilter(string columnName, NumericFilterOperators filterOperator, T value)
 	{
 		ColumnName = columnName;
 		Operator = filterOperator;
@@ -11,34 +13,18 @@ public class NumericFilter<T> : IFilter where T : struct
 
 	public string ColumnName { get; set; } = string.Empty;
 
-	public FilterOperators Operator { get; set; } = FilterOperators.Equals;
+	public NumericFilterOperators Operator { get; set; } = NumericFilterOperators.Equals;
 
 	public T Value { get; set; } = default;
 
 	public string GetFilterExpression()
 	{
-		var columnName = ColumnName.Trim();
-		if (!columnName.StartsWith('['))
-		{
-			columnName = "[" + columnName;
-		}
+		var columnName = SqlColumnNameFactory.BuildDelimitedColumnName(ColumnName);
 
-		if (!columnName.EndsWith(']'))
+		(var operatorPrefix, var operatorSuffix) = Operator switch
 		{
-			columnName += "]";
-		}
-
-		var operatorPrefix = Operator switch
-		{
-			FilterOperators.Equals => " = ",
-			FilterOperators.NotEquals => " != ",
-			_ => throw new ArgumentException("Requested operator is not supported!")
-		};
-
-		var operatorSuffix = Operator switch
-		{
-			FilterOperators.Equals => "",
-			FilterOperators.NotEquals => "",
+			NumericFilterOperators.Equals => (" = ", ""),
+			NumericFilterOperators.NotEquals => (" != ", ""),
 			_ => throw new ArgumentException("Requested operator is not supported!")
 		};
 
