@@ -1,8 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
 		<ApplicationIcon>Logo.ico</ApplicationIcon>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
@@ -15,7 +16,7 @@
 		<RepositoryUrl>https://github.com/panoramicdata/SymphonyAi.Summit.Api</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>Symphony;AI;Summit;API;nuget;package</PackageTags>
-		<PackageReleaseNotes>Initial release</PackageReleaseNotes>
+		<PackageReleaseNotes>Added Reporting API support</PackageReleaseNotes>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<IncludeSymbols>True</IncludeSymbols>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
@@ -47,6 +48,9 @@
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	  <PackageReference Include="Refit" Version="6.3.2" />
+	  <PackageReference Include="Refit.Newtonsoft.Json" Version="6.3.2" />
 	</ItemGroup>
 
 </Project>

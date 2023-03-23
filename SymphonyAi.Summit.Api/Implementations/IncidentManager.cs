@@ -55,7 +55,7 @@ internal class IncidentManager : Manager, IIncidents
 		LogRequest(request);
 
 		var response = await HttpClient
-			.PostAsJsonAsync(string.Empty, request, JsonSerializerOptions, cancellationToken);
+			.PostAsJsonAsync(ApiIntegrationSubUrl, request, JsonSerializerOptions, cancellationToken);
 
 		await LogResponseAsync(response, cancellationToken);
 
@@ -76,7 +76,7 @@ internal class IncidentManager : Manager, IIncidents
 		LogRequest(request);
 
 		var response = await HttpClient
-			.PostAsJsonAsync(string.Empty, request, JsonSerializerOptions, cancellationToken);
+			.PostAsJsonAsync(ApiIntegrationSubUrl, request, JsonSerializerOptions, cancellationToken);
 
 		await LogResponseAsync(response, cancellationToken);
 

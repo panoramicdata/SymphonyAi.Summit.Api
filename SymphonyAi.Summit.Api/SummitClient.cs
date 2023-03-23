@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Refit;
 using SymphonyAi.Summit.Api.Implementations;
 using SymphonyAi.Summit.Api.Interfaces;
 using System.Text.Json;
@@ -13,9 +14,18 @@ public class SummitClient : IDisposable
 
 	public SummitClient(SummitClientOptions summitClientOptions, ILogger logger)
 	{
-		_httpClient = new HttpClient
+		_httpClient = new HttpClient(new CustomHttpClientHandler(logger), true)
 		{
-			BaseAddress = new Uri(summitClientOptions.BaseUri + "/REST/Summit_RESTWCF.svc/RESTService/CommonWS_JsonObjCall")
+			BaseAddress = new Uri(summitClientOptions.BaseUri.ToString()),
+			DefaultRequestHeaders =
+			{
+				{ "apikey", summitClientOptions.ApiKey }
+			}
+		};
+
+		var _refitSettings = new RefitSettings
+		{
+			ContentSerializer = new CustomNewtonsoftJsonContentSerializer(summitClientOptions, logger)
 		};
 
 		var jsonSerializerOptions = new JsonSerializerOptions
@@ -32,6 +42,7 @@ public class SummitClient : IDisposable
 		Cmdb = new CmdbManager(_httpClient, summitClientOptions.ApiKey, jsonSerializerOptions, logger);
 		Incidents = new IncidentManager(_httpClient, summitClientOptions.ApiKey, jsonSerializerOptions, logger);
 		Problems = new ProblemManager(_httpClient, summitClientOptions.ApiKey, jsonSerializerOptions, logger);
+		Reports = RestService.For<IReports>(_httpClient, _refitSettings);
 		ServiceRequests = new ServiceRequestManager(_httpClient, summitClientOptions.ApiKey, jsonSerializerOptions, logger);
 	}
 
@@ -42,6 +53,8 @@ public class SummitClient : IDisposable
 	public IIncidents Incidents { get; }
 
 	public IProblems Problems { get; }
+
+	public IReports Reports { get; }
 
 	public IServiceRequests ServiceRequests { get; }
 

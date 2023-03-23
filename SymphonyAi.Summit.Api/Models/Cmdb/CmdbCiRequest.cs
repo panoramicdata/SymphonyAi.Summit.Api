@@ -11,3 +11,16 @@ public class CmdbCiRequest : CmdbRequestBase
 	[JsonPropertyName("bIncDeActive")]
 	public bool IncludeInactive { get; set; } = true;
 }
+
+public class CmdbCustomersRequest : CmdbRequestBase
+{
+	public CmdbCustomersRequest() : base("GetCustomerMasterList")
+	{
+	}
+
+	[JsonPropertyName("strInstance")]
+	public string InstanceName { get; set; } = string.Empty;
+
+	[JsonPropertyName("bIncDeActive")]
+	public bool IncludeInactive { get; set; } = true;
+}

@@ -38,6 +38,11 @@ internal class CmdbManager : Manager, ICmdb
 		CancellationToken cancellationToken)
 		=> GetCis2Async<CmdbQuery2Request, CmdbQueryResponse>(request, cancellationToken);
 
+	public Task<CmdbCustomersResponse> GetCustomersAsync(
+		CmdbCustomersRequest request,
+		CancellationToken cancellationToken)
+		=> throw new NotSupportedException();
+
 	private async Task<TResponse> CreateOrUpdateAsync<TRequest, TResponse>(
 		TRequest request,
 		CancellationToken cancellationToken
@@ -48,7 +53,7 @@ internal class CmdbManager : Manager, ICmdb
 		LogRequest(request);
 
 		var response = await HttpClient
-			.PostAsJsonAsync(string.Empty, request, JsonSerializerOptions, cancellationToken);
+			.PostAsJsonAsync(ApiIntegrationSubUrl, request, JsonSerializerOptions, cancellationToken);
 
 		await LogResponseAsync(response, cancellationToken);
 
@@ -69,7 +74,7 @@ internal class CmdbManager : Manager, ICmdb
 		LogRequest(request);
 
 		var response = await HttpClient
-			.PostAsJsonAsync(string.Empty, request, JsonSerializerOptions, cancellationToken);
+			.PostAsJsonAsync(ApiIntegrationSubUrl, request, JsonSerializerOptions, cancellationToken);
 
 		await LogResponseAsync(response, cancellationToken);
 
@@ -90,7 +95,7 @@ internal class CmdbManager : Manager, ICmdb
 		LogRequest(request);
 
 		var response = await HttpClient
-			.PostAsJsonAsync(string.Empty, request, JsonSerializerOptions, cancellationToken);
+			.PostAsJsonAsync(ApiIntegrationSubUrl, request, JsonSerializerOptions, cancellationToken);
 
 		await LogResponseAsync(response, cancellationToken);
 

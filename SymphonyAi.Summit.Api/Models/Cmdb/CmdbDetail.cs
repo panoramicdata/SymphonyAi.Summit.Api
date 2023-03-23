@@ -4,177 +4,178 @@ namespace SymphonyAi.Summit.Api.Models.Cmdb;
 
 public class CmdbDetail
 {
-	[JsonPropertyName("Configuration_Item_Id")]
-	public string? ConfigurationItemId { get; set; }
 
-	[JsonPropertyName("InstanceName")]
-	public string InstanceName { get; set; } = string.Empty;
+	[JsonPropertyName("ROWNUM")]
+	public string RowNumber { get; set; }
+
+	[JsonPropertyName("TotalRows")]
+	public int TotalRows { get; set; }
+
+	[JsonPropertyName("Org_Id")]
+	public int OrgId { get; set; }
+
+	[JsonPropertyName("Configuration_Item_Id")]
+	public string ConfigurationItemId { get; set; }
+
+	[JsonPropertyName("Sup_Function")]
+	public string SupFunction { get; set; }
+
+	[JsonPropertyName("Sup_Function_Name")]
+	public string SupFunctionName { get; set; }
 
 	[JsonPropertyName("Device_Host_Name")]
-	public string DeviceHostName { get; set; } = string.Empty;
+	public string DeviceHostName { get; set; }
 
-	[JsonPropertyName("Serial_No")]
-	public string SerialNumber { get; set; } = string.Empty;
-
-	[JsonPropertyName("Owner_Workgroup_Name")]
-	public string OwnerWorkgroupName { get; set; } = string.Empty;
-
-	[JsonPropertyName("Owner_Name")]
-	public string OwnerName { get; set; } = string.Empty;
-
-	[JsonPropertyName("Managed_By")]
-	public string ManagedBy { get; set; } = string.Empty;
+	[JsonPropertyName("Classification_Id")]
+	public int ClassificationId { get; set; }
 
 	[JsonPropertyName("Classification")]
-	public string Classification { get; set; } = string.Empty;
+	public string Classification { get; set; }
 
-	[JsonPropertyName("Status")]
-	public string Status { get; set; } = string.Empty;
+	[JsonPropertyName("Serial_No")]
+	public string SerialNumber { get; set; }
 
-	[JsonPropertyName("LifeCycleStatus")]
-	public string LifecycleStatus { get; set; } = string.Empty;
-
-	[JsonPropertyName("Criticality_Name")]
-	public string CriticalityName { get; set; } = string.Empty;
-
-	[JsonPropertyName("Customer")]
-	public string Customer { get; set; } = string.Empty;
-
-	[JsonPropertyName("VendorName")]
-	public string VendorName { get; set; } = string.Empty;
-
-	[JsonPropertyName("LocationName")]
-	public string LocationName { get; set; } = string.Empty;
-
-	[JsonPropertyName("Make")]
-	public string Make { get; set; } = string.Empty;
-
-	[JsonPropertyName("Mac_Address")]
-	public string MacAddress { get; set; } = string.Empty;
-
-	[JsonPropertyName("IPAddress")]
-	public string IpAddress { get; set; } = string.Empty;
+	[JsonPropertyName("MAC_Address")]
+	public string MacAddress { get; set; }
 
 	[JsonPropertyName("Model_No")]
-	public string ModelNumber { get; set; } = string.Empty;
+	public string ModelNumber { get; set; }
 
-	[JsonPropertyName("Rack")]
-	public string Rack { get; set; } = string.Empty;
+	[JsonPropertyName("Entity_ID")]
+	public int? EntityId { get; set; }
 
-	[JsonPropertyName("Warranty")]
-	public string Warranty { get; set; } = string.Empty;
+	[JsonPropertyName("Entity_Type")]
+	public string EntityType { get; set; }
 
-	[JsonPropertyName("Annual_Maintains_Contract")]
-	public string AnnualMaintainsContract { get; set; } = string.Empty;
+	[JsonPropertyName("Make_Id")]
+	public int MakeId { get; set; }
 
-	[JsonPropertyName("Version")]
-	public string Version { get; set; } = string.Empty;
+	[JsonPropertyName("Make")]
+	public string Make { get; set; }
 
-	[JsonPropertyName("Description")]
-	public string Description { get; set; } = string.Empty;
+	[JsonPropertyName("Workgroup_Id")]
+	public int WorkgroupId { get; set; }
 
-	[JsonPropertyName("Remarks")]
-	public string? Remarks { get; set; }
+	[JsonPropertyName("Workgroup")]
+	public string WorkgroupName { get; set; }
 
-	[JsonPropertyName("Test_Plan_Mandatory")]
-	public string IsTestPlanMandatory { get; set; } = string.Empty;
+	[JsonPropertyName("Owner_Id")]
+	public int OwnerId { get; set; }
+
+	[JsonPropertyName("Owner")]
+	public string OwnerName { get; set; }
+
+	[JsonPropertyName("Mananged_By")]
+	public string ManagedByName { get; set; }
+
+	[JsonPropertyName("Vendor_Id")]
+	public string VendorId { get; set; }
+
+	[JsonPropertyName("Vendor_Name")]
+	public string VendorName { get; set; }
 
 	[JsonPropertyName("Purchase_Order_No")]
-	public string PurchaseOrderNumber { get; set; } = string.Empty;
+	public object PurchaseOrderNumber { get; set; }
 
-	[JsonPropertyName("Server_IpAddress")]
+	[JsonPropertyName("Bond_No")]
+	public object BondNumber { get; set; }
+
+	[JsonPropertyName("Installation_Date")]
+	public object InstallationDate { get; set; }
+
+	[JsonPropertyName("Customer")]
+	public string CustomerName { get; set; }
+
+	[JsonPropertyName("Criticality_Id")]
+	public int CriticalityId { get; set; }
+
+	[JsonPropertyName("criticality")]
+	public string CriticalityName { get; set; }
+
+	[JsonPropertyName("Location")]
+	public string? LocationName { get; set; }
+
+	[JsonPropertyName("Rack")]
+	public string Rack { get; set; }
+
+	[JsonPropertyName("Warranty")]
+	public string Warranty { get; set; }
+
+	[JsonPropertyName("Annual_Maintains_Contract")]
+	public string? AnnualMaintenanceContract { get; set; }
+
+	[JsonPropertyName("Version")]
+	public string Version { get; set; }
+
+	[JsonPropertyName("Description")]
+	public string Description { get; set; }
+
+	[JsonPropertyName("Remarks")]
+	public string Remarks { get; set; }
+
+	[JsonPropertyName("Network_Device_IP_Address")]
+	public string? NetworkDeviceIpAddress { get; set; }
+
+	[JsonPropertyName("Server_IP_Address")]
 	public string? ServerIpAddress { get; set; }
 
-	[JsonPropertyName("Server_CPU")]
-	public string? ServerCpu { get; set; }
+	[JsonPropertyName("Desktop_IP_Address")]
+	public string? DesktopIpAddress { get; set; }
 
-	[JsonPropertyName("Server_Hard_Disk_Drive")]
-	public string? ServerHardDiskDrive { get; set; }
+	[JsonPropertyName("IP_Address")]
+	public string? IpAddress { get; set; }
 
-	[JsonPropertyName("Server_RAM")]
-	public string? ServerRam { get; set; }
+	[JsonPropertyName("Active")]
+	public bool Active { get; set; }
 
-	[JsonPropertyName("Server_NIC")]
-	public string? ServerNic { get; set; }
+	[JsonPropertyName("Test_Plan_Mandatory")]
+	public string TestPlanMandatory { get; set; }
 
-	[JsonPropertyName("Server_NETWORK")]
-	public string? ServerNetwork { get; set; }
+	[JsonPropertyName("IsMonitor")]
+	public bool IsMonitor { get; set; }
 
-	[JsonPropertyName("Server_RAID_LEVEL")]
-	public string? ServerRaidLevel { get; set; }
+	[JsonPropertyName("CIStatus")]
+	public string CiStatus { get; set; }
 
-	[JsonPropertyName("Server_RAID_CARD")]
-	public string? ServerRaidCard { get; set; }
+	[JsonPropertyName("LifeCycleStatus")]
+	public string LifecycleStatus { get; set; }
 
-	[JsonPropertyName("Server_BACKUP_STATE")]
-	public bool? ServerBackupState { get; set; }
+	[JsonPropertyName("SLAID")]
+	public int? SlaId { get; set; }
 
-	[JsonPropertyName("Server_BACKUP_DETAILS")]
-	public string? ServerBackupDetails { get; set; }
+	[JsonPropertyName("ProjectID")]
+	public int? ProjectId { get; set; }
 
-	[JsonPropertyName("Server_OPERATING_SYSTEM")]
-	public string? ServerOperatingSystem { get; set; }
+	[JsonPropertyName("Service_EntitlementID")]
+	public int? ServiceEntitlementId { get; set; }
 
-	[JsonPropertyName("Server_SERVICE_PACK")]
-	public string? ServerServicePack { get; set; }
+	[JsonPropertyName("Service_Entitlement_Name")]
+	public string? ServiceEntitlementName { get; set; }
 
-	[JsonPropertyName("Server_INSTALLED_APPLICATIONS")]
-	public string? ServerInstalledApplications { get; set; }
+	[JsonPropertyName("Color_Code")]
+	public string? ColorCode { get; set; }
 
-	[JsonPropertyName("Server_PATCHES")]
-	public string? ServerPatches { get; set; }
+	[JsonPropertyName("MonitoringCategoryID")]
+	public int MonitoringCategoryId { get; set; }
 
-	[JsonPropertyName("Network_IpAddress")]
-	public string? NetworkIpAddress { get; set; }
+	[JsonPropertyName("MonitoringCategoryName")]
+	public string? MonitoringCategoryName { get; set; }
 
-	[JsonPropertyName("Network_SUBNET_MASK")]
-	public string? NetworkSubnetMask { get; set; }
+	[JsonPropertyName("UserAccessId")]
+	public string UserAccessId { get; set; }
 
-	[JsonPropertyName("Network_GATEWAY")]
-	public string? NetworkGateway { get; set; }
+	[JsonPropertyName("SSHPort")]
+	public string SshPort { get; set; }
 
-	[JsonPropertyName("Network_NO_OF_SLOTS")]
-	public string? NetworkSlotCount { get; set; }
+	[JsonPropertyName("TelnetPort")]
+	public string TelnetPort { get; set; }
 
-	[JsonPropertyName("Network_SLOT_NUMBERS")]
-	public string? NetworkSlotNumbers { get; set; }
+	[JsonPropertyName("DiscoverySource")]
+	public string? DiscoverySource { get; set; }
 
-	[JsonPropertyName("Network_PORTS")]
-	public string? NetworkPorts { get; set; }
+	[JsonPropertyName("CreateDt")]
+	public string CreateDt { get; set; }
 
-	[JsonPropertyName("Network_CARD_TYPE")]
-	public string? NetworkCardType { get; set; }
-
-	[JsonPropertyName("Network_VLAN")]
-	public string? NetworkVlan { get; set; }
-
-	[JsonPropertyName("Network_FLASH_MEMORY")]
-	public string? NetworkFlashMemory { get; set; }
-
-	[JsonPropertyName("Network_DRAM_MEMORY")]
-	public string? NetworkDramMemory { get; set; }
-
-	[JsonPropertyName("Network_IOS_SOFTWARE")]
-	public string? NetworkIosSoftware { get; set; }
-
-	[JsonPropertyName("Network_ACCESS_LIST")]
-	public string? NetworkAccessList { get; set; }
-
-	[JsonPropertyName("Network_ROUTES")]
-	public string? NetworkRoutes { get; set; }
-
-	[JsonPropertyName("Network_A_END_DESCRIPTION")]
-	public string? NetworkAEndDescription { get; set; }
-
-	[JsonPropertyName("Network_A_END_IP_ADDRESS")]
-	public string? NetworkAEndIpAddress { get; set; }
-
-	[JsonPropertyName("Network_B_END_DESCTIPTION")]
-	public string? NetworkBEndDescription { get; set; }
-
-	[JsonPropertyName("Network_B_END_IP_ADDRESS")]
-	public string? NetworkBEndIpAddress { get; set; }
-
-	[JsonPropertyName("Network_CIRCUIT_ID")]
-	public string? NetworkCircuitId { get; set; }
+	[JsonPropertyName("UpdateDt")]
+	public string? UpdateDt { get; set; }
 }

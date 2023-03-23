@@ -17,13 +17,13 @@ public class CmdbCreationDetail
 	public string SerialNumber { get; set; } = string.Empty;
 
 	[JsonPropertyName("Owner_Workgroup_Name")]
-	public string OwnerWorkgroupName { get; set; } = string.Empty;
+	public string WorkgroupName { get; set; } = string.Empty;
 
 	[JsonPropertyName("Owner_Name")]
 	public string OwnerName { get; set; } = string.Empty;
 
 	[JsonPropertyName("Managed_By")]
-	public string ManagedBy { get; set; } = string.Empty;
+	public string ManagedByName { get; set; } = string.Empty;
 
 	[JsonPropertyName("Classification")]
 	public string Classification { get; set; } = string.Empty;
@@ -38,7 +38,7 @@ public class CmdbCreationDetail
 	public string CriticalityName { get; set; } = string.Empty;
 
 	[JsonPropertyName("Customer")]
-	public string Customer { get; set; } = string.Empty;
+	public string CustomerName { get; set; } = string.Empty;
 
 	[JsonPropertyName("VendorName")]
 	public string VendorName { get; set; } = string.Empty;
@@ -169,7 +169,7 @@ public class CmdbCreationDetail
 	[JsonPropertyName("Network_A_END_IP_ADDRESS")]
 	public string? NetworkAEndIpAddress { get; set; }
 
-	[JsonPropertyName("Network_B_END_DESCTIPTION")]
+	[JsonPropertyName("Network_B_END_DESCRIPTION")]
 	public string? NetworkBEndDescription { get; set; }
 
 	[JsonPropertyName("Network_B_END_IP_ADDRESS")]

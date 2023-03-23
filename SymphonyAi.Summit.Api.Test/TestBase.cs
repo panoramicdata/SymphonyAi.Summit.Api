@@ -9,10 +9,15 @@ namespace SymphonyAi.Summit.Api.Test;
 public abstract class TestBase
 {
 	public ICacheLogger Logger { get; }
+
 	public SummitClient SummitClient { get; }
+
 	public string Instance { get; }
+
 	public int TicketNumber { get; }
+
 	public string WorkgroupName { get; }
+
 	public string CustomerName { get; }
 
 	public string OwnerName { get; }
