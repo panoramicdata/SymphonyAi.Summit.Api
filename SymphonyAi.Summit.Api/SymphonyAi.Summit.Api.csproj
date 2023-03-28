@@ -16,7 +16,7 @@
 		<RepositoryUrl>https://github.com/panoramicdata/SymphonyAi.Summit.Api</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>Symphony;AI;Summit;API;nuget;package</PackageTags>
-		<PackageReleaseNotes>Added Reporting API support</PackageReleaseNotes>
+		<PackageReleaseNotes>Corrected common parameters definitions for incident retrieval</PackageReleaseNotes>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<IncludeSymbols>True</IncludeSymbols>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
