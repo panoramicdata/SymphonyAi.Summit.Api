@@ -2,12 +2,14 @@
 
 namespace SymphonyAi.Summit.Api.Models;
 
-public abstract class IncidentRequest : Request
+public abstract class IncidentRequest<TCommonParameters> : Request, IIncidentRequest where TCommonParameters : CommonParametersBase, new()
 {
 	public IncidentRequest(string incidentServiceName) : base("IM_" + incidentServiceName)
 	{
 	}
 
 	[JsonPropertyName("objCommonParameters")]
-	public IncidentCommonParameters CommonParameters { get; set; } = new();
+	public TCommonParameters CommonParameters { get; set; } = new TCommonParameters();
+
+	ICommonParameters IIncidentRequest.CommonParameters => CommonParameters;
 }

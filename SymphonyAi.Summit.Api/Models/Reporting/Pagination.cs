@@ -2,6 +2,7 @@
 
 namespace SymphonyAi.Summit.Api.Models.Reporting;
 
+[DataContract]
 public class Pagination
 {
 	[DataMember(Name = "page_size")]

@@ -2,6 +2,7 @@
 
 namespace SymphonyAi.Summit.Api.Models.Reporting;
 
+[DataContract]
 public class Status
 {
 	[DataMember(Name = "message")]

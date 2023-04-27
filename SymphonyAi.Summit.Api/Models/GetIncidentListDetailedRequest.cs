@@ -1,6 +1,6 @@
 ﻿namespace SymphonyAi.Summit.Api.Models;
 
-public class GetIncidentListDetailsRequest : IncidentQueryRequest
+public class GetIncidentListDetailsRequest : IncidentRequest<IncidentCommonParameters>
 {
 	public GetIncidentListDetailsRequest() : base("GetIncidentListwithDetails")
 	{

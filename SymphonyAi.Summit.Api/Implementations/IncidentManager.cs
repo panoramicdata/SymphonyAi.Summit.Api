@@ -48,7 +48,7 @@ internal class IncidentManager : Manager, IIncidents
 	private async Task<TResponse> GetAsync<TRequest, TResponse>(
 		TRequest request,
 		CancellationToken cancellationToken
-	) where TRequest : IncidentRequest
+	) where TRequest : IIncidentRequest
 	{
 		request.CommonParameters.ProxyDetails.ApiKey = ApiKey;
 
