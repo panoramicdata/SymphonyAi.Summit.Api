@@ -120,4 +120,42 @@ internal class CmdbManager : Manager, ICmdb
 			?? throw new SummitApiException($"Error deserializing {typeof(TResponse).Name}");
 		return returnValue;
 	}
+
+	public async Task<CmdbCreateRelationshipResponse> CreateRelationshipAsync(CmdbCreateRelationshipRequest request, CancellationToken cancellationToken)
+	{
+		request.CommonParameters.ProxyDetails.ApiKey = ApiKey;
+
+		LogRequest(request);
+
+		var response = await HttpClient
+			.PostAsJsonAsync(ApiIntegrationSubUrl, request, JsonSerializerOptions, cancellationToken);
+
+		await LogResponseAsync(response, cancellationToken);
+
+		var returnValue = await response
+		.Content
+			.ReadFromJsonAsync<CmdbCreateRelationshipResponse>(cancellationToken: cancellationToken)
+			?? throw new SummitApiException($"Error deserializing {nameof(CmdbCreateRelationshipResponse)}");
+
+		var a = 1;
+		return returnValue;
+	}
+
+	public async Task<CmdbDeleteRelationshipResponse> DeleteRelationshipAsync(CmdbDeleteRelationshipRequest request, CancellationToken cancellationToken)
+	{
+		request.CommonParameters.ProxyDetails.ApiKey = ApiKey;
+
+		LogRequest(request);
+
+		var response = await HttpClient
+			.PostAsJsonAsync(ApiIntegrationSubUrl, request, JsonSerializerOptions, cancellationToken);
+
+		await LogResponseAsync(response, cancellationToken);
+
+		var returnValue = await response
+		.Content
+			.ReadFromJsonAsync<CmdbDeleteRelationshipResponse>(cancellationToken: cancellationToken)
+			?? throw new SummitApiException($"Error deserializing {nameof(CmdbCreateRelationshipResponse)}");
+		return returnValue;
+	}
 }

@@ -1,5 +1,6 @@
 using FluentAssertions;
 using SymphonyAi.Summit.Api.Models.Cmdb;
+using System.Globalization;
 using Xunit.Abstractions;
 
 namespace SymphonyAi.Summit.Api.Test;
@@ -180,4 +181,45 @@ public class CmdbTests : TestBase
 
 	//	response.OutputObject.Should().NotBeNull();
 	//}
+
+	[Fact]
+	public async Task LinkAndDelink_GoodRequest_Succeeds()
+	{
+		var sourceCiId = 630;
+		var targetCiId = 631;
+
+		var createRequest = new CmdbCreateRelationshipRequest();
+		createRequest.Relation.SourceType = "CI";
+		createRequest.Relation.TargetType = "CI";
+		createRequest.Relation.SourceKey = "CIID";
+		createRequest.Relation.TargetKey = "CIID";
+		createRequest.Relation.SourceValue = sourceCiId.ToString(CultureInfo.InvariantCulture);
+		createRequest.Relation.TargetValue = targetCiId.ToString(CultureInfo.InvariantCulture);
+		createRequest.Relation.Relationship = "Peer";
+
+		var createResponse = await SummitClient
+			.Cmdb
+			.CreateRelationshipAsync(createRequest, CancellationToken.None);
+
+		createResponse.Should().NotBeNull();
+		createResponse.Errors.Should().BeEmpty();
+		createResponse.OutputObject.Should().NotBeNull();
+
+		var deleteRequest = new CmdbDeleteRelationshipRequest();
+		deleteRequest.Relation.SourceType = "CI";
+		deleteRequest.Relation.TargetType = "CI";
+		deleteRequest.Relation.SourceKey = "CIID";
+		deleteRequest.Relation.TargetKey = "CIID";
+		deleteRequest.Relation.SourceValue = sourceCiId.ToString(CultureInfo.InvariantCulture);
+		deleteRequest.Relation.TargetValue = targetCiId.ToString(CultureInfo.InvariantCulture);
+		deleteRequest.Relation.Relationship = "Peer";
+
+		var deleteResponse = await SummitClient
+			.Cmdb
+			.DeleteRelationshipAsync(deleteRequest, CancellationToken.None);
+
+		deleteResponse.Should().NotBeNull();
+		deleteResponse.Errors.Should().BeEmpty();
+		deleteResponse.OutputObject.Should().NotBeNull();
+	}
 }

@@ -30,4 +30,12 @@ public interface ICmdb
 	Task<CmdbCreateOrUpdateCiResponse> UpdateCiAsync(
 		CmdbUpdateCiRequest request,
 		CancellationToken cancellationToken);
+
+	Task<CmdbCreateRelationshipResponse> CreateRelationshipAsync(
+		CmdbCreateRelationshipRequest request,
+		CancellationToken cancellationToken);
+
+	Task<CmdbDeleteRelationshipResponse> DeleteRelationshipAsync(
+		CmdbDeleteRelationshipRequest request,
+		CancellationToken cancellationToken);
 }
