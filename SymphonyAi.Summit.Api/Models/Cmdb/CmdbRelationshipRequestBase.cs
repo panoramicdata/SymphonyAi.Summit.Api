@@ -10,7 +10,4 @@ public abstract class CmdbRelationshipRequestBase : CmdbRequest
 
 	[JsonPropertyName("objCommonParameters")]
 	public CmdbRelationshipRequestCommonParameters CommonParameters { get; set; } = new();
-
-	[JsonPropertyName("_CMDBCIRelations")]
-	public CmdbRelationship Relation { get; } = new();
 }
