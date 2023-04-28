@@ -200,7 +200,22 @@ public class CmdbTests : TestBase
 		queryResponse.OutputObject.Should().NotBeNull();
 
 		// Unlink any in preparation
-
+		foreach (var relationship in queryResponse.OutputObject.CiRelations)
+		{
+			var deleteRequest = new CmdbDeleteRelationshipRequest();
+			deleteRequest.CommonParameters.Relation.SourceType = "CI";
+			deleteRequest.CommonParameters.Relation.TargetType = "CI";
+			deleteRequest.CommonParameters.Relation.SourceKey = "CIID";
+			deleteRequest.CommonParameters.Relation.TargetKey = "CIID";
+			deleteRequest.CommonParameters.Relation.SourceValue = sourceCiId.ToString(CultureInfo.InvariantCulture);
+			deleteRequest.CommonParameters.Relation.TargetValue = relationship.Id.ToString(CultureInfo.InvariantCulture);
+			deleteRequest.CommonParameters.Relation.Relationship = "Peer";
+			var deleteResponse = await SummitClient
+				.Cmdb
+				.DeleteRelationshipAsync(deleteRequest, CancellationToken.None);
+			deleteResponse.Should().NotBeNull();
+			deleteResponse.Errors.Should().BeEmpty();
+		}
 
 		// Link
 		var createRequest = new CmdbCreateRelationshipRequest();
