@@ -35,6 +35,10 @@ public interface ICmdb
 		CmdbCreateRelationshipRequest request,
 		CancellationToken cancellationToken);
 
+	Task<CmdbGetRelationshipsQueryResponse> GetRelationshipsAsync(
+		CmdbRelationshipQueryRequest request,
+		CancellationToken cancellationToken);
+
 	Task<CmdbDeleteRelationshipResponse> DeleteRelationshipAsync(
 		CmdbDeleteRelationshipRequest request,
 		CancellationToken cancellationToken);

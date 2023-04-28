@@ -137,7 +137,6 @@ internal class CmdbManager : Manager, ICmdb
 			.ReadFromJsonAsync<CmdbCreateRelationshipResponse>(cancellationToken: cancellationToken)
 			?? throw new SummitApiException($"Error deserializing {nameof(CmdbCreateRelationshipResponse)}");
 
-		var a = 1;
 		return returnValue;
 	}
 
@@ -156,6 +155,28 @@ internal class CmdbManager : Manager, ICmdb
 		.Content
 			.ReadFromJsonAsync<CmdbDeleteRelationshipResponse>(cancellationToken: cancellationToken)
 			?? throw new SummitApiException($"Error deserializing {nameof(CmdbCreateRelationshipResponse)}");
+		return returnValue;
+	}
+
+	public async Task<CmdbGetRelationshipsQueryResponse> GetRelationshipsAsync(
+		CmdbRelationshipQueryRequest request,
+		CancellationToken cancellationToken
+	)
+	{
+		request.CommonParameters.ProxyDetails.ApiKey = ApiKey;
+
+		LogRequest(request);
+
+		var response = await HttpClient
+			.PostAsJsonAsync(ApiIntegrationSubUrl, request, JsonSerializerOptions, cancellationToken);
+
+		await LogResponseAsync(response, cancellationToken);
+
+		var returnValue = await response
+		.Content
+			.ReadFromJsonAsync<CmdbGetRelationshipsQueryResponse>(cancellationToken: cancellationToken)
+			?? throw new SummitApiException($"Error deserializing {nameof(CmdbGetRelationshipsQueryResponse)}");
+
 		return returnValue;
 	}
 }
