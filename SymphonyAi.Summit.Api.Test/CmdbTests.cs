@@ -185,8 +185,8 @@ public class CmdbTests : TestBase
     [Fact]
     public async Task LinkAndDelink_GoodRequest_Succeeds()
     {
-        var sourceCiId = 630;
-        var targetCiId = 631;
+        var sourceCiId = 628;
+        var targetCiId = 629;
 
         var createRequest = new CmdbCreateRelationshipRequest();
         createRequest.CommonParameters.Relation.SourceType = "CI";
