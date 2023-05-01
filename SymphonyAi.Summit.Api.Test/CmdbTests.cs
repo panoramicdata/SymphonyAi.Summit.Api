@@ -191,7 +191,7 @@ public class CmdbTests : TestBase
 
 		var queryRequest = new CmdbRelationshipQueryRequest();
 		queryRequest.CommonParameters.CmdbDetails.InstanceName = Instance;
-		queryRequest.CommonParameters.CmdbDetails.Configuration_Id = sourceCiId.ToString(CultureInfo.InvariantCulture);
+		queryRequest.CommonParameters.CmdbDetails.ConfigurationId = sourceCiId.ToString(CultureInfo.InvariantCulture);
 		var queryResponse = await SummitClient
 				.Cmdb
 				.GetRelationshipsAsync(queryRequest, CancellationToken.None);

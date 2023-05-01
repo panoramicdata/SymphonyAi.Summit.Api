@@ -95,7 +95,7 @@ public class CmdbQueryResponseOutputObject
 	public string Warranty { get; set; } = string.Empty;
 
 	[JsonPropertyName("Annual_Maintains_Contract")]
-	public string AnnualMaintainsContract { get; set; } = string.Empty;
+	public string AnnualMaintenanceContract { get; set; } = string.Empty;
 
 	[JsonPropertyName("Version")]
 	public string Version { get; set; } = string.Empty;
