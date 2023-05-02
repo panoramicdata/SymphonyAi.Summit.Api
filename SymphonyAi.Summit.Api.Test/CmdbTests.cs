@@ -157,7 +157,7 @@ public class CmdbTests : TestBase
 	{
 		var request = new CmdbCiRequest();
 		request.CommonParameters.CmdbDetails.InstanceName = Instance;
-		request.CommonParameters.CmdbDetails.Id = 1;
+		request.CommonParameters.CmdbDetails.Id = 7;
 
 		var response = await SummitClient
 			.Cmdb

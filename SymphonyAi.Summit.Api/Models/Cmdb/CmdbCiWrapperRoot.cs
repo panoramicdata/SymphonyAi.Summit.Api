@@ -11,10 +11,10 @@ public class CmdbCiWrapperRoot
 	public CmdbDesktopDetails DesktopDetails { get; set; } = new();
 
 	[JsonPropertyName("CMDBDetails")]
-	public CmdbDetailsJustSubroot Details { get; set; } = new();
+	public CmdbDetailsSubrootOnly Details { get; set; } = new();
 
 	[JsonPropertyName("CMDBNetworkDetails")]
-	public CmdbNetworkDetails NetworkDetails { get; set; } = new();
+	public CmdbNetworkDetailsSubrootOnly NetworkDetails { get; set; } = new();
 
 	[JsonPropertyName("CMDBServerDetails")]
 	public CmdbServerDetailsSubrootOnly ServerDetails { get; set; } = new();

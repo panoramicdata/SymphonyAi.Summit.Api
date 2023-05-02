@@ -2,8 +2,8 @@
 
 namespace SymphonyAi.Summit.Api.Models.Cmdb;
 
-public class CmdbServerDetailsSubrootOnly
+public class CmdbNetworkDetailsSubrootOnly
 {
 	[JsonPropertyName("SUBROOT")]
-	public CmdbServerDetailsSubroot Subroot { get; set; } = new();
+	public CmdbNetworkDetailsSubroot Subroot { get; set; } = new();
 }
