@@ -13,6 +13,9 @@ public class CmdbNetworkDetailsSubroot
 	[JsonPropertyName("Access_List")]
 	public string AccessList { get; set; } = string.Empty;
 
+	[JsonPropertyName("B_End_Description")]
+	public string BEndDescription { get; set; } = string.Empty;
+
 	[JsonPropertyName("B_End_IP_Address")]
 	public string BEndIpAddress { get; set; } = string.Empty;
 
@@ -36,6 +39,9 @@ public class CmdbNetworkDetailsSubroot
 
 	[JsonPropertyName("IOS_Software")]
 	public string IosSoftware { get; set; } = string.Empty;
+
+	[JsonPropertyName("IP_Address")]
+	public string IpAddress { get; set; } = string.Empty;
 
 	[JsonPropertyName("No_Of_Slots")]
 	public string SlotCount { get; set; } = string.Empty;
