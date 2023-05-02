@@ -5,5 +5,5 @@ namespace SymphonyAi.Summit.Api.Models.Cmdb;
 public class CmdbNetworkDetails
 {
 	[JsonPropertyName("ROOT")]
-	public object Root { get; set; }
+	public object Root { get; set; } = new();
 }
