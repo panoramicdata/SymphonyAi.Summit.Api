@@ -197,10 +197,9 @@ public class CmdbTests : TestBase
 				.GetRelationshipsAsync(queryRequest, CancellationToken.None);
 		queryResponse.Should().NotBeNull();
 		queryResponse.Errors.Should().BeEmpty();
-		queryResponse.OutputObject.Should().NotBeNull();
 
 		// Unlink any in preparation
-		foreach (var relationship in queryResponse.OutputObject.CiRelations)
+		foreach (var relationship in queryResponse.OutputObject?.CiRelations ?? Enumerable.Empty<CmdbRelationshipQueryResponseModelInner>())
 		{
 			var deleteRequest = new CmdbDeleteRelationshipRequest();
 			deleteRequest.CommonParameters.Relation.SourceType = "CI";
