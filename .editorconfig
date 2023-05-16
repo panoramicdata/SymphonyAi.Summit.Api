@@ -92,6 +92,10 @@ csharp_style_expression_bodied_accessors = true:silent
 csharp_style_expression_bodied_lambdas = true:silent
 csharp_style_expression_bodied_local_functions = false:silent
 
+# VSSPELL: Spell checker settings from SymphonyAi.Summit.Api.sln.vsspell
+vsspell_section_id = 2b475603d2f84944b6bd4de690b69b48
+vsspell_ignored_words_2b475603d2f84944b6bd4de690b69b48 = File:SymphonyAi.Summit.Api.sln.vsspell.dic
+
 [*.{cs,vb}]
 #### Naming styles ####
 
