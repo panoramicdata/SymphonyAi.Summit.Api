@@ -14,13 +14,9 @@ public class SummitClient : IDisposable
 
 	public SummitClient(SummitClientOptions summitClientOptions, ILogger logger)
 	{
-		_httpClient = new HttpClient(new CustomHttpClientHandler(logger), true)
+		_httpClient = new HttpClient(new CustomHttpClientHandler(summitClientOptions.ApiKey, logger), true)
 		{
 			BaseAddress = new Uri(summitClientOptions.BaseUri.ToString()),
-			DefaultRequestHeaders =
-			{
-				{ "apikey", summitClientOptions.ApiKey }
-			}
 		};
 
 		var _refitSettings = new RefitSettings

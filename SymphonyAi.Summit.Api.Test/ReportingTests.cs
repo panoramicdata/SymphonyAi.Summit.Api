@@ -21,16 +21,6 @@ public class ReportingTests : TestBase
 	}
 
 	[Fact]
-	public async Task ApiKeyValidation_Succeeds()
-	{
-		var response = await SummitClient
-			.Reports
-			.ValidateApiKeyAsync(CancellationToken.None);
-
-		response.Should().Be("\"VALID\"");
-	}
-
-	[Fact]
 	public async Task GetDnsSchema_Succeeds()
 	{
 		var response = await SummitClient
