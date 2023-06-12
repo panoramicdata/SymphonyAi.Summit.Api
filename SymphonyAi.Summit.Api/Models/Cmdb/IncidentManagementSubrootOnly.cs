@@ -6,5 +6,5 @@ public class IncidentManagementSubrootOnly
 {
 
 	[JsonPropertyName("SUBROOT")]
-	public IncidentManagementSubroot Subroot { get; set; }
+	public List<IncidentManagementSubroot> Subroot { get; set; }
 }

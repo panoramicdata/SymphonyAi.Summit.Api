@@ -59,6 +59,7 @@ internal class CmdbManager : Manager, ICmdb
 			return returnValue;
 		}
 	}
+
 	public Task<CmdbCiResponse> GetCiAsync(
 		CmdbCiRequest request,
 		CancellationToken cancellationToken)

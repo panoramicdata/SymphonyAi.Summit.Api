@@ -12,7 +12,7 @@ public class IncidentManagementSubroot
 	public string OrgId { get; set; }
 
 	[JsonPropertyName("Reg_Time")]
-	public DateTime RegTime { get; set; }
+	public string RegTime { get; set; }
 
 	[JsonPropertyName("Severity_Display")]
 	public string SeverityDisplay { get; set; }

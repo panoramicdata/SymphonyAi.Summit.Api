@@ -70,7 +70,7 @@ public class CmdbTests : TestBase
 	}
 
 	[Fact]
-	public async Task CreateNetworkCi_GoodRequest_Succeeds()
+	public async Task CreateAndRetireNetworkCi_GoodRequest_Succeeds()
 	{
 		var request = new CmdbCreateCiRequest();
 		request.CommonParameters.CmdbDetails = new()
@@ -157,7 +157,7 @@ public class CmdbTests : TestBase
 	{
 		var request = new CmdbCiRequest();
 		request.CommonParameters.CmdbDetails.InstanceName = Instance;
-		request.CommonParameters.CmdbDetails.Id = 7;
+		request.CommonParameters.CmdbDetails.Id = 124;
 
 		var response = await SummitClient
 			.Cmdb
