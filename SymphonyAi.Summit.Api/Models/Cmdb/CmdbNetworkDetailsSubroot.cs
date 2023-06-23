@@ -13,7 +13,7 @@ public class CmdbNetworkDetailsSubroot
 	[JsonPropertyName("Access_List")]
 	public string AccessList { get; set; } = string.Empty;
 
-	[JsonPropertyName("B_End_Description")]
+	[JsonPropertyName("B_End_Desctiption")]
 	public string BEndDescription { get; set; } = string.Empty;
 
 	[JsonPropertyName("B_End_IP_Address")]
