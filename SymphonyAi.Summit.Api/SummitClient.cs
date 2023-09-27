@@ -11,6 +11,7 @@ public class SummitClient : IDisposable
 {
 	private bool _disposedValue;
 	private readonly HttpClient _httpClient;
+	private readonly HttpClient? _cmdbManagerHttpClient;
 
 	public SummitClient(SummitClientOptions summitClientOptions, ILogger logger)
 	{
@@ -18,6 +19,14 @@ public class SummitClient : IDisposable
 		{
 			BaseAddress = new Uri(summitClientOptions.BaseUri.ToString()),
 		};
+
+		if (summitClientOptions.CmdbBaseUri is not null)
+		{
+			_cmdbManagerHttpClient = new HttpClient(new CustomHttpClientHandler(summitClientOptions.ApiKey, logger), true)
+			{
+				BaseAddress = new Uri(summitClientOptions.CmdbBaseUri.ToString()),
+			};
+		}
 
 		var _refitSettings = new RefitSettings
 		{
@@ -35,7 +44,7 @@ public class SummitClient : IDisposable
 		};
 
 		Attachments = new AttachmentManager(_httpClient, summitClientOptions.ApiKey, jsonSerializerOptions, logger);
-		Cmdb = new CmdbManager(_httpClient, summitClientOptions.ApiKey, jsonSerializerOptions, logger);
+		Cmdb = new CmdbManager(_cmdbManagerHttpClient ?? _httpClient, summitClientOptions.ApiKey, jsonSerializerOptions, logger);
 		Incidents = new IncidentManager(_httpClient, summitClientOptions.ApiKey, jsonSerializerOptions, logger);
 		Problems = new ProblemManager(_httpClient, summitClientOptions.ApiKey, jsonSerializerOptions, logger);
 		Reports = RestService.For<IReports>(_httpClient, _refitSettings);
@@ -61,6 +70,7 @@ public class SummitClient : IDisposable
 			if (disposing)
 			{
 				_httpClient.Dispose();
+				_cmdbManagerHttpClient?.Dispose();
 			}
 
 			_disposedValue = true;
