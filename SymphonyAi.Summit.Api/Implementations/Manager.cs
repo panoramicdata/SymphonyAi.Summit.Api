@@ -30,11 +30,11 @@ internal class Manager
 	}
 
 	protected async Task LogResponseAsync(
-		HttpResponseMessage response,
+		HttpResponseMessage httpResponseMessage,
 		CancellationToken cancellationToken
 	)
 	{
-		var responseString = await response
+		var responseString = await httpResponseMessage
 		.Content
 		.ReadAsStringAsync(cancellationToken);
 
@@ -53,9 +53,9 @@ internal class Manager
 		}
 
 		Logger.Log(
-			response.IsSuccessStatusCode ? LogLevel.Debug : LogLevel.Error,
+			httpResponseMessage.IsSuccessStatusCode ? LogLevel.Debug : LogLevel.Error,
 			"RESPONSE ({HttpStatusCode}): '{FormattedJson}'",
-			(int)response.StatusCode,
+			(int)httpResponseMessage.StatusCode,
 			formattedJson
 		);
 	}
