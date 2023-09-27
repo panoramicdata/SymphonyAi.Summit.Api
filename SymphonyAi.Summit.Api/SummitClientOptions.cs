@@ -6,6 +6,8 @@ public class SummitClientOptions
 {
 	public required Uri BaseUri { get; set; }
 
+	public string ApiEndpoint { get; set; } = "api_integration";
+
 	public Uri? CmdbBaseUri { get; set; }
 
 	public required string ApiKey { get; set; }

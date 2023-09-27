@@ -6,7 +6,7 @@ namespace SymphonyAi.Summit.Api.Implementations;
 
 internal class Manager
 {
-	protected static readonly string ApiIntegrationSubUrl = "api_integration/REST/Summit_RESTWCF.svc/RESTService/CommonWS_JsonObjCall_json";
+	protected static readonly string ApiIntegrationSubUrl = "REST/Summit_RESTWCF.svc/RESTService/CommonWS_JsonObjCall_json";
 
 	protected HttpClient HttpClient { get; }
 

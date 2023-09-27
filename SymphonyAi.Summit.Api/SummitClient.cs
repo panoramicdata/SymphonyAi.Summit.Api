@@ -17,7 +17,7 @@ public class SummitClient : IDisposable
 	{
 		_httpClient = new HttpClient(new CustomHttpClientHandler(summitClientOptions.ApiKey, logger), true)
 		{
-			BaseAddress = new Uri(summitClientOptions.BaseUri.ToString()),
+			BaseAddress = new Uri($"{summitClientOptions.BaseUri}/{summitClientOptions.ApiEndpoint}"),
 		};
 
 		if (summitClientOptions.CmdbBaseUri is not null)
