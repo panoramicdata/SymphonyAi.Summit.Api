@@ -54,8 +54,10 @@ internal class Manager
 
 		Logger.Log(
 			httpResponseMessage.IsSuccessStatusCode ? LogLevel.Debug : LogLevel.Error,
-			"RESPONSE ({HttpStatusCode}): '{FormattedJson}'",
+			"RESPONSE ({HttpStatusCode} from {HttpClientBaseAddress}/{ApiIntegrationSubUrl}): '{FormattedJson}'",
 			(int)httpResponseMessage.StatusCode,
+			HttpClient.BaseAddress,
+			ApiIntegrationSubUrl,
 			formattedJson
 		);
 	}
