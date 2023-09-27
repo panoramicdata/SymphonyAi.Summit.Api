@@ -54,7 +54,8 @@ internal class Manager
 
 		Logger.Log(
 			response.IsSuccessStatusCode ? LogLevel.Debug : LogLevel.Error,
-			"RESPONSE: {FormattedJson}",
+			"RESPONSE ({HttpStatusCode}): '{FormattedJson}'",
+			(int)response.StatusCode,
 			formattedJson
 		);
 	}
