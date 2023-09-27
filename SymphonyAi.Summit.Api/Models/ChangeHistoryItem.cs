@@ -14,7 +14,7 @@ public class ChangeHistoryItem
 	public /*required*/ string ChangeDate { get; set; }
 
 	[JsonPropertyName("change_by")]
-	public /*required*/ int ChangeById { get; set; }
+	public int? ChangeById { get; set; }
 
 	[JsonPropertyName("change_byName")]
 	public /*required*/ string ChangeByName { get; set; }
