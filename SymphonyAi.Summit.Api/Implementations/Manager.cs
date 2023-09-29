@@ -26,7 +26,7 @@ internal class Manager
 	{
 		HttpClient = httpClient;
 		ApiKey = apiKey;
-		ApiIntegrationSubUrl = apiIntegrationSubUrl;
+		ApiIntegrationSubUrl = apiIntegrationSubUrl.TrimEnd('/') + "/REST/Summit_RESTWCF.svc/RESTService/CommonWS_JsonObjCall_json";
 		JsonSerializerOptions = jsonSerializerOptions;
 		Logger = logger;
 	}

@@ -21,7 +21,7 @@ public class SummitClient : IDisposable
 		};
 
 		var apiIntegrationSubUrl = summitClientOptions.BaseUri.PathAndQuery == "/"
-			? "api_integration/REST/Summit_RESTWCF.svc/RESTService/CommonWS_JsonObjCall_json"
+			? "api_integration"
 			: summitClientOptions.BaseUri.PathAndQuery;
 
 		string cmdbApiIntegrationSubUrl;
@@ -32,12 +32,12 @@ public class SummitClient : IDisposable
 				BaseAddress = new Uri(summitClientOptions.CmdbBaseUri.ToString()),
 			};
 			cmdbApiIntegrationSubUrl = summitClientOptions.CmdbBaseUri.PathAndQuery == "/"
-				? "api_integration/REST/Summit_RESTWCF.svc/RESTService/CommonWS_JsonObjCall_json"
+				? "api_integration"
 				: summitClientOptions.CmdbBaseUri.PathAndQuery;
 		}
 		else
 		{
-			cmdbApiIntegrationSubUrl = "api_integration/REST/Summit_RESTWCF.svc/RESTService/CommonWS_JsonObjCall_json";
+			cmdbApiIntegrationSubUrl = "api_integration";
 		}
 
 		var _refitSettings = new RefitSettings
