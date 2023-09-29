@@ -9,9 +9,15 @@ internal class ProblemManager : Manager, IProblems
 	public ProblemManager(
 		HttpClient httpClient,
 		string apiKey,
+		string apiIntegrationSubUrl,
 		JsonSerializerOptions jsonSerializerOptions,
 		ILogger logger)
-		: base(httpClient, apiKey, jsonSerializerOptions, logger)
+		: base(
+			httpClient,
+			apiKey,
+			apiIntegrationSubUrl,
+			jsonSerializerOptions,
+			logger)
 	{
 	}
 }

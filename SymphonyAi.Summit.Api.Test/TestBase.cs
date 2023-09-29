@@ -31,9 +31,12 @@ public abstract class TestBase
 			.AddUserSecrets<TestBase>()
 			.Build();
 
+		var cmdbBaseUriString = GetConfig<string>(configuration, "CmdbBaseUri");
+
 		SummitClient = new SummitClient(new SummitClientOptions
 		{
 			BaseUri = new Uri(GetConfig<string>(configuration, "BaseUri")),
+			CmdbBaseUri = string.IsNullOrEmpty(cmdbBaseUriString) ? null : new Uri(cmdbBaseUriString),
 			ApiKey = GetConfig<string>(configuration, "ApiKey")
 		}, Logger);
 		Instance = GetConfig<string>(configuration, "Instance");

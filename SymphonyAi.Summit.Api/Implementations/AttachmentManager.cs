@@ -9,9 +9,15 @@ internal class AttachmentManager : Manager, IAttachments
 	public AttachmentManager(
 		HttpClient httpClient,
 		string apiKey,
+		string apiIntegrationSubUrl,
 		JsonSerializerOptions jsonSerializerOptions,
 		ILogger logger)
-		: base(httpClient, apiKey, jsonSerializerOptions, logger)
+		: base(
+			httpClient,
+			apiKey,
+			apiIntegrationSubUrl,
+			jsonSerializerOptions,
+			logger)
 	{
 	}
 }

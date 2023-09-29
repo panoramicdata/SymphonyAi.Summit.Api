@@ -12,10 +12,15 @@ internal class IncidentManager : Manager, IIncidents
 	public IncidentManager(
 		HttpClient httpClient,
 		string apiKey,
+		string apiIntegrationSubUrl,
 		JsonSerializerOptions jsonSerializerOptions,
-		ILogger logger
-	)
-		: base(httpClient, apiKey, jsonSerializerOptions, logger)
+		ILogger logger)
+		: base(
+			httpClient,
+			apiKey,
+			apiIntegrationSubUrl,
+			jsonSerializerOptions,
+			logger)
 	{
 	}
 	public Task<GetIncidentListResponse> GetIncidentListAsync(

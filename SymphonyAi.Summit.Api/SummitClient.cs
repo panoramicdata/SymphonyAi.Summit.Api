@@ -17,15 +17,27 @@ public class SummitClient : IDisposable
 	{
 		_httpClient = new HttpClient(new CustomHttpClientHandler(summitClientOptions.ApiKey, logger), true)
 		{
-			BaseAddress = new Uri($"{summitClientOptions.BaseUri}/{summitClientOptions.ApiEndpoint}"),
+			BaseAddress = new Uri(summitClientOptions.BaseUri.ToString()),
 		};
 
+		var apiIntegrationSubUrl = summitClientOptions.BaseUri.PathAndQuery == "/"
+			? "api_integration/REST/Summit_RESTWCF.svc/RESTService/CommonWS_JsonObjCall_json"
+			: summitClientOptions.BaseUri.PathAndQuery;
+
+		string cmdbApiIntegrationSubUrl;
 		if (summitClientOptions.CmdbBaseUri is not null)
 		{
 			_cmdbManagerHttpClient = new HttpClient(new CustomHttpClientHandler(summitClientOptions.ApiKey, logger), true)
 			{
 				BaseAddress = new Uri(summitClientOptions.CmdbBaseUri.ToString()),
 			};
+			cmdbApiIntegrationSubUrl = summitClientOptions.CmdbBaseUri.PathAndQuery == "/"
+				? "api_integration/REST/Summit_RESTWCF.svc/RESTService/CommonWS_JsonObjCall_json"
+				: summitClientOptions.CmdbBaseUri.PathAndQuery;
+		}
+		else
+		{
+			cmdbApiIntegrationSubUrl = "api_integration/REST/Summit_RESTWCF.svc/RESTService/CommonWS_JsonObjCall_json";
 		}
 
 		var _refitSettings = new RefitSettings
@@ -43,12 +55,45 @@ public class SummitClient : IDisposable
 #endif
 		};
 
-		Attachments = new AttachmentManager(_httpClient, summitClientOptions.ApiKey, jsonSerializerOptions, logger);
-		Cmdb = new CmdbManager(_cmdbManagerHttpClient ?? _httpClient, summitClientOptions.ApiKey, jsonSerializerOptions, logger);
-		Incidents = new IncidentManager(_httpClient, summitClientOptions.ApiKey, jsonSerializerOptions, logger);
-		Problems = new ProblemManager(_httpClient, summitClientOptions.ApiKey, jsonSerializerOptions, logger);
-		Reports = RestService.For<IReports>(_httpClient, _refitSettings);
-		ServiceRequests = new ServiceRequestManager(_httpClient, summitClientOptions.ApiKey, jsonSerializerOptions, logger);
+		Attachments = new AttachmentManager(
+			_httpClient,
+			summitClientOptions.ApiKey,
+			apiIntegrationSubUrl,
+			jsonSerializerOptions,
+			logger
+			);
+
+		Cmdb = new CmdbManager(
+			_cmdbManagerHttpClient ?? _httpClient,
+			summitClientOptions.ApiKey,
+			cmdbApiIntegrationSubUrl,
+			jsonSerializerOptions,
+			logger);
+
+		Incidents = new IncidentManager(
+			_httpClient,
+			summitClientOptions.ApiKey,
+			apiIntegrationSubUrl,
+			jsonSerializerOptions,
+			logger);
+
+		Problems = new ProblemManager(
+			_httpClient,
+			summitClientOptions.ApiKey,
+			apiIntegrationSubUrl,
+			jsonSerializerOptions,
+			logger);
+
+		Reports = RestService.For<IReports>(
+			_httpClient,
+			_refitSettings);
+
+		ServiceRequests = new ServiceRequestManager(
+			_httpClient,
+			summitClientOptions.ApiKey,
+			apiIntegrationSubUrl,
+			jsonSerializerOptions,
+			logger);
 	}
 
 	public IAttachments Attachments { get; }
