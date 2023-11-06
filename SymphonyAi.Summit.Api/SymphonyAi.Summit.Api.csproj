@@ -16,7 +16,7 @@
 		<RepositoryUrl>https://github.com/panoramicdata/SymphonyAi.Summit.Api</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>Symphony;AI;Summit;API;nuget;package</PackageTags>
-		<PackageReleaseNotes>Allow for unexpected nulls in change history records</PackageReleaseNotes>
+		<PackageReleaseNotes>Support the Reporting Api being hosted on a different domain to the main API</PackageReleaseNotes>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<IncludeSymbols>True</IncludeSymbols>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
