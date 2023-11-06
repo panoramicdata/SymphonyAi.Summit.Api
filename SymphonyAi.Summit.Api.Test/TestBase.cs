@@ -32,11 +32,13 @@ public abstract class TestBase
 			.Build();
 
 		var cmdbBaseUriString = GetConfig<string>(configuration, "CmdbBaseUri");
+		var reportingUriString = GetConfig<string>(configuration, "ReportingBaseUri");
 
 		SummitClient = new SummitClient(new SummitClientOptions
 		{
 			BaseUri = new Uri(GetConfig<string>(configuration, "BaseUri")),
 			CmdbBaseUri = string.IsNullOrEmpty(cmdbBaseUriString) ? null : new Uri(cmdbBaseUriString),
+			ReportingBaseUri = string.IsNullOrEmpty(reportingUriString) ? null : new Uri(reportingUriString),
 			ApiKey = GetConfig<string>(configuration, "ApiKey")
 		}, Logger);
 		Instance = GetConfig<string>(configuration, "Instance");

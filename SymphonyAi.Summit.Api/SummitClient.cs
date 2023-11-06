@@ -11,34 +11,27 @@ public class SummitClient : IDisposable
 {
 	private bool _disposedValue;
 	private readonly HttpClient _httpClient;
-	private readonly HttpClient? _cmdbManagerHttpClient;
+	private readonly HttpClient _reportingHttpClient;
 
 	public SummitClient(SummitClientOptions summitClientOptions, ILogger logger)
 	{
+		// TODO: Remove CmdbBaseUri, this is probably no longer a useful setting
+		// The hypothesis is that Cmdb is always on the same URL as everything BUT reporting.
+		var baseUri = summitClientOptions.CmdbBaseUri ?? summitClientOptions.BaseUri;
 		_httpClient = new HttpClient(new CustomHttpClientHandler(summitClientOptions.ApiKey, logger), true)
 		{
-			BaseAddress = new Uri(summitClientOptions.BaseUri.ToString()),
+			BaseAddress = new Uri(baseUri.ToString()),
 		};
 
-		var apiIntegrationSubUrl = summitClientOptions.BaseUri.PathAndQuery == "/"
+		var apiIntegrationSubUrl = baseUri.PathAndQuery == "/"
 			? "api_integration"
-			: summitClientOptions.BaseUri.PathAndQuery;
+			: baseUri.PathAndQuery;
 
-		string cmdbApiIntegrationSubUrl;
-		if (summitClientOptions.CmdbBaseUri is not null)
+		var reportingBaseUri = summitClientOptions.ReportingBaseUri ?? summitClientOptions.BaseUri;
+		_reportingHttpClient = new HttpClient(new CustomHttpClientHandler(summitClientOptions.ApiKey, logger), true)
 		{
-			_cmdbManagerHttpClient = new HttpClient(new CustomHttpClientHandler(summitClientOptions.ApiKey, logger), true)
-			{
-				BaseAddress = new Uri(summitClientOptions.CmdbBaseUri.ToString()),
-			};
-			cmdbApiIntegrationSubUrl = summitClientOptions.CmdbBaseUri.PathAndQuery == "/"
-				? "api_integration"
-				: summitClientOptions.CmdbBaseUri.PathAndQuery;
-		}
-		else
-		{
-			cmdbApiIntegrationSubUrl = "api_integration";
-		}
+			BaseAddress = new Uri(reportingBaseUri.ToString()),
+		};
 
 		var _refitSettings = new RefitSettings
 		{
@@ -64,9 +57,9 @@ public class SummitClient : IDisposable
 			);
 
 		Cmdb = new CmdbManager(
-			_cmdbManagerHttpClient ?? _httpClient,
+			_httpClient,
 			summitClientOptions.ApiKey,
-			cmdbApiIntegrationSubUrl,
+			apiIntegrationSubUrl,
 			jsonSerializerOptions,
 			logger);
 
@@ -85,7 +78,7 @@ public class SummitClient : IDisposable
 			logger);
 
 		Reports = RestService.For<IReports>(
-			_httpClient,
+			_reportingHttpClient,
 			_refitSettings);
 
 		ServiceRequests = new ServiceRequestManager(
@@ -115,7 +108,7 @@ public class SummitClient : IDisposable
 			if (disposing)
 			{
 				_httpClient.Dispose();
-				_cmdbManagerHttpClient?.Dispose();
+				_reportingHttpClient.Dispose();
 			}
 
 			_disposedValue = true;

@@ -10,6 +10,8 @@ public class SummitClientOptions
 
 	public Uri? CmdbBaseUri { get; set; }
 
+	public Uri? ReportingBaseUri { get; set; }
+
 	public required string ApiKey { get; set; }
 
 	public JsonMissingMemberHandling JsonMissingMemberHandling { get; set; }
