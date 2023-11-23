@@ -244,7 +244,7 @@ public class CmdbTests : TestBase
 			queryResponse.Errors.Should().BeEmpty();
 			queryResponse.OutputObject.Should().NotBeNull();
 		}
-		catch (Exception e)
+		catch (Exception)
 		{
 			Logger.LogError("Re-fetch failed.");
 			throw;

@@ -87,6 +87,13 @@ public class SummitClient : IDisposable
 			apiIntegrationSubUrl,
 			jsonSerializerOptions,
 			logger);
+
+		DynamicServices = new DynamicServiceManager(
+			_httpClient,
+			summitClientOptions.ApiKey,
+			apiIntegrationSubUrl,
+			jsonSerializerOptions,
+			logger);
 	}
 
 	public IAttachments Attachments { get; }
@@ -100,6 +107,8 @@ public class SummitClient : IDisposable
 	public IReports Reports { get; }
 
 	public IServiceRequests ServiceRequests { get; }
+
+	public IDynamicServices DynamicServices { get; }
 
 	protected virtual void Dispose(bool disposing)
 	{
