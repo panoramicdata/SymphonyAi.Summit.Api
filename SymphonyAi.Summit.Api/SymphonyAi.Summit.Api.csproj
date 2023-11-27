@@ -20,6 +20,7 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<IncludeSymbols>True</IncludeSymbols>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -1,13 +1,14 @@
-﻿using Newtonsoft.Json;
-using JsonConverter = Newtonsoft.Json.JsonConverter;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace SymphonyAi.Summit.Api.Converters;
 
-internal class RawStringConverter : JsonConverter
+internal class RawStringConverter : JsonConverter<object>
 {
+	private static readonly JsonSerializerOptions _rawOptions = new() { WriteIndented = false };
 	public override bool CanConvert(Type typeToConvert) => true;
 
-	public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
+	public override void Write(Utf8JsonWriter writer, object? value, JsonSerializerOptions serializerOptions)
 	{
 		if (value is null)
 		{
@@ -15,11 +16,10 @@ internal class RawStringConverter : JsonConverter
 			return;
 		}
 
-		writer.WriteValue(JsonConvert.SerializeObject(value));
+		var jsonPayload = JsonSerializer.Serialize(value, typeof(object), _rawOptions);
+		writer.WriteStringValue(jsonPayload);
 	}
 
-	public override bool CanRead => false;
-
-	public override object ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
+	public override object Read(ref Utf8JsonReader reader, Type objectType, JsonSerializerOptions serializerOptions)
 		=> throw new NotImplementedException("Unnecessary because CanRead is false. The type will skip the converter.");
 }

@@ -2,7 +2,7 @@
 
 namespace SymphonyAi.Summit.Api.Models;
 
-public class DynamicServiceParameters<TPayload> : CommonParametersBase where TPayload : class
+internal class DynamicServiceParameters<TPayload> : CommonParametersBase where TPayload : class
 {
 	public DynamicServiceParameters(string dynamicServiceName, TPayload payload)
 	{

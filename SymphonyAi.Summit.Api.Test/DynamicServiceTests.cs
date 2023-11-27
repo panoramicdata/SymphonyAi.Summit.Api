@@ -21,6 +21,6 @@ public class DynamicServiceTests : TestBase
 				"DWS_IM_GetIncidentIDBySymptom", request, CancellationToken.None);
 
 		response.Should().NotBeNull();
-		response!.Incidents.Should().HaveCount(1);
+		response!.Should().HaveCount(1);
 	}
 }

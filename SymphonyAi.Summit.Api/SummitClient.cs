@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Refit;
+using SymphonyAi.Summit.Api.Converters;
 using SymphonyAi.Summit.Api.Implementations;
 using SymphonyAi.Summit.Api.Interfaces;
 using System.Text.Json;
@@ -41,6 +42,17 @@ public class SummitClient : IDisposable
 		var jsonSerializerOptions = new JsonSerializerOptions
 		{
 			DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+#if DEBUG
+			WriteIndented = true
+#else
+			WriteIndented = false
+#endif
+		};
+
+		var dynamicServiceSerializerOptions = new JsonSerializerOptions
+		{
+			DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+			Encoder = new CustomQuoteEncoder(),
 #if DEBUG
 			WriteIndented = true
 #else
@@ -92,7 +104,7 @@ public class SummitClient : IDisposable
 			_httpClient,
 			summitClientOptions.ApiKey,
 			apiIntegrationSubUrl,
-			jsonSerializerOptions,
+			dynamicServiceSerializerOptions,
 			logger);
 	}
 

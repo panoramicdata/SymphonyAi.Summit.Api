@@ -1,7 +1,6 @@
 ﻿namespace SymphonyAi.Summit.Api.Test.Models
 {
-	internal class GetIncidentIdsBySymptomResponse
+	public class GetIncidentIdsBySymptomResponse : List<GetIncidentIdsBySymptomResponseData>
 	{
-		public IList<GetIncidentIdsBySymptomResponseData>? Incidents { get; set; }
 	}
 }

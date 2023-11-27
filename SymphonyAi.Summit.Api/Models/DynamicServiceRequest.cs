@@ -2,7 +2,7 @@
 
 namespace SymphonyAi.Summit.Api.Models;
 
-public class DynamicServiceRequest<TPayload> : Request, IDynamicResultRequest where TPayload : class
+internal class DynamicServiceRequest<TPayload> : Request, IDynamicResultRequest where TPayload : class
 {
 	private DynamicServiceParameters<TPayload> _commonParameters;
 
