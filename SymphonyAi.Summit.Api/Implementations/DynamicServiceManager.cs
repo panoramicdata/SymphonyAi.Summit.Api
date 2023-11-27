@@ -37,7 +37,9 @@ internal class DynamicServiceManager : Manager, IDynamicServices
 	public async Task<TResponse?> GetDynamicServiceResultAsync<TRequest, TResponse>(
 		string dynamicServiceName,
 		TRequest request,
-		CancellationToken cancellationToken) where TRequest : class
+		CancellationToken cancellationToken)
+		where TRequest : class
+		where TResponse : class
 	{
 		var wrappedRequest = new DynamicServiceRequest<TRequest>(dynamicServiceName, request);
 		wrappedRequest.CommonParameters.ProxyDetails.ApiKey = ApiKey;
@@ -62,8 +64,16 @@ internal class DynamicServiceManager : Manager, IDynamicServices
 			.ReadFromJsonAsync<DynamicServiceResponse<TResponse>>(cancellationToken: cancellationToken)
 			?? throw new SummitApiException($"Error deserializing {typeof(DynamicServiceResponse<TResponse>).Name}");
 
-		return string.IsNullOrWhiteSpace(dynamicResponse.Errors)
-			? dynamicResponse.OutputObject.Results
-			: throw new SummitApiException($"Dynamic request returned errors: {dynamicResponse.Errors}");
+		if (!string.IsNullOrWhiteSpace(dynamicResponse.Errors))
+		{
+			throw new SummitApiException($"Dynamic request returned errors: {dynamicResponse.Errors}");
+		}
+
+		if (!string.IsNullOrWhiteSpace(dynamicResponse.Message))
+		{
+			throw new SummitApiException($"Dynamic request returned message: {dynamicResponse.Message}");
+		}
+
+		return dynamicResponse.OutputObject?.Results;
 	}
 }

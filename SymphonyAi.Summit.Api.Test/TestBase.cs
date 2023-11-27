@@ -24,6 +24,10 @@ public abstract class TestBase
 
 	public string CallerEmailId { get; }
 
+	public string KnownSymptom { get; }
+
+	public string UnknownSymptom { get; }
+
 	protected TestBase(ITestOutputHelper testOutputHelper)
 	{
 		Logger = testOutputHelper.BuildLogger();
@@ -47,6 +51,8 @@ public abstract class TestBase
 		CallerEmailId = GetConfig<string>(configuration, "CallerEmailId");
 		OwnerName = GetConfig<string>(configuration, "OwnerName");
 		CustomerName = GetConfig<string>(configuration, "CustomerName");
+		KnownSymptom = GetConfig<string>(configuration, "KnownSymptom");
+		UnknownSymptom = GetConfig<string>(configuration, "UnknownSymptom");
 	}
 
 	private static T GetConfig<T>(IConfigurationRoot configuration, string key)

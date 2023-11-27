@@ -11,5 +11,7 @@ public interface IDynamicServices
 	Task<TResponse?> GetDynamicServiceResultAsync<TRequest, TResponse>(
 		string dynamicServiceName,
 		TRequest request,
-		CancellationToken cancellationToken) where TRequest : class;
+		CancellationToken cancellationToken)
+		where TRequest : class
+		where TResponse : class;
 }

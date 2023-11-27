@@ -16,7 +16,7 @@
 		<RepositoryUrl>https://github.com/panoramicdata/SymphonyAi.Summit.Api</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>Symphony;AI;Summit;API;nuget;package</PackageTags>
-		<PackageReleaseNotes>Add support for the new dynamic web service endpoint</PackageReleaseNotes>
+		<PackageReleaseNotes>Check for a message indicating a problem in the return from the dynamic web service endpoint</PackageReleaseNotes>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<IncludeSymbols>True</IncludeSymbols>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
