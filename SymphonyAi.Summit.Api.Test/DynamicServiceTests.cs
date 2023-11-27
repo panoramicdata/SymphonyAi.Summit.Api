@@ -17,7 +17,7 @@ public class DynamicServiceTests : TestBase
 
 		var response = await SummitClient
 			.DynamicServices
-			.GetDynamicServiceResultAsync<GetIncidentIdsBySymptomRequest, GetIncidentIdsBySymptomResponse>(
+			.GetDynamicServiceResultAsync<GetIncidentIdsBySymptomRequest, List<GetIncidentIdsBySymptomResponseData>>(
 				"DWS_IM_GetIncidentIDBySymptom", request, CancellationToken.None);
 
 		response.Should().NotBeNull();
