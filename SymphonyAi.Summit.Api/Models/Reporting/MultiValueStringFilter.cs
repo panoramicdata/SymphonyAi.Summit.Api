@@ -1,22 +1,15 @@
 ﻿using SymphonyAi.Summit.Api.Models.Reporting.Helpers;
 using System.Text;
 
-namespace SymphonyAi.Summit.Api.Reporting;
+namespace SymphonyAi.Summit.Api.Models.Reporting;
 
-public class MultiValueStringFilter : IFilter
+public class MultiValueStringFilter(string columnName, MultiValueFilterOperators filterOperator, List<string> values) : IFilter
 {
-	public MultiValueStringFilter(string columnName, MultiValueFilterOperators filterOperator, List<string> values)
-	{
-		ColumnName = columnName;
-		Operator = filterOperator;
-		Values = values;
-	}
+	public string ColumnName { get; set; } = columnName;
 
-	public string ColumnName { get; set; } = string.Empty;
+	public MultiValueFilterOperators Operator { get; set; } = filterOperator;
 
-	public MultiValueFilterOperators Operator { get; set; } = MultiValueFilterOperators.In;
-
-	public List<string> Values { get; set; } = new();
+	public List<string> Values { get; set; } = values;
 
 	public string GetFilterExpression()
 	{

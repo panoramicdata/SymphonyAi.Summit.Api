@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace SymphonyAi.Summit.Api.Reporting;
+namespace SymphonyAi.Summit.Api.Models.Reporting;
 
 /// <summary>
 /// Aggregating filter for use when other filters must be combined with an OR operation
@@ -14,22 +14,22 @@ public class AnyOfFilter : IFilter
 
 	public AnyOfFilter(IFilter filter1, IFilter filter2)
 	{
-		_filters = new List<IFilter>() { filter1, filter2 };
+		_filters = [filter1, filter2];
 	}
 
 	public AnyOfFilter(IFilter filter1, IFilter filter2, IFilter filter3)
 	{
-		_filters = new List<IFilter>() { filter1, filter2, filter3 };
+		_filters = [filter1, filter2, filter3];
 	}
 
 	public AnyOfFilter(IFilter filter1, IFilter filter2, IFilter filter3, IFilter filter4)
 	{
-		_filters = new List<IFilter>() { filter1, filter2, filter3, filter4 };
+		_filters = [filter1, filter2, filter3, filter4];
 	}
 
 	public AnyOfFilter(IFilter filter1, IFilter filter2, IFilter filter3, IFilter filter4, IFilter filter5)
 	{
-		_filters = new List<IFilter>() { filter1, filter2, filter3, filter4, filter5 };
+		_filters = [filter1, filter2, filter3, filter4, filter5];
 	}
 
 	public string GetFilterExpression()

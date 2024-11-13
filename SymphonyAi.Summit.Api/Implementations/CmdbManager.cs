@@ -7,23 +7,18 @@ using System.Text.Json;
 
 namespace SymphonyAi.Summit.Api.Implementations;
 
-internal class CmdbManager : Manager, ICmdb
+internal class CmdbManager(
+	HttpClient httpClient,
+	string apiKey,
+	string apiIntegrationSubUrl,
+	JsonSerializerOptions jsonSerializerOptions,
+	ILogger logger) : Manager(
+		httpClient,
+		apiKey,
+		apiIntegrationSubUrl,
+		jsonSerializerOptions,
+		logger), ICmdb
 {
-	public CmdbManager(
-		HttpClient httpClient,
-		string apiKey,
-		string apiIntegrationSubUrl,
-		JsonSerializerOptions jsonSerializerOptions,
-		ILogger logger)
-		: base(
-			httpClient,
-			apiKey,
-			apiIntegrationSubUrl,
-			jsonSerializerOptions,
-			logger)
-	{
-	}
-
 	public async Task<CmdbCreateOrUpdateCiResponse> CreateCiAsync(
 		CmdbCreateCiRequest request,
 		CancellationToken cancellationToken)

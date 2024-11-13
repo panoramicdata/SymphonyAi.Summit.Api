@@ -5,11 +5,11 @@ namespace SymphonyAi.Summit.Api.Models.Cmdb;
 public class CmdbDetailWrapper
 {
 	[JsonPropertyName("CIDetail")]
-	public List<CmdbDetail> Details { get; set; } = new();
+	public List<CmdbDetail> Details { get; set; } = [];
 
 	[JsonPropertyName("CustomAttribute")]
-	public List<object?> CustomAttributes { get; set; } = new();
+	public List<object?> CustomAttributes { get; set; } = [];
 
 	[JsonPropertyName("MVCustomAttribute")]
-	public List<object?> MvCustomAttributes { get; set; } = new();
+	public List<object?> MvCustomAttributes { get; set; } = [];
 }

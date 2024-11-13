@@ -4,20 +4,16 @@ using System.Text.Json;
 
 namespace SymphonyAi.Summit.Api.Implementations;
 
-internal class AttachmentManager : Manager, IAttachments
+internal class AttachmentManager(
+	HttpClient httpClient,
+	string apiKey,
+	string apiIntegrationSubUrl,
+	JsonSerializerOptions jsonSerializerOptions,
+	ILogger logger) : Manager(
+		httpClient,
+		apiKey,
+		apiIntegrationSubUrl,
+		jsonSerializerOptions,
+		logger), IAttachments
 {
-	public AttachmentManager(
-		HttpClient httpClient,
-		string apiKey,
-		string apiIntegrationSubUrl,
-		JsonSerializerOptions jsonSerializerOptions,
-		ILogger logger)
-		: base(
-			httpClient,
-			apiKey,
-			apiIntegrationSubUrl,
-			jsonSerializerOptions,
-			logger)
-	{
-	}
 }

@@ -1,21 +1,14 @@
 ﻿using SymphonyAi.Summit.Api.Models.Reporting.Helpers;
 
-namespace SymphonyAi.Summit.Api.Reporting;
+namespace SymphonyAi.Summit.Api.Models.Reporting;
 
-public class StringFilter : IFilter
+public class StringFilter(string columnName, StringFilterOperators filterOperator, string value) : IFilter
 {
-	public StringFilter(string columnName, StringFilterOperators filterOperator, string value)
-	{
-		ColumnName = columnName;
-		Operator = filterOperator;
-		Value = value;
-	}
+	public string ColumnName { get; set; } = columnName;
 
-	public string ColumnName { get; set; } = string.Empty;
+	public StringFilterOperators Operator { get; set; } = filterOperator;
 
-	public StringFilterOperators Operator { get; set; } = StringFilterOperators.Equals;
-
-	public string Value { get; set; } = string.Empty;
+	public string Value { get; set; } = value;
 
 	public string GetFilterExpression()
 	{

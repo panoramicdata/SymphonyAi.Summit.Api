@@ -8,5 +8,5 @@ public class CmdbRelationshipQueryResponseModel
 	public int TotalRecords { get; set; }
 
 	[JsonPropertyName("CIRelations")]
-	public List<CmdbRelationshipQueryResponseModelInner> CiRelations { get; set; } = new();
+	public List<CmdbRelationshipQueryResponseModelInner> CiRelations { get; set; } = [];
 }

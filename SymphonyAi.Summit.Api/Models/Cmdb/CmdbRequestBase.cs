@@ -2,12 +2,8 @@
 
 namespace SymphonyAi.Summit.Api.Models.Cmdb;
 
-public abstract class CmdbRequestBase : CmdbRequest
+public abstract class CmdbRequestBase(string name) : CmdbRequest(name)
 {
-	public CmdbRequestBase(string name) : base(name)
-	{
-	}
-
 	[JsonPropertyName("objCommonParameters")]
 	public CmdbQueryRequestCommonParameters CommonParameters { get; set; } = new();
 }

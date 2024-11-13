@@ -1,6 +1,5 @@
 ﻿using Refit;
 using SymphonyAi.Summit.Api.Models.Reporting;
-using SymphonyAi.Summit.Api.Reporting;
 
 namespace SymphonyAi.Summit.Api.Interfaces;
 public interface IReports

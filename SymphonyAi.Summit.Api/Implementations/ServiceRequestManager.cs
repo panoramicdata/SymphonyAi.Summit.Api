@@ -4,20 +4,16 @@ using System.Text.Json;
 
 namespace SymphonyAi.Summit.Api.Implementations;
 
-internal class ServiceRequestManager : Manager, IServiceRequests
+internal class ServiceRequestManager(
+	HttpClient httpClient,
+	string apiKey,
+	string apiIntegrationSubUrl,
+	JsonSerializerOptions jsonSerializerOptions,
+	ILogger logger) : Manager(
+		httpClient,
+		apiKey,
+		apiIntegrationSubUrl,
+		jsonSerializerOptions,
+		logger), IServiceRequests
 {
-	public ServiceRequestManager(
-		HttpClient httpClient,
-		string apiKey,
-		string apiIntegrationSubUrl,
-		JsonSerializerOptions jsonSerializerOptions,
-		ILogger logger)
-		: base(
-			httpClient,
-			apiKey,
-			apiIntegrationSubUrl,
-			jsonSerializerOptions,
-			logger)
-	{
-	}
 }

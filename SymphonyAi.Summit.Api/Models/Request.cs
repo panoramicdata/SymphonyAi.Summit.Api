@@ -2,13 +2,8 @@
 
 namespace SymphonyAi.Summit.Api.Models;
 
-public abstract class Request
+public abstract class Request(string serviceName)
 {
-	public Request(string serviceName)
-	{
-		ServiceName = serviceName;
-	}
-
 	[JsonPropertyName("ServiceName")]
-	public string ServiceName { get; set; }
+	public string ServiceName { get; set; } = serviceName;
 }

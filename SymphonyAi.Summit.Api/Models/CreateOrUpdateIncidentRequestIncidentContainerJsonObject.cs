@@ -23,5 +23,5 @@ public class CreateOrUpdateIncidentRequestIncidentContainerJsonObject
 	public CreateOrUpdateIncidentRequestTicketInformation TicketInformation { get; set; } = new();
 
 	[JsonPropertyName("CustomFields")]
-	public List<object> CustomFields { get; set; } = new();
+	public List<object> CustomFields { get; set; } = [];
 }

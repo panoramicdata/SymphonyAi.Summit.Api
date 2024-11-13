@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace SymphonyAi.Summit.Api.Reporting;
+namespace SymphonyAi.Summit.Api.Models.Reporting;
 
 [DataContract]
 public class DataQuery

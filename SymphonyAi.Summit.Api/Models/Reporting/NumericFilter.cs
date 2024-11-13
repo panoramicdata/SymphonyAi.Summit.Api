@@ -1,21 +1,14 @@
 ﻿using SymphonyAi.Summit.Api.Models.Reporting.Helpers;
 
-namespace SymphonyAi.Summit.Api.Reporting;
+namespace SymphonyAi.Summit.Api.Models.Reporting;
 
-public class NumericFilter<T> : IFilter where T : struct
+public class NumericFilter<T>(string columnName, NumericFilterOperators filterOperator, T value) : IFilter where T : struct
 {
-	public NumericFilter(string columnName, NumericFilterOperators filterOperator, T value)
-	{
-		ColumnName = columnName;
-		Operator = filterOperator;
-		Value = value;
-	}
+	public string ColumnName { get; set; } = columnName;
 
-	public string ColumnName { get; set; } = string.Empty;
+	public NumericFilterOperators Operator { get; set; } = filterOperator;
 
-	public NumericFilterOperators Operator { get; set; } = NumericFilterOperators.Equals;
-
-	public T Value { get; set; } = default;
+	public T Value { get; set; } = value;
 
 	public string GetFilterExpression()
 	{

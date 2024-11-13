@@ -7,22 +7,18 @@ using System.Text.Json;
 
 namespace SymphonyAi.Summit.Api.Implementations;
 
-internal class DynamicServiceManager : Manager, IDynamicServices
-{
-	public DynamicServiceManager(
-		HttpClient httpClient,
-		string apiKey, string
+internal class DynamicServiceManager(
+	HttpClient httpClient,
+	string apiKey, string
 		apiIntegrationSubUrl,
-		JsonSerializerOptions jsonSerializerOptions,
-		ILogger logger)
-		: base(
-			httpClient,
-			apiKey,
-			apiIntegrationSubUrl,
-			jsonSerializerOptions,
-			logger)
-	{
-	}
+	JsonSerializerOptions jsonSerializerOptions,
+	ILogger logger) : Manager(
+		httpClient,
+		apiKey,
+		apiIntegrationSubUrl,
+		jsonSerializerOptions,
+		logger), IDynamicServices
+{
 
 	/// <summary>
 	/// Make a request to the dynamic service endpoint and return the results

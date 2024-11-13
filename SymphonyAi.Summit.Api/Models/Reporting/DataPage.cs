@@ -9,7 +9,7 @@ public class DataPage
 	public Pagination Pagination { get; set; } = new();
 
 	[DataMember(Name = "results")]
-	public ICollection<object> Results { get; set; } = new List<object>();
+	public ICollection<object> Results { get; set; } = [];
 
 	[DataMember(Name = "Status")]
 	public Status Status { get; set; } = new();

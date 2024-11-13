@@ -1,11 +1,4 @@
 ﻿namespace SymphonyAi.Summit.Api.Exceptions;
-public class SummitApiException : Exception
+public class SummitApiException(string message) : Exception(message)
 {
-	public SummitApiException(string message) : base(message)
-	{
-	}
-
-	public SummitApiException(string message, Exception innerException) : base(message, innerException)
-	{
-	}
 }

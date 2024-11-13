@@ -7,22 +7,18 @@ using System.Text.Json;
 
 namespace SymphonyAi.Summit.Api.Implementations;
 
-internal class IncidentManager : Manager, IIncidents
+internal class IncidentManager(
+	HttpClient httpClient,
+	string apiKey,
+	string apiIntegrationSubUrl,
+	JsonSerializerOptions jsonSerializerOptions,
+	ILogger logger) : Manager(
+		httpClient,
+		apiKey,
+		apiIntegrationSubUrl,
+		jsonSerializerOptions,
+		logger), IIncidents
 {
-	public IncidentManager(
-		HttpClient httpClient,
-		string apiKey,
-		string apiIntegrationSubUrl,
-		JsonSerializerOptions jsonSerializerOptions,
-		ILogger logger)
-		: base(
-			httpClient,
-			apiKey,
-			apiIntegrationSubUrl,
-			jsonSerializerOptions,
-			logger)
-	{
-	}
 	public Task<GetIncidentListResponse> GetIncidentListAsync(
 			GetIncidentListRequest request,
 			CancellationToken cancellationToken)

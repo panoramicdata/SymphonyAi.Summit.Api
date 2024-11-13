@@ -4,20 +4,16 @@ using System.Text.Json;
 
 namespace SymphonyAi.Summit.Api.Implementations;
 
-internal class ProblemManager : Manager, IProblems
+internal class ProblemManager(
+	HttpClient httpClient,
+	string apiKey,
+	string apiIntegrationSubUrl,
+	JsonSerializerOptions jsonSerializerOptions,
+	ILogger logger) : Manager(
+		httpClient,
+		apiKey,
+		apiIntegrationSubUrl,
+		jsonSerializerOptions,
+		logger), IProblems
 {
-	public ProblemManager(
-		HttpClient httpClient,
-		string apiKey,
-		string apiIntegrationSubUrl,
-		JsonSerializerOptions jsonSerializerOptions,
-		ILogger logger)
-		: base(
-			httpClient,
-			apiKey,
-			apiIntegrationSubUrl,
-			jsonSerializerOptions,
-			logger)
-	{
-	}
 }

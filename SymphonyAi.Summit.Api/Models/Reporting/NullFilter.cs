@@ -1,15 +1,10 @@
 ﻿using SymphonyAi.Summit.Api.Models.Reporting.Helpers;
 
-namespace SymphonyAi.Summit.Api.Reporting;
+namespace SymphonyAi.Summit.Api.Models.Reporting;
 
-public class NullFilter : IFilter
+public class NullFilter(string columnName) : IFilter
 {
-	public NullFilter(string columnName)
-	{
-		ColumnName = columnName;
-	}
-
-	public string ColumnName { get; set; } = string.Empty;
+	public string ColumnName { get; set; } = columnName;
 
 	public string GetFilterExpression()
 	{

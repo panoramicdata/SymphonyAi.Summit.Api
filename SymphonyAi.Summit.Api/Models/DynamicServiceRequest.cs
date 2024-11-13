@@ -2,14 +2,9 @@
 
 namespace SymphonyAi.Summit.Api.Models;
 
-internal class DynamicServiceRequest<TPayload> : Request, IDynamicResultRequest where TPayload : class
+internal class DynamicServiceRequest<TPayload>(string dynamicServiceName, TPayload payload) : Request("ADM_Get_DynamicWebServiceResult"), IDynamicResultRequest where TPayload : class
 {
-	private DynamicServiceParameters<TPayload> _commonParameters;
-
-	public DynamicServiceRequest(string dynamicServiceName, TPayload payload) : base("ADM_Get_DynamicWebServiceResult")
-	{
-		_commonParameters = new DynamicServiceParameters<TPayload>(dynamicServiceName, payload);
-	}
+	private DynamicServiceParameters<TPayload> _commonParameters = new DynamicServiceParameters<TPayload>(dynamicServiceName, payload);
 
 	[JsonPropertyName("objCommonParameters")]
 	public DynamicServiceParameters<TPayload> CommonParameters

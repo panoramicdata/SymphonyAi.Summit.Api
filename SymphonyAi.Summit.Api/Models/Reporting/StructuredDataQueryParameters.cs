@@ -1,14 +1,14 @@
 ﻿using System.Text;
 
-namespace SymphonyAi.Summit.Api.Reporting;
+namespace SymphonyAi.Summit.Api.Models.Reporting;
 
 public class StructuredDataQueryParameters
 {
 	public string DataSource { get; set; } = string.Empty;
 
-	public List<string> Columns { get; set; } = new();
+	public List<string> Columns { get; set; } = [];
 
-	public List<IFilter> Filters { get; set; } = new();
+	public List<IFilter> Filters { get; set; } = [];
 
 	public int PageNumber { get; set; } = 1;
 

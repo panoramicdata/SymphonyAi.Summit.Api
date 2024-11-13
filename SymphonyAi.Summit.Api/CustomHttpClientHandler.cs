@@ -5,18 +5,12 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 
 namespace SymphonyAi.Summit.Api;
-internal class CustomHttpClientHandler : HttpClientHandler
+internal class CustomHttpClientHandler(string apiKey, ILogger logger) : HttpClientHandler
 {
-	private readonly string _apiKey;
-	private readonly ILogger _logger;
+	private readonly string _apiKey = apiKey;
+	private readonly ILogger _logger = logger;
 	private AuthResponse? _reportingAuthResponse;
 	private readonly Regex _reportingPathRegex = new("^/api_report/");
-
-	public CustomHttpClientHandler(string apiKey, ILogger logger)
-	{
-		_apiKey = apiKey;
-		_logger = logger;
-	}
 
 	protected override async Task<HttpResponseMessage> SendAsync(
 		HttpRequestMessage request,

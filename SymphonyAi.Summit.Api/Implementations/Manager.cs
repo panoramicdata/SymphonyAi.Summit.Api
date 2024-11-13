@@ -4,32 +4,23 @@ using System.Text.Json.Nodes;
 
 namespace SymphonyAi.Summit.Api.Implementations;
 
-internal class Manager
-{
-	protected string ApiIntegrationSubUrl { get; private set; }
-
-	protected HttpClient HttpClient { get; }
-
-	protected string ApiKey { get; }
-
-	protected JsonSerializerOptions JsonSerializerOptions { get; }
-
-	protected ILogger Logger { get; }
-
-	public Manager(
-		HttpClient httpClient,
-		string apiKey,
-		string apiIntegrationSubUrl,
-		JsonSerializerOptions jsonSerializerOptions,
-		ILogger logger
+internal class Manager(
+	HttpClient httpClient,
+	string apiKey,
+	string apiIntegrationSubUrl,
+	JsonSerializerOptions jsonSerializerOptions,
+	ILogger logger
 	)
-	{
-		HttpClient = httpClient;
-		ApiKey = apiKey;
-		ApiIntegrationSubUrl = apiIntegrationSubUrl.TrimEnd('/') + "/REST/Summit_RESTWCF.svc/RESTService/CommonWS_JsonObjCall_json";
-		JsonSerializerOptions = jsonSerializerOptions;
-		Logger = logger;
-	}
+{
+	protected string ApiIntegrationSubUrl { get; private set; } = apiIntegrationSubUrl.TrimEnd('/') + "/REST/Summit_RESTWCF.svc/RESTService/CommonWS_JsonObjCall_json";
+
+	protected HttpClient HttpClient { get; } = httpClient;
+
+	protected string ApiKey { get; } = apiKey;
+
+	protected JsonSerializerOptions JsonSerializerOptions { get; } = jsonSerializerOptions;
+
+	protected ILogger Logger { get; } = logger;
 
 	protected async Task LogResponseAsync(
 		HttpResponseMessage httpResponseMessage,

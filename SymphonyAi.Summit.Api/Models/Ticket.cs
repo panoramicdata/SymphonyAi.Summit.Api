@@ -8,5 +8,5 @@ public class Ticket
 	public /*required*/ List<IncidentDetail> IncidentDetail { get; set; }
 
 	[JsonPropertyName("CustomAttribute")]
-	public /*required*/ List<CustomAttribute> CustomAttribute { get; set; } = new();
+	public /*required*/ List<CustomAttribute> CustomAttribute { get; set; } = [];
 }

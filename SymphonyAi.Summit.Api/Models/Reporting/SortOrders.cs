@@ -1,4 +1,4 @@
-﻿namespace SymphonyAi.Summit.Api.Reporting;
+﻿namespace SymphonyAi.Summit.Api.Models.Reporting;
 
 public enum SortOrders
 {
