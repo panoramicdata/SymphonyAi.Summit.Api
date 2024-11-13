@@ -50,7 +50,7 @@ internal class DynamicServiceManager(
 		}
 		catch (Exception ex)
 		{
-			throw new SummitApiException($"Call to Summit Api failed; Message: {ex.Message}", ex);
+			throw new SummitApiException($"Call to Summit Api failed; Message: {ex.Message}");
 		}
 
 		await LogResponseAsync(response, cancellationToken);
