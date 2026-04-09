@@ -1,57 +1,56 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<LangVersion>latest</LangVersion>
-		<Nullable>enable</Nullable>
-		<ApplicationIcon>Logo.ico</ApplicationIcon>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Title>Symphony AI Summit API</Title>
-		<Description>Symphony AI Summit API nuget package</Description>
-		<Copyright>Panoramic Data Limited 2023</Copyright>
-		<PackageProjectUrl>https://github.com/panoramicdata/SymphonyAi.Summit.Api</PackageProjectUrl>
-		<PackageIcon>Logo.png</PackageIcon>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<RepositoryUrl>https://github.com/panoramicdata/SymphonyAi.Summit.Api</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
-		<PackageTags>Symphony;AI;Summit;API;nuget;package</PackageTags>
-		<PackageReleaseNotes>Check for a message indicating a problem in the return from the dynamic web service endpoint</PackageReleaseNotes>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<IncludeSymbols>True</IncludeSymbols>
-		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<Content Include="Logo.ico" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Include="..\Logo.png">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-		<None Include="..\README.md">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PackageReference Include="FluentAssertions" Version="6.12.2" />
-	  <PackageReference Include="FluentAssertions.Analyzers" Version="0.34.1">
-	    <PrivateAssets>all</PrivateAssets>
-	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-	  </PackageReference>
-	  <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
-	  <PackageReference Include="Nerdbank.GitVersioning" Version="3.6.146">
-	    <PrivateAssets>all</PrivateAssets>
-	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-	  </PackageReference>
-	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-	  <PackageReference Include="Refit" Version="8.0.0" />
-	  <PackageReference Include="Refit.Newtonsoft.Json" Version="8.0.0" />
-	</ItemGroup>
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Symphony AI Summit API</Title>
+    <Description>Symphony AI Summit API nuget package</Description>
+    <Copyright>Panoramic Data Limited 2023</Copyright>
+    <PackageProjectUrl>https://github.com/panoramicdata/SymphonyAi.Summit.Api</PackageProjectUrl>
+    <PackageIcon>Logo.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/panoramicdata/SymphonyAi.Summit.Api</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Symphony;AI;Summit;API;nuget;package</PackageTags>
+    <PackageReleaseNotes>Check for a message indicating a problem in the return from the dynamic web service endpoint</PackageReleaseNotes>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <IncludeSymbols>True</IncludeSymbols>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PackageId>SymphonyAi.Summit.Api</PackageId>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <NeutralResourcesLanguage>en</NeutralResourcesLanguage>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" />
+    <PackageReference Include="FluentAssertions.Analyzers">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="Nerdbank.GitVersioning">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="Refit" />
+    <PackageReference Include="Refit.Newtonsoft.Json" />
+  </ItemGroup>
 </Project>

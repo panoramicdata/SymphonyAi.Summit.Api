@@ -1,40 +1,35 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-
-		<IsPackable>false</IsPackable>
-	</PropertyGroup>
-
-	<PropertyGroup>
-		<UserSecretsId>SymphonyAi.Summit.Api</UserSecretsId>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Divergic.Logging.Xunit" Version="4.3.1" />
-		<PackageReference Include="FluentAssertions.Analyzers" Version="0.34.1">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
-		<PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.0" />
-		<PackageReference Include="xunit" Version="2.9.2" />
-		<PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-			<PrivateAssets>all</PrivateAssets>
-		</PackageReference>
-		<PackageReference Include="coverlet.collector" Version="6.0.2">
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-			<PrivateAssets>all</PrivateAssets>
-		</PackageReference>
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\SymphonyAi.Summit.Api\SymphonyAi.Summit.Api.csproj" />
-	</ItemGroup>
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <PropertyGroup>
+    <UserSecretsId>SymphonyAi.Summit.Api</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Divergic.Logging.Xunit" />
+    <PackageReference Include="FluentAssertions.Analyzers">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SymphonyAi.Summit.Api\SymphonyAi.Summit.Api.csproj" />
+  </ItemGroup>
 </Project>
