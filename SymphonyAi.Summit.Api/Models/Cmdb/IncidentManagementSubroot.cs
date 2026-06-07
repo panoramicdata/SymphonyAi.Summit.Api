@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace SymphonyAi.Summit.Api.Models.Cmdb;
 
@@ -6,32 +6,32 @@ public class IncidentManagementSubroot
 {
 
 	[JsonPropertyName("Caller_Name")]
-	public string CallerName { get; set; }
+	public string? CallerName { get; set; }
 
 	[JsonPropertyName("Org_Id")]
-	public string OrgId { get; set; }
+	public string? OrgId { get; set; }
 
 	[JsonPropertyName("Reg_Time")]
-	public string RegTime { get; set; }
+	public string? RegTime { get; set; }
 
 	[JsonPropertyName("Severity_Display")]
-	public string SeverityDisplay { get; set; }
+	public string? SeverityDisplay { get; set; }
 
 	[JsonPropertyName("Severity_Name")]
-	public string SeverityName { get; set; }
+	public string? SeverityName { get; set; }
 
 	[JsonPropertyName("Source_Type")]
-	public string SourceType { get; set; }
+	public string? SourceType { get; set; }
 
 	[JsonPropertyName("Status")]
-	public string Status { get; set; }
+	public string? Status { get; set; }
 
 	[JsonPropertyName("Ticket_ID")]
-	public string TicketId { get; set; }
+	public string? TicketId { get; set; }
 
 	[JsonPropertyName("Ticket_No")]
-	public string TicketNumber { get; set; }
+	public string? TicketNumber { get; set; }
 
 	[JsonPropertyName("Workorder_ID")]
-	public string WorkOrderId { get; set; }
+	public string? WorkOrderId { get; set; }
 }

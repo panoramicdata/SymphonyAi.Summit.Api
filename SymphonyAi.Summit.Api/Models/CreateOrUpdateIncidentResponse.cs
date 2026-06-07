@@ -1,26 +1,26 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace SymphonyAi.Summit.Api.Models;
 
 public class CreateOrUpdateIncidentResponse : Response
 {
 	[JsonPropertyName("OutputObject")]
-	public object OutputObject { get; set; }
+	public object? OutputObject { get; set; }
 
 	[JsonPropertyName("Priority")]
-	public object Priority { get; set; }
+	public object? Priority { get; set; }
 
 	[JsonPropertyName("ResolutionDeadLine")]
-	public object ResolutionDeadline { get; set; }
+	public object? ResolutionDeadline { get; set; }
 
 	[JsonPropertyName("Resolution_DeadLine")]
-	public string Resolution_Deadline { get; set; }
+	public string? Resolution_Deadline { get; set; }
 
 	[JsonPropertyName("SLA")]
-	public object Sla { get; set; }
+	public object? Sla { get; set; }
 
 	[JsonPropertyName("TicketID_Encrypted")]
-	public string EncryptedTicketId { get; set; }
+	public string? EncryptedTicketId { get; set; }
 
 	[JsonPropertyName("TicketID_Internal")]
 	public int InternalTicketId { get; set; }

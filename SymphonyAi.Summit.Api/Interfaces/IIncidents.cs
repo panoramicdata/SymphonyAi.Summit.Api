@@ -31,7 +31,7 @@ public interface IIncidents
 	/// Gets detailed information and change history for a single incident.
 	/// </summary>
 	/// <param name="request"></param>
-	/// <param name="none"></param>
+	/// <param name="cancellationToken"></param>
 	/// <returns></returns>
 	Task<GetIncidentDetailsAndChangeHistoryResponse> GetIncidentDetailsAndChangeHistoryAsync(
 		GetIncidentDetailsAndChangeHistoryRequest request,
@@ -41,7 +41,7 @@ public interface IIncidents
 	/// Create or update an incident
 	/// </summary>
 	/// <param name="request"></param>
-	/// <param name="none"></param>
+	/// <param name="cancellationToken"></param>
 	/// <returns></returns>
 	Task<CreateOrUpdateIncidentResponse> CreateOrUpdateIncidentAsync(
 		CreateOrUpdateIncidentRequest request,

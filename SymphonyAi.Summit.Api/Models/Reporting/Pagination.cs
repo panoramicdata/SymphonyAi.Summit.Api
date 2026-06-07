@@ -1,4 +1,4 @@
-﻿using System.Runtime.Serialization;
+using System.Runtime.Serialization;
 
 namespace SymphonyAi.Summit.Api.Models.Reporting;
 
@@ -33,11 +33,11 @@ public class Pagination
 	public int TotalItemCount { get; set; }
 
 	[DataMember(Name = "prev_page_url")]
-	public object PreviousPageUrl { get; set; }
+	public object? PreviousPageUrl { get; set; }
 
 	[DataMember(Name = "current_page_url")]
-	public object CurrentPageUrl { get; set; }
+	public object? CurrentPageUrl { get; set; }
 
 	[DataMember(Name = "next_page_url")]
-	public object NextPageUrl { get; set; }
+	public object? NextPageUrl { get; set; }
 }

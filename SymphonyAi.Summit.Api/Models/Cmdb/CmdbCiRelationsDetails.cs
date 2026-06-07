@@ -1,18 +1,18 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace SymphonyAi.Summit.Api.Models.Cmdb;
 
 public class CmdbCiRelationsDetails
 {
 	[JsonPropertyName("BackupConfigItems")]
-	public object BackupConfigItems { get; set; }
+	public object? BackupConfigItems { get; set; }
 
 	[JsonPropertyName("ChildConfigItems")]
-	public object ChildConfigItems { get; set; }
+	public object? ChildConfigItems { get; set; }
 
 	[JsonPropertyName("ParentConfigItems")]
-	public object ParentConfigItems { get; set; }
+	public object? ParentConfigItems { get; set; }
 
 	[JsonPropertyName("PeerConfigItems")]
-	public object PeerConfigItems { get; set; }
+	public object? PeerConfigItems { get; set; }
 }
