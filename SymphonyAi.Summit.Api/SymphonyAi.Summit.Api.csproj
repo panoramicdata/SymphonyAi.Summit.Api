@@ -9,7 +9,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Symphony AI Summit API</Title>
     <Description>Symphony AI Summit API nuget package</Description>
-    <Copyright>Panoramic Data Limited 2023</Copyright>
+    <Copyright>Panoramic Data Limited 2026</Copyright>
     <PackageProjectUrl>https://github.com/panoramicdata/SymphonyAi.Summit.Api</PackageProjectUrl>
     <PackageIcon>Logo.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
