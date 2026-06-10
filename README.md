@@ -52,4 +52,4 @@ namespace My.Project
 
 The Symphony AI Summit API documentation can be found here:
 
-	- [Symphony AI Summit API Documentation v1](https://docs.symphonysummitai.com/display/DS/SummitAI+API+Docs)
+	- [Symphony AI Summit API Documentation v1](https://eitdocs.atlassian.net/wiki/spaces/DS/overview)
