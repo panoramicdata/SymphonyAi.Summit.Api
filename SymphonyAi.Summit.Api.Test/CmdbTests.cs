@@ -6,6 +6,7 @@ using Xunit.Abstractions;
 
 namespace SymphonyAi.Summit.Api.Test;
 
+[Trait("Category", "Integration")]
 public class CmdbTests : TestBase
 {
 	public CmdbTests(ITestOutputHelper testOutputHelper) : base(testOutputHelper)

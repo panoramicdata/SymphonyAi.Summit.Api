@@ -28,7 +28,9 @@ jobs:
       run: dotnet build --configuration Release --no-restore
 
     - name: Test
-      run: dotnet test --configuration Release --no-build --verbosity normal
+      # The TestBase-derived suites call the live Summit API and require user secrets that CI
+      # does not have, so running them here failed every tagged build and blocked publishing.
+      run: dotnet test --configuration Release --no-build --verbosity normal --filter "Category!=Integration"
 
     - name: Pack
       run: dotnet pack --configuration Release --no-build --output ./artifacts

@@ -4,6 +4,7 @@ using Xunit.Abstractions;
 
 namespace SymphonyAi.Summit.Api.Test;
 
+[Trait("Category", "Integration")]
 public class DynamicServiceTests : TestBase
 {
 	public DynamicServiceTests(ITestOutputHelper testOutputHelper) : base(testOutputHelper)

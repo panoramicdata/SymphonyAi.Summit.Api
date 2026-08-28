@@ -4,6 +4,7 @@ using Xunit.Abstractions;
 
 namespace SymphonyAi.Summit.Api.Test;
 
+[Trait("Category", "Integration")]
 public class ReportingTests : TestBase
 {
 	public ReportingTests(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
