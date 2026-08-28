@@ -2,7 +2,6 @@ using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using SymphonyAi.Summit.Api.Models.Cmdb;
 using System.Globalization;
-using Xunit.Abstractions;
 
 namespace SymphonyAi.Summit.Api.Test;
 

@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using SymphonyAi.Summit.Api.Test.Models;
-using Xunit.Abstractions;
 
 namespace SymphonyAi.Summit.Api.Test;
 

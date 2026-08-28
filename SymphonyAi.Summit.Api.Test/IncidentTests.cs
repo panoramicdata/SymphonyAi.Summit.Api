@@ -1,6 +1,5 @@
 using FluentAssertions;
 using SymphonyAi.Summit.Api.Models;
-using Xunit.Abstractions;
 
 namespace SymphonyAi.Summit.Api.Test;
 
@@ -131,7 +130,7 @@ public class IncidentTests : TestBase
 	public async Task CreateIncident_GoodRequest_Succeeds()
 	{
 		// Load CreateOrUpdateIncidentRequest from file CreateIncidentRequest.json
-		var request = await LoadObjectFromJsonFile<CreateOrUpdateIncidentRequest>("CreateIncidentRequest", default);
+		var request = await LoadObjectFromJsonFile<CreateOrUpdateIncidentRequest>("CreateIncidentRequest", TestContext.Current.CancellationToken);
 		request.CommonParameters.IncidentParamsJson.IncidentContainerJsonObj.Ticket.AssignedWorkGroupName = WorkgroupName;
 		request.CommonParameters.IncidentParamsJson.IncidentContainerJsonObj.Ticket.CallerEmailId = CallerEmailId;
 
@@ -150,7 +149,7 @@ public class IncidentTests : TestBase
 	public async Task CreateIncident_GoodRequestWithCustomField_Succeeds()
 	{
 		// Load CreateOrUpdateIncidentRequest from file CreateIncidentRequest.json
-		var request = await LoadObjectFromJsonFile<CreateOrUpdateIncidentRequest>("CreateIncidentRequest", default);
+		var request = await LoadObjectFromJsonFile<CreateOrUpdateIncidentRequest>("CreateIncidentRequest", TestContext.Current.CancellationToken);
 		request.CommonParameters.IncidentParamsJson.IncidentContainerJsonObj.Ticket.AssignedWorkGroupName = WorkgroupName;
 		request.CommonParameters.IncidentParamsJson.IncidentContainerJsonObj.Ticket.CallerEmailId = CallerEmailId;
 

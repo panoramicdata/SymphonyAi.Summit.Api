@@ -1,8 +1,7 @@
-﻿using Divergic.Logging.Xunit;
+﻿using Neovolve.Logging.Xunit;
 using Microsoft.Extensions.Configuration;
 using System.Configuration;
 using System.Text.Json;
-using Xunit.Abstractions;
 
 namespace SymphonyAi.Summit.Api.Test;
 
