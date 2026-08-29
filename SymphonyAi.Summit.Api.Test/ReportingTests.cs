@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using AwesomeAssertions;
 using SymphonyAi.Summit.Api.Models.Reporting;
 
 namespace SymphonyAi.Summit.Api.Test;
