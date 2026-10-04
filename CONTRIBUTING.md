@@ -1,16 +1,32 @@
-# Contributing to the Symphony AI Summit API project
+# Contributing
 
-First of all, thanks for helping!
+Thank you for your interest in contributing to this project!
 
-The "main" branch is used for generating builds that are released and all contributions should be
-provided on branches with a pull request into "main".
+## How to Contribute
 
-For example, if you want to fix an enum that has new entries, you could create appropriate hotfix 
-branch "hotfix/network-enum-updates" 
-or feature "feature/adding-new-endpoints" 
-with the changes on and then create a pull request 
-to "main" with the changes.
+1. **Fork** the repository
+2. **Create a branch** for your feature or fix (`git checkout -b feature/my-feature`)
+3. **Make your changes** following the coding standards below
+4. **Write or update tests** as appropriate
+5. **Ensure the build passes** with zero errors, zero warnings, and zero messages
+6. **Submit a Pull Request** against the `main` branch
 
-We make regular updates to keep in sync with new releases and try to get round to 
-requests as soon as we can, resourcing allowing.
+## Coding Standards
 
+- All public members must have XML documentation comments
+- Use `System.Text.Json` — do not introduce `Newtonsoft.Json`
+- Use Refit for HTTP client interfaces
+- Use file-scoped namespaces
+- Use the `required` keyword for DTO properties where appropriate
+- Ensure `TreatWarningsAsErrors` remains enabled
+- All code must compile with zero diagnostics
+
+## Testing
+
+- Use xUnit v3 for all tests
+- Use AwesomeAssertions for fluent assertions
+- Ensure all existing tests pass before submitting a PR
+
+## License
+
+By contributing, you agree that your contributions will be licensed under the MIT License.
