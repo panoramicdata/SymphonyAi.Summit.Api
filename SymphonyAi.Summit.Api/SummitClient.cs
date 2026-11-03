@@ -19,7 +19,7 @@ public class SummitClient : IDisposable
 		// TODO: Remove CmdbBaseUri, this is probably no longer a useful setting
 		// The hypothesis is that Cmdb is always on the same URL as everything BUT reporting.
 		var baseUri = summitClientOptions.CmdbBaseUri ?? summitClientOptions.BaseUri;
-		_httpClient = new HttpClient(new CustomHttpClientHandler(summitClientOptions.ApiKey, logger), true)
+		_httpClient = new HttpClient(new CustomHttpClientHandler(summitClientOptions.ApiKey, logger, summitClientOptions), true)
 		{
 			BaseAddress = new Uri(baseUri.ToString()),
 		};
@@ -29,7 +29,7 @@ public class SummitClient : IDisposable
 			: baseUri.PathAndQuery;
 
 		var reportingBaseUri = summitClientOptions.ReportingBaseUri ?? summitClientOptions.BaseUri;
-		_reportingHttpClient = new HttpClient(new CustomHttpClientHandler(summitClientOptions.ApiKey, logger), true)
+		_reportingHttpClient = new HttpClient(new CustomHttpClientHandler(summitClientOptions.ApiKey, logger, summitClientOptions), true)
 		{
 			BaseAddress = new Uri(reportingBaseUri.ToString()),
 		};

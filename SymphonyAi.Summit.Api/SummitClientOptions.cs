@@ -19,4 +19,9 @@ public class SummitClientOptions
 	public LogLevel JsonMissingMemberResponseLogLevel { get; set; } = LogLevel.Warning;
 
 	public Action<Type, Exception, string>? JsonMissingMemberAction { get; set; }
+
+	/// <summary>
+	/// When true, the client refuses every request other than a known read operation, before sending it.
+	/// </summary>
+	public bool IsReadOnly { get; set; }
 }
