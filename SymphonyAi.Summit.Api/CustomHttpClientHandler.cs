@@ -5,7 +5,7 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 
 namespace SymphonyAi.Summit.Api;
-internal class CustomHttpClientHandler(string apiKey, ILogger logger) : HttpClientHandler
+internal class CustomHttpClientHandler(string apiKey, ILogger logger, SummitClientOptions options) : HttpClientHandler
 {
 	private readonly string _apiKey = apiKey;
 	private readonly ILogger _logger = logger;
@@ -16,6 +16,11 @@ internal class CustomHttpClientHandler(string apiKey, ILogger logger) : HttpClie
 		HttpRequestMessage request,
 		CancellationToken cancellationToken)
 	{
+		if (options.IsReadOnly)
+		{
+			await ReadOnlyRequestPolicy.EnsureAllowedAsync(request, cancellationToken).ConfigureAwait(false);
+		}
+
 		// Reporting API paths require a bearer token
 		if (_reportingPathRegex.IsMatch(request.RequestUri!.AbsolutePath))
 		{
