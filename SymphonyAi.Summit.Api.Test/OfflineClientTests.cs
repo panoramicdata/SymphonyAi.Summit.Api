@@ -42,8 +42,8 @@ public sealed class OfflineClientTests
 		yield return Call("IM_LogOrUpdateIncident", (c, t) => c.Incidents.CreateOrUpdateIncidentAsync(new CreateOrUpdateIncidentRequest(), t));
 	}
 
-	private static object[] Call<T>(string serviceNamePrefix, Func<SummitClient, CancellationToken, Task<T>> call) where T : notnull
-		=> [serviceNamePrefix, new Func<SummitClient, CancellationToken, Task<object>>(async (c, t) => await call(c, t))];
+	private static object[] Call<T>(string serviceNamePrefix, Func<SummitClient, CancellationToken, Task<T>> invocation) where T : notnull
+		=> [serviceNamePrefix, new Func<SummitClient, CancellationToken, Task<object>>(async (c, t) => await invocation(c, t))];
 
 	[Theory]
 	[MemberData(nameof(ServiceCalls))]

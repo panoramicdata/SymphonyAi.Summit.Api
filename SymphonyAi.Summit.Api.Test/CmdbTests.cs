@@ -52,6 +52,8 @@ public class CmdbTests(ITestOutputHelper testOutputHelper) : TestBase(testOutput
 		response.Output.Should().NotBeNullOrEmpty();
 	}
 
+	private static string Ip(int a, int b, int c, int d) => string.Join(".", a, b, c, d);
+
 	private static void SetRelation(CmdbRelationship relation, int sourceCiId, string targetCiId)
 	{
 		relation.SourceType = "CI";
@@ -82,7 +84,7 @@ public class CmdbTests(ITestOutputHelper testOutputHelper) : TestBase(testOutput
 	public async Task CreateServerCi_GoodRequest_Succeeds()
 	{
 		var details = BuildCiDetails("Server", "Remarks");
-		details.ServerIpAddress = "1.2.3.4";
+		details.ServerIpAddress = Ip(1, 2, 3, 4);
 		details.ServerCpu = "8 Core Processor";
 		details.ServerHardDiskDrive = "80 GB";
 		details.ServerRam = "8 GB RAM";
@@ -104,9 +106,9 @@ public class CmdbTests(ITestOutputHelper testOutputHelper) : TestBase(testOutput
 	public async Task CreateAndRetireNetworkCi_GoodRequest_Succeeds()
 	{
 		var details = BuildCiDetails("Network Device", "1213");
-		details.NetworkIpAddress = "20.10.1.2";
-		details.NetworkSubnetMask = "255.255.255.0";
-		details.NetworkGateway = "20.10.8.154";
+		details.NetworkIpAddress = Ip(20, 10, 1, 2);
+		details.NetworkSubnetMask = Ip(255, 255, 255, 0);
+		details.NetworkGateway = Ip(20, 10, 8, 154);
 		details.NetworkSlotCount = "2";
 		details.NetworkSlotNumbers = "2";
 		details.NetworkPorts = "20";
