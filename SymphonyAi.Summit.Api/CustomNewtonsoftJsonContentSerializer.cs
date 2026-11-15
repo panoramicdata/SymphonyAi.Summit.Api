@@ -45,7 +45,9 @@ public class CustomNewtonsoftJsonContentSerializer : IHttpContentSerializer
 		_serializerIgnore = new NewtonsoftJsonContentSerializer(_jsonSerializerSettingsWithIgnore);
 	}
 
-	public async Task<T?> FromHttpContentAsync<T>(HttpContent content, CancellationToken cancellationToken = default) => _options.JsonMissingMemberHandling switch
+	public Task<T?> FromHttpContentAsync<T>(HttpContent content) => FromHttpContentAsync<T>(content, CancellationToken.None);
+
+	public async Task<T?> FromHttpContentAsync<T>(HttpContent content, CancellationToken cancellationToken) => _options.JsonMissingMemberHandling switch
 	{
 		JsonMissingMemberHandling.Ignore => await _serializerIgnore.FromHttpContentAsync<T>(content, cancellationToken).ConfigureAwait(false),
 		JsonMissingMemberHandling.ThrowOnError => await LogOnErrorAndThrowFromHttpContentAsync<T>(content, cancellationToken).ConfigureAwait(false),

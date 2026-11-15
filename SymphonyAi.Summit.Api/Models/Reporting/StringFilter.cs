@@ -12,7 +12,7 @@ public class StringFilter(string columnName, StringFilterOperators filterOperato
 
 	public string GetFilterExpression()
 	{
-		var columnName = SqlColumnNameFactory.BuildDelimitedColumnName(ColumnName);
+		var delimitedColumnName = SqlColumnNameFactory.BuildDelimitedColumnName(ColumnName);
 
 		(var operatorPrefix, var operatorSuffix) = Operator switch
 		{
@@ -24,6 +24,6 @@ public class StringFilter(string columnName, StringFilterOperators filterOperato
 
 		var escapedValue = SqlStringValueFactory.BuildEscapedValue(Value);
 
-		return $"{columnName}{operatorPrefix}{escapedValue}{operatorSuffix}";
+		return $"{delimitedColumnName}{operatorPrefix}{escapedValue}{operatorSuffix}";
 	}
 }

@@ -8,7 +8,7 @@ internal class RawStringConverter : JsonConverter<object>
 	private static readonly JsonSerializerOptions _rawOptions = new() { WriteIndented = false };
 	public override bool CanConvert(Type typeToConvert) => true;
 
-	public override void Write(Utf8JsonWriter writer, object? value, JsonSerializerOptions serializerOptions)
+	public override void Write(Utf8JsonWriter writer, object? value, JsonSerializerOptions options)
 	{
 		if (value is null)
 		{
@@ -20,6 +20,6 @@ internal class RawStringConverter : JsonConverter<object>
 		writer.WriteStringValue(jsonPayload);
 	}
 
-	public override object Read(ref Utf8JsonReader reader, Type objectType, JsonSerializerOptions serializerOptions)
+	public override object Read(ref Utf8JsonReader reader, Type objectType, JsonSerializerOptions options)
 		=> throw new NotImplementedException("Unnecessary because CanRead is false. The type will skip the converter.");
 }

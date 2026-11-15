@@ -3,6 +3,7 @@ using Refit;
 using SymphonyAi.Summit.Api.Converters;
 using SymphonyAi.Summit.Api.Implementations;
 using SymphonyAi.Summit.Api.Interfaces;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -19,94 +20,49 @@ public class SummitClient : IDisposable
 		// TODO: Remove CmdbBaseUri, this is probably no longer a useful setting
 		// The hypothesis is that Cmdb is always on the same URL as everything BUT reporting.
 		var baseUri = summitClientOptions.CmdbBaseUri ?? summitClientOptions.BaseUri;
-		_httpClient = new HttpClient(new CustomHttpClientHandler(summitClientOptions.ApiKey, logger, summitClientOptions), true)
-		{
-			BaseAddress = new Uri(baseUri.ToString()),
-		};
+		_httpClient = CreateHttpClient(baseUri, summitClientOptions, logger);
 
 		var apiIntegrationSubUrl = baseUri.PathAndQuery == "/"
 			? "api_integration"
 			: baseUri.PathAndQuery;
 
-		var reportingBaseUri = summitClientOptions.ReportingBaseUri ?? summitClientOptions.BaseUri;
-		_reportingHttpClient = new HttpClient(new CustomHttpClientHandler(summitClientOptions.ApiKey, logger, summitClientOptions), true)
-		{
-			BaseAddress = new Uri(reportingBaseUri.ToString()),
-		};
+		_reportingHttpClient = CreateHttpClient(summitClientOptions.ReportingBaseUri ?? summitClientOptions.BaseUri, summitClientOptions, logger);
 
-		var _refitSettings = new RefitSettings
+		var refitSettings = new RefitSettings
 		{
 			ContentSerializer = new CustomNewtonsoftJsonContentSerializer(summitClientOptions, logger)
 		};
 
-		var jsonSerializerOptions = new JsonSerializerOptions
-		{
-			DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-#if DEBUG
-			WriteIndented = true
-#else
-			WriteIndented = false
-#endif
-		};
+		var jsonSerializerOptions = CreateJsonSerializerOptions(null);
+		var dynamicServiceSerializerOptions = CreateJsonSerializerOptions(new CustomQuoteEncoder());
+		var apiKey = summitClientOptions.ApiKey;
 
-		var dynamicServiceSerializerOptions = new JsonSerializerOptions
-		{
-			DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-			Encoder = new CustomQuoteEncoder(),
-#if DEBUG
-			WriteIndented = true
-#else
-			WriteIndented = false
-#endif
-		};
-
-		Attachments = new AttachmentManager(
-			_httpClient,
-			summitClientOptions.ApiKey,
-			apiIntegrationSubUrl,
-			jsonSerializerOptions,
-			logger
-			);
-
-		Cmdb = new CmdbManager(
-			_httpClient,
-			summitClientOptions.ApiKey,
-			apiIntegrationSubUrl,
-			jsonSerializerOptions,
-			logger);
-
-		Incidents = new IncidentManager(
-			_httpClient,
-			summitClientOptions.ApiKey,
-			apiIntegrationSubUrl,
-			jsonSerializerOptions,
-			logger);
-
-		Problems = new ProblemManager(
-			_httpClient,
-			summitClientOptions.ApiKey,
-			apiIntegrationSubUrl,
-			jsonSerializerOptions,
-			logger);
-
-		Reports = RestService.For<IReports>(
-			_reportingHttpClient,
-			_refitSettings);
-
-		ServiceRequests = new ServiceRequestManager(
-			_httpClient,
-			summitClientOptions.ApiKey,
-			apiIntegrationSubUrl,
-			jsonSerializerOptions,
-			logger);
-
-		DynamicServices = new DynamicServiceManager(
-			_httpClient,
-			summitClientOptions.ApiKey,
-			apiIntegrationSubUrl,
-			dynamicServiceSerializerOptions,
-			logger);
+		Attachments = new AttachmentManager(_httpClient, apiKey, apiIntegrationSubUrl, jsonSerializerOptions, logger);
+		Cmdb = new CmdbManager(_httpClient, apiKey, apiIntegrationSubUrl, jsonSerializerOptions, logger);
+		Incidents = new IncidentManager(_httpClient, apiKey, apiIntegrationSubUrl, jsonSerializerOptions, logger);
+		Problems = new ProblemManager(_httpClient, apiKey, apiIntegrationSubUrl, jsonSerializerOptions, logger);
+		Reports = RestService.For<IReports>(_reportingHttpClient, refitSettings);
+		ServiceRequests = new ServiceRequestManager(_httpClient, apiKey, apiIntegrationSubUrl, jsonSerializerOptions, logger);
+		DynamicServices = new DynamicServiceManager(_httpClient, apiKey, apiIntegrationSubUrl, dynamicServiceSerializerOptions, logger);
 	}
+
+	private static HttpClient CreateHttpClient(Uri baseUri, SummitClientOptions options, ILogger logger)
+		=> new(new CustomHttpClientHandler(options.ApiKey, logger, options), true)
+		{
+			BaseAddress = new Uri(baseUri.ToString()),
+		};
+
+	private static JsonSerializerOptions CreateJsonSerializerOptions(JavaScriptEncoder? encoder)
+		=> new()
+		{
+			DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+			Encoder = encoder,
+#if DEBUG
+			WriteIndented = true
+#else
+			WriteIndented = false
+#endif
+		};
 
 	public IAttachments Attachments { get; }
 
@@ -142,4 +98,4 @@ public class SummitClient : IDisposable
 		Dispose(disposing: true);
 		GC.SuppressFinalize(this);
 	}
-}
+}

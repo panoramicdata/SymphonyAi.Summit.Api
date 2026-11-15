@@ -13,7 +13,7 @@ public class MultiValueNumericFilter<T>(string columnName, MultiValueFilterOpera
 
 	public string GetFilterExpression()
 	{
-		var columnName = SqlColumnNameFactory.BuildDelimitedColumnName(ColumnName);
+		var delimitedColumnName = SqlColumnNameFactory.BuildDelimitedColumnName(ColumnName);
 
 		var (prefix, suffix, itemSeparator) = Operator switch
 		{
@@ -23,7 +23,7 @@ public class MultiValueNumericFilter<T>(string columnName, MultiValueFilterOpera
 		};
 
 		var builder = new StringBuilder(Values.Count * 25);
-		_ = builder.Append(columnName + prefix);
+		_ = builder.Append(delimitedColumnName + prefix);
 
 		var separatorRequired = false;
 		foreach (var value in Values)
