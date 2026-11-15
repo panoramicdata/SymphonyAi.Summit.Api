@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using SymphonyAi.Summit.Api.Models.Reporting.Helpers;
+using System.Text;
 
 namespace SymphonyAi.Summit.Api.Models.Reporting;
 
@@ -46,26 +47,10 @@ public class StructuredDataQueryParameters
 				_ = builder.Append(',');
 			}
 
-			_ = builder.Append(DelimitColumnName(columnName));
+			_ = builder.Append(SqlColumnNameFactory.BuildDelimitedColumnName(columnName));
 		}
 
 		return builder.ToString();
-	}
-
-	private static string DelimitColumnName(string columnName)
-	{
-		columnName = columnName.Trim();
-		if (!columnName.StartsWith('['))
-		{
-			columnName = "[" + columnName;
-		}
-
-		if (!columnName.EndsWith(']'))
-		{
-			columnName += "]";
-		}
-
-		return columnName;
 	}
 
 	internal string BuildSortOrderExpression()

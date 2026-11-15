@@ -1,4 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+using SymphonyAi.Summit.Api.Exceptions;
+using SymphonyAi.Summit.Api.Models;
+using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
@@ -64,5 +67,25 @@ internal class Manager(
 			"REQUEST: {FormattedJson}",
 			formattedJson
 		);
+	}
+
+	protected async Task<TResponse> SendAsync<TResponse>(
+		object request,
+		ProxyDetails proxyDetails,
+		CancellationToken cancellationToken)
+	{
+		proxyDetails.ApiKey = ApiKey;
+
+		LogRequest(request);
+
+		var response = await HttpClient
+			.PostAsJsonAsync(ApiIntegrationSubUrl, request, JsonSerializerOptions, cancellationToken);
+
+		await LogResponseAsync(response, cancellationToken);
+
+		return await response
+			.Content
+			.ReadFromJsonAsync<TResponse>(cancellationToken: cancellationToken)
+			?? throw new SummitApiException($"Error deserializing {typeof(TResponse).Name}");
 	}
 }

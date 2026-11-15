@@ -8,8 +8,8 @@ public class NotNullFilter(string columnName) : IFilter
 
 	public string GetFilterExpression()
 	{
-		var columnName = SqlColumnNameFactory.BuildDelimitedColumnName(ColumnName);
+		var delimitedColumnName = SqlColumnNameFactory.BuildDelimitedColumnName(ColumnName);
 
-		return $"{columnName} IS NOT NULL";
+		return $"{delimitedColumnName} IS NOT NULL";
 	}
 }

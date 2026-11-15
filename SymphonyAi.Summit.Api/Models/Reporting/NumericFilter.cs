@@ -12,7 +12,7 @@ public class NumericFilter<T>(string columnName, NumericFilterOperators filterOp
 
 	public string GetFilterExpression()
 	{
-		var columnName = SqlColumnNameFactory.BuildDelimitedColumnName(ColumnName);
+		var delimitedColumnName = SqlColumnNameFactory.BuildDelimitedColumnName(ColumnName);
 
 		(var operatorPrefix, var operatorSuffix) = Operator switch
 		{
@@ -21,6 +21,6 @@ public class NumericFilter<T>(string columnName, NumericFilterOperators filterOp
 			_ => throw new ArgumentException("Requested operator is not supported!")
 		};
 
-		return $"{columnName}{operatorPrefix}{Value}{operatorSuffix}";
+		return $"{delimitedColumnName}{operatorPrefix}{Value}{operatorSuffix}";
 	}
 }

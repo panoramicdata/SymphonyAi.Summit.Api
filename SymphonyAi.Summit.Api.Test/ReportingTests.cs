@@ -1,14 +1,29 @@
-﻿using AwesomeAssertions;
+﻿﻿using AwesomeAssertions;
 using SymphonyAi.Summit.Api.Models.Reporting;
 
 namespace SymphonyAi.Summit.Api.Test;
 
 [Trait("Category", "Integration")]
-public class ReportingTests : TestBase
+public class ReportingTests(ITestOutputHelper testOutputHelper) : TestBase(testOutputHelper)
 {
-	public ReportingTests(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
+	private static void AssertSuccessfulPage(DataPage dataPage)
 	{
+		dataPage.Status.Message.Should().BeEmpty();
+		dataPage.Status.Value.Should().Be("success");
+		dataPage.Results.Should().NotBeNullOrEmpty();
 	}
+
+	private static void AssertAllHaveTextAndValue(List<TextValuePair> schema)
+		=> schema.Should().AllSatisfy(item =>
+		{
+			item.Text.Should().NotBeNullOrWhiteSpace();
+			item.Value.Should().NotBeNullOrWhiteSpace();
+		});
+
+	private async Task AssertQuerySucceedsAsync(DataQuery query)
+		=> AssertSuccessfulPage(await SummitClient
+			.Reports
+			.GetTableDataAsync(query, CancellationToken.None));
 
 	[Fact]
 	public async Task HealthCheck_Succeeds()
@@ -28,44 +43,31 @@ public class ReportingTests : TestBase
 			.GetDnsSchemaAsync(CancellationToken.None);
 
 		response.Should().NotBeNullOrEmpty();
-
-		// All the DNS Schema values should have text and value set
-		response.Should().AllSatisfy(item =>
-		{
-			item.Text.Should().NotBeNullOrWhiteSpace();
-			item.Value.Should().NotBeNullOrWhiteSpace();
-		});
+		AssertAllHaveTextAndValue(response);
 	}
 
 	[Fact]
 	public async Task GetTableSchema_Succeeds()
 	{
 		var dnsSchema = await SummitClient
-		.Reports
-		.GetDnsSchemaAsync(CancellationToken.None);
+			.Reports
+			.GetDnsSchemaAsync(CancellationToken.None);
 
 		var tableSchema = await SummitClient
 			.Reports
 			.GetTableSchemaAsync(dnsSchema[0].Text, CancellationToken.None);
 
 		tableSchema.Should().NotBeNullOrEmpty();
-
 		dnsSchema.Select(d => d.Text).Should().NotBeSameAs(tableSchema.Select(d => d.Text));
-
-		// All the DNS Schema values should have text and value set
-		tableSchema.Should().AllSatisfy(item =>
-		{
-			item.Text.Should().NotBeNullOrWhiteSpace();
-			item.Value.Should().NotBeNullOrWhiteSpace();
-		});
+		AssertAllHaveTextAndValue(tableSchema);
 	}
 
 	[Fact]
 	public async Task GetData_Succeeds()
 	{
 		var dnsSchema = await SummitClient
-		.Reports
-		.GetDnsSchemaAsync(CancellationToken.None);
+			.Reports
+			.GetDnsSchemaAsync(CancellationToken.None);
 
 		var dataPage = await SummitClient
 			.Reports
@@ -75,57 +77,27 @@ public class ReportingTests : TestBase
 	}
 
 	[Fact]
-	public async Task GetDataViaQuery_Succeeds()
-	{
-		var query = new DataQuery
+	public Task GetDataViaQuery_Succeeds()
+		=> AssertQuerySucceedsAsync(new DataQuery
 		{
 			Table = "CMDB_RPT_DN_CMDBMaster",
 			Columns = "[Configuration Item Id],[Classification],[Serial No],[Configuration Information Status],[Create Date],[Sup Function Name], [Life Cycle Status]",
 			Filters = "[Configuration Information Status] IN ('Production')"
-		};
-
-		var dataPage = await SummitClient
-			.Reports
-			.GetTableDataAsync(query, CancellationToken.None);
-
-		dataPage.Status.Message.Should().BeEmpty();
-		dataPage.Status.Value.Should().Be("success");
-		dataPage.Results.Should().NotBeNullOrEmpty();
-	}
-
-	[Fact]
-	public async Task GetDataViaStructuredQuery_Succeeds()
-	{
-		var query = new StructuredDataQuery(new StructuredDataQueryParameters
-		{
-			DataSource = "IM_RPT_DN_TicketMaster_Vw",
-			Columns = new List<string> { "Ticket ID", "Description", "Status" },
-			Filters = new List<IFilter>
-			{
-				new MultiValueStringFilter("Status", MultiValueFilterOperators.In, new List<string>{ "Open", "Reopened", "New", "Assigned", "In-Progress", "Pending" })
-			}
 		});
 
-		var dataPage = await SummitClient
-			.Reports
-			.GetTableDataAsync(query, CancellationToken.None);
-
-		dataPage.Status.Message.Should().BeEmpty();
-		dataPage.Status.Value.Should().Be("success");
-		dataPage.Results.Should().NotBeNullOrEmpty();
-	}
+	[Fact]
+	public Task GetDataViaStructuredQuery_Succeeds()
+		=> AssertQuerySucceedsAsync(new StructuredDataQuery(new StructuredDataQueryParameters
+		{
+			DataSource = "IM_RPT_DN_TicketMaster_Vw",
+			Columns = ["Ticket ID", "Description", "Status"],
+			Filters =
+			[
+				new MultiValueStringFilter("Status", MultiValueFilterOperators.In, ["Open", "Reopened", "New", "Assigned", "In-Progress", "Pending"])
+			]
+		}));
 
 	[Fact]
-	public async Task GetDataViaRawSqlQuery_Succeeds()
-	{
-		var query = new RawSqlDataQuery("SELECT top 10 [Configuration Item Id], [Classification], [Serial No], [Configuration Information Status] FROM CMDB_RPT_DN_CMDBMaster WITH (NOLOCK) where [Configuration Information Status] IN ('Production')");
-
-		var dataPage = await SummitClient
-			.Reports
-			.GetTableDataAsync(query, CancellationToken.None);
-
-		dataPage.Status.Message.Should().BeEmpty();
-		dataPage.Status.Value.Should().Be("success");
-		dataPage.Results.Should().NotBeNullOrEmpty();
-	}
+	public Task GetDataViaRawSqlQuery_Succeeds()
+		=> AssertQuerySucceedsAsync(new RawSqlDataQuery("SELECT top 10 [Configuration Item Id], [Classification], [Serial No], [Configuration Information Status] FROM CMDB_RPT_DN_CMDBMaster WITH (NOLOCK) where [Configuration Information Status] IN ('Production')"));
 }

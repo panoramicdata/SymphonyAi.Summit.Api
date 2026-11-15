@@ -2,7 +2,7 @@
 
 namespace SymphonyAi.Summit.Api.Models.Cmdb;
 
-public class CmdbRelationshipQueryResponseModelInner
+public class CmdbRelationshipQueryResponseModelInner : CmdbRelationshipDeviceBase
 {
 	[JsonPropertyName("ID")]
 	public int Id { get; set; }
@@ -21,12 +21,6 @@ public class CmdbRelationshipQueryResponseModelInner
 
 	[JsonPropertyName("Device_HostName")]
 	public string DeviceHostName { get; set; } = string.Empty;
-
-	[JsonPropertyName("Serial_No")]
-	public string SerialNumber { get; set; } = string.Empty;
-
-	[JsonPropertyName("IPAddress")]
-	public string IpAddress { get; set; } = string.Empty;
 
 	[JsonPropertyName("MAC_Address")]
 	public string MacAddress { get; set; } = string.Empty;
