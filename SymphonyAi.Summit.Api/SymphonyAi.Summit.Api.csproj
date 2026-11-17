@@ -51,6 +51,7 @@
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="Refit" />
+    <PackageReference Include="Refit.Reflection" />
     <PackageReference Include="Refit.Newtonsoft.Json" />
   </ItemGroup>
 </Project>

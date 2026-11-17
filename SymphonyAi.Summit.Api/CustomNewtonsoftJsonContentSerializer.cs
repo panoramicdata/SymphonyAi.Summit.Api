@@ -11,7 +11,7 @@ namespace SymphonyAi.Summit.Api;
 /// A custom IHttpContentSerializer based on NewtonsoftJsonContentSerializer
 /// to handle retries after missing members are observed
 /// </summary>
-public class CustomNewtonsoftJsonContentSerializer : IHttpContentSerializer
+public class CustomNewtonsoftJsonContentSerializer : IHttpContentSerializer, IReflectionFieldNameProvider
 {
 	private readonly SummitClientOptions _options;
 	private readonly ILogger _logger;
@@ -118,7 +118,7 @@ public class CustomNewtonsoftJsonContentSerializer : IHttpContentSerializer
 	}
 
 	public string? GetFieldNameForProperty(PropertyInfo propertyInfo)
-		=> _serializerIgnore.GetFieldNameForProperty(propertyInfo);
+		=> propertyInfo.GetCustomAttribute<Newtonsoft.Json.JsonPropertyAttribute>()?.PropertyName;
 
 	public HttpContent ToHttpContent<T>(T item)
 		=> _serializerIgnore.ToHttpContent<T>(item);
